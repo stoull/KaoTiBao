@@ -1,0 +1,53 @@
+//
+//  PrefixHeader.pch
+//  LinkBox
+//
+//  Created by stoull on 1/5/16.
+//  Copyright © 2016 AChang. All rights reserved.
+//
+
+#ifndef PrefixHeader_h
+#define PrefixHeader_h
+
+// 程序主题色
+//#define kThemeColor [UIColor colorWithRed:50/255.0 green:130/255.0 blue:196/255.0 alpha:1.0]
+// 388dee 279aff
+#define kThemeColor UIColorFromRGB(0x474747)
+
+// 程序主题色二（tabBar等）
+#define kThemeColor_secondary UIColorFromRGB(0x3f9af1)
+
+// 程序所有蒙板背景色
+#define kMaskBackgroundColor [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.5]
+
+// 程序所有浅背景色
+#define kBackgroundShallowColor UIColorFromRGB(0xf2f2f2)
+
+// disable状态下的颜色
+#define kDisableStatusColor [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.8]
+
+// TableView分隔线的的颜色
+#define kTabelViewSeparatorColor [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0]
+
+// tableView 字体颜色
+#define kTabelViewTextColor         UIColorFromRGB(0x333333)
+#define kTabelViewTextDarkColor     UIColorFromRGB(0x999999);
+
+//带有RGBA的颜色设置
+// rgb颜色转换（16进制->10进制）
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define RGBCOLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+
+//获取屏幕 宽度、高度
+#define kSCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define kSCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+// debug 输出
+#ifdef DEBUG
+#define LBLog(...) NSLog(__VA_ARGS__)
+#else
+#define LBLog(...)
+#endif
+
+
+#endif /* PrefixHeader_h */
