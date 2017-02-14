@@ -8,10 +8,11 @@
 
 #import "DocManagerController.h"
 #import "DocManagerCell.h"
-#import "DocumentViewController.h"
+#import "DocumentTableViewController.h"
 #import "DocumentMgr.h"
 #import "KTDefine.h"
 #import "CCSideSlipView.h"
+#import "DocumentCellTableViewCell.h"
 #import "MenuView.h"
 #import "DocManagerCellFooterView.h"
 #import "DocMgrCellFooterLayout.h"
@@ -21,6 +22,7 @@
 #define kDocManagerCellIdentifier @"kDocManagerCellIdentifier"
 #define kDocumentCellIdentifier @"kDocumentCellIdentifier"
 #define kDocmentFooterViewIdentifier @"kDocmentFooterViewIdentifier"
+#define kDocumentCellTableViewCellIdentifier @"kDocumentCellTableViewCellIdentifier"
 
 @interface DocManagerController ()<UITableViewDelegate,UITableViewDataSource,DocManagerCellDelegate,DocManagerCellFooterViewDelegate>{
     CCSideSlipView *_sideSlipView;
@@ -65,6 +67,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.managerType = [[NSUserDefaults standardUserDefaults] integerForKey:kKTBDocManagerType];
     // Do any additional setup after loading the view from its nib.
     self.statusBarBackgroundView.backgroundColor = kThemeColor;
     self.tableView.tableFooterView = [UIView new];
@@ -72,6 +75,8 @@
 //    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DocManagerCell" bundle:nil] forCellReuseIdentifier:kDocManagerCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DocumentCellTableViewCell" bundle:nil] forCellReuseIdentifier:kDocumentCellTableViewCellIdentifier];
+    
     [self.tableView registerClass:[DocManagerCellFooterView class] forHeaderFooterViewReuseIdentifier:kDocmentFooterViewIdentifier];
     
     [self setHeaderMenuView];
@@ -144,7 +149,15 @@
     [_sideSlipView setContentView:menu];
     [menu didSelectRowAtIndexPath:^(id cell, NSIndexPath *indexPath) {
         NSLog(@"click");
-        
+        if (indexPath) {
+            KTBDocManagerType type = (KTBDocManagerType)indexPath.row;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (type != self.managerType) {
+                    self.managerType = type;
+                    [self.tableView reloadData];
+                }
+            });
+        }
 //        [_sideSlipView hide];
     }];
 
@@ -218,77 +231,112 @@
         
         return cell;
     }else{
-        
+        DocumentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentCellTableViewCellIdentifier forIndexPath:indexPath];
+        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+        cell.type = DocumentCellTypeGroup;
+        cell.documents = array;
+        return cell;
     }
-
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        
+    }else{
+        id tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+//            [self.documents removeObjectAtIndex:indexPath.row];
+//            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
+}
+
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.managerType == KTBDocManagerTypeByTime) {
-        
+        return 50;
     }else{
-        
+        return 90;
     }
-    return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.managerType == KTBDocManagerTypeByTime) {
-        
+        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
+        DocCollectionViewLayout *flowLayout = [[DocCollectionViewLayout alloc] init];
+        DocumentCollectionController *docController = [[DocumentCollectionController alloc] initWithCollectionViewLayout:flowLayout];
+        NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
+        docController.title = title;
+        docController.docments = array;
+        [self.navigationController pushViewController:docController animated:YES];
     }else{
         
+        DocumentTableViewController *docTVC = [[DocumentTableViewController alloc] initWithNibName:@"DocumentTableViewController" bundle:nil];
+        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+        docTVC.documents = [array mutableCopy];
+        [self.navigationController pushViewController:docTVC animated:YES];
+        
+        
+//        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+//        DocCollectionViewLayout *flowLayout = [[DocCollectionViewLayout alloc] init];
+//        DocumentCollectionController *docController = [[DocumentCollectionController alloc] initWithCollectionViewLayout:flowLayout];
+//        NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
+//        docController.title = title;
+//        docController.docments = array;
+//        [self.navigationController pushViewController:docController animated:YES];
     }
-    NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
-    DocCollectionViewLayout *flowLayout = [[DocCollectionViewLayout alloc] init];
-    DocumentCollectionController *docController = [[DocumentCollectionController alloc] initWithCollectionViewLayout:flowLayout];
-    NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
-    docController.title = title;
-    docController.docments = array;
-    [self.navigationController pushViewController:docController animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (self.managerType == KTBDocManagerTypeByTime) {
+        NSArray *array = [self.resulutController.sections objectAtIndex:section].objects;
+        NSInteger itemCount = array.count;
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+        CGFloat itemWidth = (screenSize.width - (kRow + 1) * kLeftMagin) / kRow;
+        CGFloat collectionHeight = itemWidth + 2*kLeftMagin;
         
+        int lineCount = (int)(itemCount / kRow);
+        if (itemCount % kRow) {
+            lineCount +=1;
+        }
+        
+        if (itemCount > kRow) {
+            collectionHeight = lineCount * itemWidth + 2 *kLeftMagin + kItemMinLineSpacing * lineCount;
+        }
+        return collectionHeight;
     }else{
-        
+        return 0;
     }
-    NSArray *array = [self.resulutController.sections objectAtIndex:section].objects;
-    NSInteger itemCount = array.count;
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    CGFloat itemWidth = (screenSize.width - (kRow + 1) * kLeftMagin) / kRow;
-    CGFloat collectionHeight = itemWidth + 2*kLeftMagin;
-    
-    int lineCount = (int)(itemCount / kRow);
-    if (itemCount % kRow) {
-        lineCount +=1;
-    }
-    
-    if (itemCount > kRow) {
-        collectionHeight = lineCount * itemWidth + 2 *kLeftMagin + kItemMinLineSpacing * lineCount;
-    }
-    return collectionHeight;
+
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (self.managerType == KTBDocManagerTypeByTime) {
+        //特定section下的信息array,再允許indexPath.row找某條消息
+        NSArray *array = [self.resulutController.sections objectAtIndex:section].objects;
         
+        //    Document *document = array[0];
+        
+        DocManagerCellFooterView *footerView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:kDocmentFooterViewIdentifier];
+        if (footerView == nil) {
+            footerView = [[DocManagerCellFooterView alloc] initWithReuseIdentifier:kDocmentFooterViewIdentifier];
+        }
+        footerView.documents = array;
+        footerView.delegate = self;
+        return footerView;
     }else{
-        
+        return nil;
     }
-    //特定section下的信息array,再允許indexPath.row找某條消息
-    NSArray *array = [self.resulutController.sections objectAtIndex:section].objects;
-    
-    //    Document *document = array[0];
-    
-    DocManagerCellFooterView *footerView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:kDocmentFooterViewIdentifier];
-    if (footerView == nil) {
-        footerView = [[DocManagerCellFooterView alloc] initWithReuseIdentifier:kDocmentFooterViewIdentifier];
-    }
-    footerView.documents = array;
-    footerView.delegate = self;
-    return footerView;
+
 }
 
 
@@ -300,11 +348,11 @@
 #pragma mark - DocManagerCellFooterViewDelegate
 - (void)didSelectedSectionIndex:(NSInteger)section withDocment:(Document *)doc{
     if (self.managerType == KTBDocManagerTypeByTime) {
-        
+        [self previewPhotosWithPhotoBrowserWithFile:doc atSection:section];
     }else{
         
     }
-    [self previewPhotosWithPhotoBrowserWithFile:doc atSection:section];
+    
 }
 
 #pragma -mark MWPhoto图片查看器

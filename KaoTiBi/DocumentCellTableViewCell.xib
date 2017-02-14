@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,32 +20,47 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-cL-8kq">
-                        <rect key="frame" x="8" y="1" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="3gU-zG-UdK"/>
-                            <constraint firstAttribute="width" constant="40" id="T0O-mr-xkL"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ury-TG-Vli">
-                        <rect key="frame" x="56" y="11" width="256" height="21"/>
+                        <rect key="frame" x="55" y="11" width="233" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geren-back" translatesAutoresizingMaskIntoConstraints="NO" id="JQQ-Ji-XdM">
+                        <rect key="frame" x="298" y="15.5" width="6" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="8Sl-2n-rMz"/>
+                            <constraint firstAttribute="width" constant="6" id="GVP-Do-q7Z"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="6" id="ZLn-rM-JVc"/>
+                            <constraint firstAttribute="height" constant="12" id="vgI-vc-8mh"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-cL-8kq">
+                        <rect key="frame" x="8" y="2" width="39" height="39"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="RgJ-cL-8kq" secondAttribute="height" multiplier="1:1" id="Rqa-ZG-mta"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RgJ-cL-8kq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="DPV-m0-goa"/>
-                    <constraint firstItem="ury-TG-Vli" firstAttribute="leading" secondItem="RgJ-cL-8kq" secondAttribute="trailing" constant="8" id="eQh-ID-Sia"/>
-                    <constraint firstItem="ury-TG-Vli" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="hyV-Dt-08g"/>
+                    <constraint firstItem="JQQ-Ji-XdM" firstAttribute="leading" secondItem="ury-TG-Vli" secondAttribute="trailing" constant="10" id="3Ma-1a-OWC"/>
+                    <constraint firstAttribute="bottom" secondItem="RgJ-cL-8kq" secondAttribute="bottom" constant="2" id="8oF-8F-dz8"/>
+                    <constraint firstItem="ury-TG-Vli" firstAttribute="leading" secondItem="RgJ-cL-8kq" secondAttribute="trailing" constant="8" id="eWJ-do-vMf"/>
+                    <constraint firstItem="RgJ-cL-8kq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="kHL-Eo-3FU"/>
+                    <constraint firstItem="JQQ-Ji-XdM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mm1-mX-PDm"/>
                     <constraint firstItem="ury-TG-Vli" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mzP-tr-FMk"/>
-                    <constraint firstItem="RgJ-cL-8kq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vCd-OJ-CSJ"/>
+                    <constraint firstItem="RgJ-cL-8kq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="sS8-gE-2rG"/>
+                    <constraint firstItem="JQQ-Ji-XdM" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-8" id="ubN-xK-Kpb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="docImageView" destination="RgJ-cL-8kq" id="U91-Q7-BGu"/>
                 <outlet property="docNameLabel" destination="ury-TG-Vli" id="Gkv-Lz-Tei"/>
+                <outlet property="groupImageView" destination="JQQ-Ji-XdM" id="4r8-68-i1x"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="geren-back" width="6" height="11"/>
+    </resources>
 </document>

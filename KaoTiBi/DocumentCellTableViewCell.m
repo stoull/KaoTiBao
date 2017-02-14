@@ -12,6 +12,7 @@
 @interface DocumentCellTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *docImageView;
 @property (weak, nonatomic) IBOutlet UILabel *docNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
 
 @end
 
@@ -29,9 +30,30 @@
     docPath = [docPath stringByAppendingPathComponent:document.dateName];
     
     UIImage *image = [UIImage imageWithContentsOfFile:docPath];
+    self.docImageView.image = [UIImage imageCompressForSize:image targetSize:CGSizeMake(240, 240)];
+}
+
+-(void)setDocuments:(NSArray *)documents{
+    if (documents == nil || documents.count == 0) {
+        return;
+    }
+    _documents = documents;
+    Document *document = [documents firstObject];
+    self.docNameLabel.text = document.identifierDay;
+    NSString *docPath = [kPathDocument stringByAppendingPathComponent:document.path];
+    docPath = [docPath stringByAppendingPathComponent:document.dateName];
     
+    UIImage *image = [UIImage imageWithContentsOfFile:docPath];
     
-    self.docImageView.image = [UIImage imageCompressForSize:image targetSize:CGSizeMake(80, 80)];
+    self.docImageView.image = [UIImage imageCompressForSize:image targetSize:CGSizeMake(240, 240)];
+}
+
+-(void)setType:(DocumentCellType)type{
+    if (type == DocumentCellTypeCell) {
+        self.groupImageView.hidden = YES;
+    }else{
+        self.groupImageView.hidden = NO;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

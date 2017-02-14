@@ -6,7 +6,7 @@
 //  Copyright © 2017 CCApril. All rights reserved.
 //
 
-#import "DocumentViewController.h"
+#import "DocumentTableViewController.h"
 #import "DocumentCellTableViewCell.h"
 #import "MWPhotoBrowser.h"
 #import "DocumentMgr.h"
@@ -14,9 +14,8 @@
 #import "KTDefine.h"
 
 #define kDocumentCellTableViewCellIdentifier @"kDocumentCellTableViewCellIdentifier"
-@interface DocumentViewController ()<MWPhotoBrowserDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface DocumentTableViewController ()<MWPhotoBrowserDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *documents;
 @property (nonatomic, assign) BOOL navigationBarOriginalShow;
 
 // 图片查看器
@@ -24,19 +23,12 @@
 @property (nonatomic, strong) NSMutableArray *thumbs;
 @end
 
-@implementation DocumentViewController
+@implementation DocumentTableViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationBarOriginalShow = self.navigationController.navigationBar.isHidden;
     self.navigationController.navigationBar.hidden = NO;
-}
-
--(NSMutableArray *)documents{
-    if (!_documents) {
-        _documents = self.record.documents;
-    }
-    return _documents;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -48,7 +40,10 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = kBackgroundShallowColor;
-    self.title = self.record.date;
+    
+    Document *document = [self.documents firstObject];
+    
+    self.title = document.identifierDay;
     
     [self setRefreshView];
     
@@ -65,7 +60,6 @@
 }
 
 - (void)refreshControlStatusDidChange:(UIRefreshControl *)refreshControl{
-    self.documents = [DocumentMgr selectDocumentsWithDayStr:self.record.date];
     [self.tableView reloadData];
     [self performSelector:@selector(refreshControlEndRefreshing) withObject:nil afterDelay:1.0];
 }
@@ -83,18 +77,31 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DocumentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentCellTableViewCellIdentifier forIndexPath:indexPath];
     Document *doc = self.documents[indexPath.row];
+    cell.type = DocumentCellTypeCell;
     cell.document = doc;
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return 60;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Document *doc = self.documents[indexPath.row];
     [self previewPhotosWithPhotoBrowserWithFile:doc];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    id tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.documents removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
 }
 
 #pragma -mark MWPhoto图片查看器

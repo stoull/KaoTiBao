@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Document.h"
 
+typedef enum: NSInteger {
+    DocumentCellTypeGroup = 0,
+    DocumentCellTypeCell
+}DocumentCellType;
+
 @interface DocumentCellTableViewCell : UITableViewCell
 @property (nonatomic, strong) Document *document;
+
+@property (nonatomic, assign) DocumentCellType type;
+@property (nonatomic, strong) NSArray *documents;
 @end

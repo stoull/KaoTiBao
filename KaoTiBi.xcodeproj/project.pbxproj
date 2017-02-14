@@ -49,8 +49,8 @@
 		C9E60BFC1E1E82C900E0CE73 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E60BFA1E1E82C900E0CE73 /* LogInViewController.xib */; };
 		CE0A9AA1084EACE4E2210084 /* libPods-KaoTiBiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74957A548365B8B28206DD07 /* libPods-KaoTiBiTests.a */; };
 		D0AE0E2BA090F1BB82A507F5 /* libPods-KaoTiBi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBA9D73CEF343154F64E3A1 /* libPods-KaoTiBi.a */; };
-		E408DF931E1E4C4900F1CC82 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E408DF911E1E4C4900F1CC82 /* DocumentViewController.m */; };
-		E408DF941E1E4C4900F1CC82 /* DocumentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E408DF921E1E4C4900F1CC82 /* DocumentViewController.xib */; };
+		E408DF931E1E4C4900F1CC82 /* DocumentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E408DF911E1E4C4900F1CC82 /* DocumentTableViewController.m */; };
+		E408DF941E1E4C4900F1CC82 /* DocumentTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E408DF921E1E4C4900F1CC82 /* DocumentTableViewController.xib */; };
 		E408DF981E1E4CB000F1CC82 /* DocumentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E408DF961E1E4CB000F1CC82 /* DocumentCellTableViewCell.m */; };
 		E408DF991E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E408DF971E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib */; };
 		E41D1AB91E457A6900FE1FC2 /* KTBUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D1AB81E457A6900FE1FC2 /* KTBUserManager.m */; };
@@ -251,9 +251,9 @@
 		C9E60BF81E1E82C900E0CE73 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		C9E60BF91E1E82C900E0CE73 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		C9E60BFA1E1E82C900E0CE73 /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
-		E408DF901E1E4C4900F1CC82 /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
-		E408DF911E1E4C4900F1CC82 /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
-		E408DF921E1E4C4900F1CC82 /* DocumentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentViewController.xib; sourceTree = "<group>"; };
+		E408DF901E1E4C4900F1CC82 /* DocumentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentTableViewController.h; sourceTree = "<group>"; };
+		E408DF911E1E4C4900F1CC82 /* DocumentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentTableViewController.m; sourceTree = "<group>"; };
+		E408DF921E1E4C4900F1CC82 /* DocumentTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentTableViewController.xib; sourceTree = "<group>"; };
 		E408DF951E1E4CB000F1CC82 /* DocumentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCellTableViewCell.h; sourceTree = "<group>"; };
 		E408DF961E1E4CB000F1CC82 /* DocumentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCellTableViewCell.m; sourceTree = "<group>"; };
 		E408DF971E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -774,9 +774,9 @@
 				C949E0211E5212F900858BEB /* DocumentCollectionController.m */,
 				C949E0251E52135F00858BEB /* DocCollectionViewLayout.h */,
 				C949E0261E52135F00858BEB /* DocCollectionViewLayout.m */,
-				E408DF901E1E4C4900F1CC82 /* DocumentViewController.h */,
-				E408DF911E1E4C4900F1CC82 /* DocumentViewController.m */,
-				E408DF921E1E4C4900F1CC82 /* DocumentViewController.xib */,
+				E408DF901E1E4C4900F1CC82 /* DocumentTableViewController.h */,
+				E408DF911E1E4C4900F1CC82 /* DocumentTableViewController.m */,
+				E408DF921E1E4C4900F1CC82 /* DocumentTableViewController.xib */,
 				E408DF951E1E4CB000F1CC82 /* DocumentCellTableViewCell.h */,
 				E408DF961E1E4CB000F1CC82 /* DocumentCellTableViewCell.m */,
 				E408DF971E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib */,
@@ -1453,7 +1453,7 @@
 				E4395AB31E26290200965124 /* ImageError@2x.png in Resources */,
 				E4395AB71E26290200965124 /* ImageSelectedOff@3x.png in Resources */,
 				C9D21F061E470C8F0046F9AD /* KTBUserInfoController.xib in Resources */,
-				E408DF941E1E4C4900F1CC82 /* DocumentViewController.xib in Resources */,
+				E408DF941E1E4C4900F1CC82 /* DocumentTableViewController.xib in Resources */,
 				E4395AB51E26290200965124 /* ImageSelectedOff.png in Resources */,
 				E4395AC61E26290200965124 /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				C9B21F531E27C97900454A55 /* PhotoEidtController.xib in Resources */,
@@ -1671,7 +1671,7 @@
 				C9E60BF61E1E82B700E0CE73 /* SignInViewController.m in Sources */,
 				E4D6EFAC1E2B3A9E00964431 /* DesEncrypt.m in Sources */,
 				C9BB47121E39B85600FBE250 /* KTBBaseAPI.m in Sources */,
-				E408DF931E1E4C4900F1CC82 /* DocumentViewController.m in Sources */,
+				E408DF931E1E4C4900F1CC82 /* DocumentTableViewController.m in Sources */,
 				E4395AF61E26294300965124 /* DALabeledCircularProgressView.m in Sources */,
 				C949E0231E5212F900858BEB /* DocumentCollectionController.m in Sources */,
 				E4AB1E9F1E20D2AE00DE1804 /* IPAddress.m in Sources */,
