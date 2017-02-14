@@ -55,7 +55,7 @@
         _didSelectRowAtIndexPath(cell,indexPath);
         
         NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-        [userDef setInteger:(ClassSortType)indexPath.row forKey:kKTBSelectClassSortType];
+        [userDef setInteger:(KTBDocManagerType)indexPath.row forKey:kKTBDocManagerType];
         [userDef synchronize];
         [self.myTableView reloadData];
     }
@@ -68,7 +68,7 @@
     cell.lable.text = [self.items[indexPath.row] objectForKey:@"title"];
     cell.icon.image = [UIImage imageNamed:[self.items[indexPath.row] objectForKey:@"imagename"]];
     
-    NSInteger useIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kKTBSelectClassSortType];
+    NSInteger useIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kKTBDocManagerType];
     if (useIndex == indexPath.row) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }else{

@@ -26,14 +26,6 @@ static NSString * const reuseIdentifier = @"DocCollectionViewCellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classe
-    
-//    DocCollectionViewLayout *flowLayout = [[DocCollectionViewLayout alloc] init];
-//    self.collectionView = [[UICollectionView alloc] initWithFrame:[UIScreen mainScreen].bounds collectionViewLayout:flowLayout];
-    // Do any additional setup after loading the view.
     [self.collectionView registerNib:[UINib nibWithNibName:@"DocCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
 }
 

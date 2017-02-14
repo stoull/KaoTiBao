@@ -25,6 +25,9 @@
 @interface DocManagerController ()<UITableViewDelegate,UITableViewDataSource,DocManagerCellDelegate,DocManagerCellFooterViewDelegate>{
     CCSideSlipView *_sideSlipView;
 }
+
+@property (nonatomic, assign) KTBDocManagerType managerType;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *statusBarBackgroundView;
 
@@ -71,31 +74,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"DocManagerCell" bundle:nil] forCellReuseIdentifier:kDocManagerCellIdentifier];
     [self.tableView registerClass:[DocManagerCellFooterView class] forHeaderFooterViewReuseIdentifier:kDocmentFooterViewIdentifier];
     
-    NSArray *menuArray = @[@"语文",@"数学",@"物理",@"化学",@"英语",@"生物"];
-    self.menuArrays = menuArray;
-    
-    CGFloat originY = 2;
-    CGFloat buttonWidth = 80;
-    CGFloat buttonGap = 2;
-    CGFloat buttonHeight = 34;
-    int i = 0;
-    for (NSString *menu in menuArray){
-        UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(i * (buttonWidth + buttonGap), originY, buttonWidth, buttonHeight)];
-        [menuButton setTitle:menu forState:UIControlStateNormal];
-        [menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [menuButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        if (i == 0) {
-            [menuButton setSelected:true];
-        }
-        menuButton.tag = i;
-        [menuButton addTarget:self action:@selector(headerMenuButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.headerScrollView addSubview:menuButton];
-        [self.menuButtonArray addObject:menuButton];
-        i++;
-    }
-    self.headerScrollView.contentSize = CGSizeMake(i * (buttonWidth + buttonGap) + buttonGap, self.headerScrollView.frame.size.height);
-    self.headerScrollView.showsHorizontalScrollIndicator = false;
-    
+    [self setHeaderMenuView];
     // Set sideslipView
     [self setSideSlipView];
     [self setRefreshView];
@@ -126,28 +105,50 @@
     [self.tableView.refreshControl endRefreshing];
 }
 
+#pragma mark - 设置头部菜单
+- (void)setHeaderMenuView{
+    NSArray *menuArray = @[@"语文",@"数学",@"物理",@"化学",@"英语",@"生物"];
+    self.menuArrays = menuArray;
+    
+    CGFloat originY = 2;
+    CGFloat buttonWidth = 80;
+    CGFloat buttonGap = 2;
+    CGFloat buttonHeight = 34;
+    int i = 0;
+    for (NSString *menu in menuArray){
+        UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(i * (buttonWidth + buttonGap), originY, buttonWidth, buttonHeight)];
+        [menuButton setTitle:menu forState:UIControlStateNormal];
+        [menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [menuButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+        if (i == 0) {
+            [menuButton setSelected:true];
+        }
+        menuButton.tag = i;
+        [menuButton addTarget:self action:@selector(headerMenuButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.headerScrollView addSubview:menuButton];
+        [self.menuButtonArray addObject:menuButton];
+        i++;
+    }
+    self.headerScrollView.contentSize = CGSizeMake(i * (buttonWidth + buttonGap) + buttonGap, self.headerScrollView.frame.size.height);
+    self.headerScrollView.showsHorizontalScrollIndicator = false;
+}
+
 #pragma mark - 设置侧滑菜单
 - (void)setSideSlipView{
     _sideSlipView = [[CCSideSlipView alloc] initWithSender:self];
     _sideSlipView.backgroundColor = [UIColor clearColor];
     MenuView *menu = [MenuView menuView];
+    menu.items = @[@{@"title":@"时间",@"imagename":@"4"},
+                   @{@"title":@"文件系统",@"imagename":@"4"}];
+    
+    [_sideSlipView setContentView:menu];
     [menu didSelectRowAtIndexPath:^(id cell, NSIndexPath *indexPath) {
         NSLog(@"click");
         
 //        [_sideSlipView hide];
     }];
-    menu.items = @[@{@"title":@"二年级",@"imagename":@"4"},
-                   @{@"title":@"三年级",@"imagename":@"4"},
-                   @{@"title":@"四年级",@"imagename":@"4"},
-                   @{@"title":@"五年级",@"imagename":@"4"},
-                   @{@"title":@"六年级",@"imagename":@"4"},
-                   @{@"title":@"初一",@"imagename":@"1"},
-                   @{@"title":@"初二",@"imagename":@"2"},
-                   @{@"title":@"初三",@"imagename":@"1"},
-                   @{@"title":@"高一",@"imagename":@"1"},
-                   @{@"title":@"高二",@"imagename":@"2"},
-                   @{@"title":@"高三",@"imagename":@"3"}];
-    [_sideSlipView setContentView:menu];
+
+    
     [self.view addSubview:_sideSlipView];
 }
 
@@ -176,7 +177,6 @@
 
 #pragma mark 分类被点击
 - (IBAction)switchTouched:(id)sender {
-    
     [_sideSlipView switchMenu];
     
 }
@@ -192,44 +192,68 @@
 
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.resulutController.sections.count;
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        return self.resulutController.sections.count;
+    }else{
+        return 1;
+    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return self.structRecords.count;
-    return 1;
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        return 1;
+    }else{
+        return self.resulutController.sections.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DocManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocManagerCellIdentifier forIndexPath:indexPath];
-    
-    NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        DocManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocManagerCellIdentifier forIndexPath:indexPath];
+        NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
+        //特定section下的信息array,再允許indexPath.row找某條消息
+        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
+        cell.title = title;
+        
+        return cell;
+    }else{
+        
+    }
 
-    //特定section下的信息array,再允許indexPath.row找某條消息
-    NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
-    
-//    Document *document = array[0];
-    
-    title = [NSString stringWithFormat:@"%@ (%ld)",title, array.count];
-    cell.title = title;
-    
-    return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        
+    }else{
+        
+    }
     return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        
+    }else{
+        
+    }
     NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
     DocCollectionViewLayout *flowLayout = [[DocCollectionViewLayout alloc] init];
     DocumentCollectionController *docController = [[DocumentCollectionController alloc] initWithCollectionViewLayout:flowLayout];
+    NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
+    docController.title = title;
     docController.docments = array;
     [self.navigationController pushViewController:docController animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        
+    }else{
+        
+    }
     NSArray *array = [self.resulutController.sections objectAtIndex:section].objects;
     NSInteger itemCount = array.count;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
@@ -248,7 +272,11 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        
+    }else{
+        
+    }
     //特定section下的信息array,再允許indexPath.row找某條消息
     NSArray *array = [self.resulutController.sections objectAtIndex:section].objects;
     
@@ -271,6 +299,11 @@
 
 #pragma mark - DocManagerCellFooterViewDelegate
 - (void)didSelectedSectionIndex:(NSInteger)section withDocment:(Document *)doc{
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        
+    }else{
+        
+    }
     [self previewPhotosWithPhotoBrowserWithFile:doc atSection:section];
 }
 

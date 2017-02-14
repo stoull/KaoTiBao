@@ -8,20 +8,26 @@
 
 #ifndef KTDefine_h
 #define KTDefine_h
+//typedef enum : NSInteger {
+//    ClassSortTypeYiNianJi = 0, // 一年级
+//    ClassSortTypeErNianJi,
+//    ClassSortTypeSanNianJi,
+//    ClassSortTypeSiNianJi,
+//    ClassSortTypeWuNianJi,
+//    ClassSortTypeLiuNianJi,
+//    ClassSortTypeChuYi,     // 初一
+//    ClassSortTypeChuEr,
+//    ClassSortTypeChuSan,
+//    ClassSortTypeGaoYi,     // 高一
+//    ClassSortTypeGaoEr,
+//    ClassSortTypeGaoSan
+//}ClassSortType;
+
 typedef enum : NSInteger {
-    ClassSortTypeYiNianJi = 0, // 一年级
-    ClassSortTypeErNianJi,
-    ClassSortTypeSanNianJi,
-    ClassSortTypeSiNianJi,
-    ClassSortTypeWuNianJi,
-    ClassSortTypeLiuNianJi,
-    ClassSortTypeChuYi,     // 初一
-    ClassSortTypeChuEr,
-    ClassSortTypeChuSan,
-    ClassSortTypeGaoYi,     // 高一
-    ClassSortTypeGaoEr,
-    ClassSortTypeGaoSan
-}ClassSortType;
+    KTBDocManagerTypeByTime = 0,    // 按时间排序
+    KTBDocManagerTypeByFileSystem   // 按文件系统管理
+}KTBDocManagerType;
+
 #pragma mark -网络API
 
 #pragma mark -消息通知
@@ -34,8 +40,8 @@ typedef enum : NSInteger {
 // 当前网络状态 value 为 LBNetworkStatus
 #define kCurrentNetWorkStatus @"kLBCurrentNetWorkStatus"
 
-// 当前用户选择的是那个一年级 value  为 ClassSortType
-#define kKTBSelectClassSortType @"kKTBSelectClassSortType"
+// 当前用户选择的是那一种管理方式 value  为 KTBDocManagerType
+#define kKTBDocManagerType @"kKTBDocManagerType"
 
 
 // 是否是本地授权 value 为 BOOL

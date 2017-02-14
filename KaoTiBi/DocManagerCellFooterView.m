@@ -54,7 +54,6 @@
 
 -(void)prepareForReuse{
     [super prepareForReuse];
-    LBLog(@"prepareForReuse");
 }
 
 -(instancetype)init{
@@ -66,7 +65,6 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    LBLog(@"CollectionvView Layout");
      [self.collectitonView reloadData];
 }
 
@@ -78,7 +76,6 @@
 #pragma mark UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     Document *doc = self.documents[indexPath.row];
-    LBLog(@"doc : %@ Sectionindex : %ld",doc.name,self.indexSection);
     if ([self.delegate respondsToSelector:@selector(didSelectedSectionIndex:withDocment:)]) {
         [self.delegate didSelectedSectionIndex:self.indexSection withDocment:doc];
     }
@@ -86,7 +83,6 @@
 
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    LBLog(@"self.documents.count : %ld",self.documents.count);
     return self.documents.count;
 }
 

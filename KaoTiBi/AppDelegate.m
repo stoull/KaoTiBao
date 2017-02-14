@@ -30,8 +30,8 @@
     
     
     // 初始化用户选择的年级
-    if ([userDef objectForKey:kKTBSelectClassSortType] == nil) {
-        [userDef setInteger:ClassSortTypeChuYi forKey:kKTBSelectClassSortType];
+    if ([userDef objectForKey:kKTBDocManagerType] == nil) {
+        [userDef setInteger:KTBDocManagerTypeByTime forKey:kKTBDocManagerType];
     }
     
     [userDef synchronize];

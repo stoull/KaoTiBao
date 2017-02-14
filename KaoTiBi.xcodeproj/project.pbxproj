@@ -777,6 +777,9 @@
 				E408DF901E1E4C4900F1CC82 /* DocumentViewController.h */,
 				E408DF911E1E4C4900F1CC82 /* DocumentViewController.m */,
 				E408DF921E1E4C4900F1CC82 /* DocumentViewController.xib */,
+				E408DF951E1E4CB000F1CC82 /* DocumentCellTableViewCell.h */,
+				E408DF961E1E4CB000F1CC82 /* DocumentCellTableViewCell.m */,
+				E408DF971E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib */,
 				E408DF9B1E1E4CBF00F1CC82 /* Model */,
 				E408DF9A1E1E4CB700F1CC82 /* View */,
 			);
@@ -850,9 +853,6 @@
 				C949E0161E5208AD00858BEB /* DocCollectionViewCell.h */,
 				C949E0171E5208AD00858BEB /* DocCollectionViewCell.m */,
 				C949E0181E5208AD00858BEB /* DocCollectionViewCell.xib */,
-				E408DF951E1E4CB000F1CC82 /* DocumentCellTableViewCell.h */,
-				E408DF961E1E4CB000F1CC82 /* DocumentCellTableViewCell.m */,
-				E408DF971E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib */,
 				C9C3A9291E37227400C4296C /* KTBSortView.h */,
 				C9C3A92A1E37227400C4296C /* KTBSortView.m */,
 			);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syd-PW-EKk">
-                            <rect key="frame" x="47" y="24" width="288" height="35"/>
+                            <rect key="frame" x="92" y="24" width="243" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="feH-WP-JmE"/>
                             </constraints>
@@ -49,12 +49,12 @@
                             <state key="normal" image="shousuo"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ws-VL-474">
-                            <rect key="frame" x="8" y="21.5" width="35" height="40"/>
+                            <rect key="frame" x="8" y="21.5" width="80" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="AAt-9S-9KP"/>
-                                <constraint firstAttribute="width" constant="35" id="mj9-N9-HjZ"/>
+                                <constraint firstAttribute="width" constant="80" id="mj9-N9-HjZ"/>
                             </constraints>
-                            <state key="normal" title="分类"/>
+                            <state key="normal" title="整理方式"/>
                             <connections>
                                 <action selector="switchTouched:" destination="-1" eventType="touchUpInside" id="7Px-o4-a87"/>
                             </connections>
