@@ -60,7 +60,7 @@
 
 -(UIView *)begainSearchHintView{
     if (!_begainSearchHintView) {
-        _begainSearchHintView = [[[NSBundle mainBundle] loadNibNamed:@"LBBaseEmptyBGView" owner:self options:nil] lastObject];
+        _begainSearchHintView = [[[NSBundle mainBundle] loadNibNamed:@"LBSearchNoResultView" owner:self options:nil] lastObject];
         _begainSearchHintView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height - 40);
         UILabel *hintLabel;
         for (UIView *subView in _begainSearchHintView.subviews){
@@ -69,7 +69,7 @@
             }
         }
         if (hintLabel != nil) {
-            hintLabel.text = @"点击搜索开始搜索！";
+            hintLabel.text = @"点击【搜索】按钮进行搜索！";
         }
     }
     return _begainSearchHintView;

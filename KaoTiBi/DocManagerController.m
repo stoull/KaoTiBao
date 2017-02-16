@@ -231,7 +231,7 @@
     _sideSlipView = [[CCSideSlipView alloc] initWithSender:self];
     _sideSlipView.backgroundColor = [UIColor clearColor];
     MenuView *menu = [MenuView menuView];
-    menu.items = @[@{@"title":@"时间",@"imagename":@"4"},
+    menu.items = @[@{@"title":@"时间轴",@"imagename":@"4"},
                    @{@"title":@"文件系统",@"imagename":@"4"}];
     
     [_sideSlipView setContentView:menu];

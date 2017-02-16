@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="LBSelectFolderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-am-kGU">
+                        <rect key="frame" x="8" y="15" width="31" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="Riy-F7-egQ"/>
+                            <constraint firstAttribute="width" constant="31" id="hzL-Vn-IQx"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的文档" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VA8-OJ-JzG">
+                        <rect key="frame" x="47" y="24" width="265" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PzR-am-kGU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="B9b-m1-S4w"/>
+                    <constraint firstItem="VA8-OJ-JzG" firstAttribute="leading" secondItem="PzR-am-kGU" secondAttribute="trailing" constant="8" id="H5m-CW-aQr"/>
+                    <constraint firstItem="PzR-am-kGU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="U41-9R-cwZ"/>
+                    <constraint firstItem="VA8-OJ-JzG" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="qNJ-Vs-VOy"/>
+                    <constraint firstItem="VA8-OJ-JzG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wbu-Pq-kCe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="fileIconImageView" destination="PzR-am-kGU" id="8Bs-Qc-USv"/>
+                <outlet property="fileNameLabel" destination="VA8-OJ-JzG" id="204-LW-RpX"/>
+            </connections>
+            <point key="canvasLocation" x="30" y="90"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="folder" width="800" height="800"/>
+    </resources>
+</document>

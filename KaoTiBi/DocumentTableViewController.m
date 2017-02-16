@@ -15,6 +15,7 @@
 #import "HUD.h"
 #import "KTBSearchViewController.h"
 #import "ScreenShot.h"
+#import "LBSelectFolderController.h"
 
 #define KConfirmButtonHeigth 60
 
@@ -30,9 +31,42 @@
 @property (nonatomic, strong) UIButton *confirmButton;
 @property (nonatomic, strong) UIView *confirmView;
 @property (nonatomic, assign) BOOL isConfirmViewShow;
+
+@property (nonatomic, strong) UIView *emptyView;
+@property (nonatomic, assign) BOOL isShowEmptyView;
 @end
 
 @implementation DocumentTableViewController
+
+-(UIView *)emptyView{
+    if (!_emptyView) {
+        _emptyView = [[[NSBundle mainBundle] loadNibNamed:@"LBBaseEmptyBGView" owner:self options:nil] lastObject];
+        _emptyView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height - 40);
+        UILabel *hintLabel;
+        for (UIView *subView in _emptyView.subviews){
+            if ([subView isKindOfClass:NSClassFromString(@"UILabel")]) {
+                hintLabel = (UILabel *)subView;
+            }
+        }
+        if (hintLabel != nil) {
+            hintLabel.text = @"没有任何文档照片哦！";
+        }
+    }
+    return _emptyView;
+}
+
+- (void)updateView{
+    if (self.documents.count == 0) {
+        [self.tableView addSubview:self.emptyView];
+        _isShowEmptyView = YES;
+    }else{
+        if (_isShowEmptyView) {
+            [self updateView];
+            [self.emptyView removeFromSuperview];
+            _isShowEmptyView = NO;
+        }
+    }
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -43,6 +77,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = self.navigationBarOriginalShow;
+    [self hiddenConfirmView];
 }
 
 - (void)viewDidLoad {
@@ -76,7 +111,7 @@
         self.navigationItem.rightBarButtonItems = @[searchItem, creatItem];
     }
     
-    [self.tableView reloadData];
+    [self updateView];
 }
 
 - (void)searchClick:(UIButton*)button{
@@ -101,7 +136,7 @@
 }
 
 - (void)refreshControlStatusDidChange:(UIRefreshControl *)refreshControl{
-    [self.tableView reloadData];
+    [self updateView];
     [self performSelector:@selector(refreshControlEndRefreshing) withObject:nil afterDelay:1.0];
 }
 
@@ -134,12 +169,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.tableView.isEditing) {
-        
+        NSArray *selectedIndexPath = [tableView indexPathsForSelectedRows];
+        if (selectedIndexPath.count > 0) {
+            [self showConfirmView];
+        }else{
+            [self hiddenConfirmView];
+        }
     }else{
         Document *doc = self.documents[indexPath.row];
         [self previewPhotosWithPhotoBrowserWithFile:doc];
     }
     
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.tableView.isEditing) {
+        NSArray *selectedIndexPath = [tableView indexPathsForSelectedRows];
+        if (selectedIndexPath.count > 0) {
+            [self showConfirmView];
+        }else{
+            [self hiddenConfirmView];
+        }
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -273,7 +324,6 @@
         [self hiddenConfirmView];
     }else{
         [self.tableView setEditing:YES animated:YES];
-        [self showConfirmView];
     }
 }
 
@@ -282,13 +332,24 @@
         _confirmView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, KConfirmButtonHeigth)];
         _confirmView.backgroundColor = [UIColor whiteColor];
         _isConfirmViewShow = NO;
-        UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 2, self.view.bounds.size.width, KConfirmButtonHeigth - 4)];
+        
+        UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 2, self.view.bounds.size.width / 2 - 10, KConfirmButtonHeigth - 4)];
         [confirmButton setTitle:@"删除" forState:UIControlStateNormal];
         [confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         confirmButton.backgroundColor = kThemeColor;
         confirmButton.layer.cornerRadius = 5.0;
         [confirmButton addTarget:self action:@selector(confirmDeleteFile:) forControlEvents:UIControlEventTouchUpInside];
         [_confirmView addSubview:confirmButton];
+        
+        
+        UIButton *moveButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(confirmButton.frame) + 5, 2, self.view.bounds.size.width / 2 - 10, KConfirmButtonHeigth - 4)];
+        [moveButton setTitle:@"移动" forState:UIControlStateNormal];
+        [moveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        moveButton.backgroundColor = kThemeColor;
+        moveButton.layer.cornerRadius = 5.0;
+        [moveButton addTarget:self action:@selector(confirmMoveFile:) forControlEvents:UIControlEventTouchUpInside];
+        [_confirmView addSubview:moveButton];
+        
     }
     return _confirmView;
 }
@@ -330,7 +391,15 @@
     [[HUD shareHUD] hintMessage:@"删除成功!"];
     [self switchMultipleOperation];
 }
-
+#pragma mark - 确认移动
+- (void)confirmMoveFile:(UIButton *)moveButton{
+    [self switchMultipleOperation];
+    LBSelectFolderController *moveVC = [[LBSelectFolderController alloc] init];
+    moveVC.title = @"移动";
+    moveVC.oldFolderName = self.title;
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:moveVC];
+    [self presentViewController:nvc animated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 

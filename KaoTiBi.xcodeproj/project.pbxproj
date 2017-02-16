@@ -139,6 +139,9 @@
 		E4AD883F1E55AD9200D91662 /* ScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AD883E1E55AD9200D91662 /* ScreenShot.m */; };
 		E4AD88411E55BB5300D91662 /* LBBaseEmptyBGView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AD88401E55BB5300D91662 /* LBBaseEmptyBGView.xib */; };
 		E4AD88431E55BB7300D91662 /* LBSearchNoResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AD88421E55BB7300D91662 /* LBSearchNoResultView.xib */; };
+		E4AD88491E55CFED00D91662 /* LBSelectFolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AD88451E55CFED00D91662 /* LBSelectFolderController.m */; };
+		E4AD884A1E55CFED00D91662 /* LBSelectFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AD88471E55CFED00D91662 /* LBSelectFolderTableViewCell.m */; };
+		E4AD884B1E55CFED00D91662 /* LBSelectFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AD88481E55CFED00D91662 /* LBSelectFolderTableViewCell.xib */; };
 		E4D6EF8F1E2B2ADB00964431 /* KTDocumentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4D6EF8D1E2B2ADB00964431 /* KTDocumentModel.xcdatamodeld */; };
 		E4D6EF9E1E2B356C00964431 /* NSDate+customizedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6EF9D1E2B356C00964431 /* NSDate+customizedFormatter.m */; };
 		E4D6EFAA1E2B3A9E00964431 /* AESEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6EFA11E2B3A9E00964431 /* AESEncrypt.m */; };
@@ -557,6 +560,11 @@
 		E4AD883E1E55AD9200D91662 /* ScreenShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenShot.m; sourceTree = "<group>"; };
 		E4AD88401E55BB5300D91662 /* LBBaseEmptyBGView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBaseEmptyBGView.xib; sourceTree = "<group>"; };
 		E4AD88421E55BB7300D91662 /* LBSearchNoResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSearchNoResultView.xib; sourceTree = "<group>"; };
+		E4AD88451E55CFED00D91662 /* LBSelectFolderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSelectFolderController.m; sourceTree = "<group>"; };
+		E4AD88461E55CFED00D91662 /* LBSelectFolderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSelectFolderTableViewCell.h; sourceTree = "<group>"; };
+		E4AD88471E55CFED00D91662 /* LBSelectFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSelectFolderTableViewCell.m; sourceTree = "<group>"; };
+		E4AD88481E55CFED00D91662 /* LBSelectFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSelectFolderTableViewCell.xib; sourceTree = "<group>"; };
+		E4AD884C1E55D03B00D91662 /* LBSelectFolderController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBSelectFolderController.h; sourceTree = "<group>"; };
 		E4D6EF8E1E2B2ADB00964431 /* KTDocumentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KTDocumentModel.xcdatamodel; sourceTree = "<group>"; };
 		E4D6EF9C1E2B356C00964431 /* NSDate+customizedFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+customizedFormatter.h"; sourceTree = "<group>"; };
 		E4D6EF9D1E2B356C00964431 /* NSDate+customizedFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+customizedFormatter.m"; sourceTree = "<group>"; };
@@ -776,6 +784,7 @@
 		C9DB7AD01E18A9FE00591F93 /* DocManager */ = {
 			isa = PBXGroup;
 			children = (
+				E4AD88441E55CFBD00D91662 /* KTBMoveFile */,
 				E4AD88361E55A59C00D91662 /* KTBSearch */,
 				C949E0281E5216BB00858BEB /* DocManagerController.h */,
 				C949E0291E5216BB00858BEB /* DocManagerController.m */,
@@ -1281,6 +1290,18 @@
 			name = ScreenShot;
 			sourceTree = "<group>";
 		};
+		E4AD88441E55CFBD00D91662 /* KTBMoveFile */ = {
+			isa = PBXGroup;
+			children = (
+				E4AD884C1E55D03B00D91662 /* LBSelectFolderController.h */,
+				E4AD88451E55CFED00D91662 /* LBSelectFolderController.m */,
+				E4AD88461E55CFED00D91662 /* LBSelectFolderTableViewCell.h */,
+				E4AD88471E55CFED00D91662 /* LBSelectFolderTableViewCell.m */,
+				E4AD88481E55CFED00D91662 /* LBSelectFolderTableViewCell.xib */,
+			);
+			name = KTBMoveFile;
+			sourceTree = "<group>";
+		};
 		E4D6EF9F1E2B3A8D00964431 /* Encryption */ = {
 			isa = PBXGroup;
 			children = (
@@ -1483,6 +1504,7 @@
 				E4AC2F5D1E27686D00992E5B /* Shader1.fsh in Resources */,
 				E4395AB31E26290200965124 /* ImageError@2x.png in Resources */,
 				E4395AB71E26290200965124 /* ImageSelectedOff@3x.png in Resources */,
+				E4AD884B1E55CFED00D91662 /* LBSelectFolderTableViewCell.xib in Resources */,
 				C9D21F061E470C8F0046F9AD /* KTBUserInfoController.xib in Resources */,
 				E408DF941E1E4C4900F1CC82 /* DocumentTableViewController.xib in Resources */,
 				E4395AB51E26290200965124 /* ImageSelectedOff.png in Resources */,
@@ -1733,6 +1755,7 @@
 				E4D6EFAD1E2B3A9E00964431 /* LBMD5.m in Sources */,
 				C9DB7ACA1E18A5FA00591F93 /* RootNavigationController.m in Sources */,
 				E4395AEB1E26292900965124 /* MWGridViewController.m in Sources */,
+				E4AD884A1E55CFED00D91662 /* LBSelectFolderTableViewCell.m in Sources */,
 				C9C3A93A1E372A1B00C4296C /* MenuView.m in Sources */,
 				C98889B51E1FEB430012EBC7 /* GateControl.m in Sources */,
 				E4AC2F641E27753300992E5B /* UIViewController+Utils.m in Sources */,
@@ -1740,6 +1763,7 @@
 				E4395AEC1E26292900965124 /* MWPhoto.m in Sources */,
 				E4AD883F1E55AD9200D91662 /* ScreenShot.m in Sources */,
 				E4D6EFAE1E2B3A9E00964431 /* URLCode.m in Sources */,
+				E4AD88491E55CFED00D91662 /* LBSelectFolderController.m in Sources */,
 				E4AB1EB81E20E0CE00DE1804 /* SetingTableViewController.m in Sources */,
 				C9DB7AE81E1A852100591F93 /* ShootingController.m in Sources */,
 				E4395B061E262F7200965124 /* DocumentMgr.m in Sources */,
