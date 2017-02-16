@@ -111,6 +111,8 @@ singleton_implementation(DocmentDatabase)
         DocumentManagerObject *newsDocu = [NSEntityDescription insertNewObjectForEntityForName:DocumentsTable inManagedObjectContext:context];
         newsDocu.date = docu.date;
         newsDocu.dateName = docu.dateName;
+        newsDocu.folderName = docu.folderName;
+        newsDocu.identifierYear = docu.identifierYear;
         newsDocu.identifierDay = docu.identifierDay;
         newsDocu.identifierMonth = docu.identifierMonth;
         newsDocu.year = docu.year;
@@ -198,6 +200,100 @@ singleton_implementation(DocmentDatabase)
     }
 }
 
+- (NSFetchedResultsController *)selectGroupWithYear{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc]
+                                            initWithKey:@"date" ascending:YES];
+    NSSortDescriptor *monthDescriptor = [[NSSortDescriptor alloc] initWithKey:@"identifierYear" ascending:NO];
+    [fetchRequest setSortDescriptors:@[monthDescriptor, sortDescriptorDate]];
+    //    fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@",self.isRoomrun?@"(type = 0 || type = 1)":@"type = 2"]];
+    
+    _docFetchResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                    managedObjectContext:context
+                                                                      sectionNameKeyPath:@"identifierYear"
+                                                                               cacheName:@"docInforCacheYear"];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:DocumentsTable inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    if (entity == nil) {
+        NSString *hintStr = [NSString stringWithFormat:@"没有 %@ 这个实体类",DocumentsTable];
+        LBLog(@"%@",hintStr);
+    }
+    
+    NSError *error;
+    [_docFetchResultController  performFetch:&error];
+    if (error == nil) {
+        return _docFetchResultController ;
+    }else{
+        return nil;
+    }
+}
+
+- (NSFetchedResultsController *)selectGroupWithFolderName{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc]
+                                            initWithKey:@"date" ascending:YES];
+    NSSortDescriptor *monthDescriptor = [[NSSortDescriptor alloc] initWithKey:@"folderName" ascending:NO];
+    [fetchRequest setSortDescriptors:@[monthDescriptor, sortDescriptorDate]];
+    //    fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@",self.isRoomrun?@"(type = 0 || type = 1)":@"type = 2"]];
+    
+    _docFetchResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                    managedObjectContext:context
+                                                                      sectionNameKeyPath:@"folderName"
+                                                                               cacheName:@"docInforCachefoldername"];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:DocumentsTable inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    if (entity == nil) {
+        NSString *hintStr = [NSString stringWithFormat:@"没有 %@ 这个实体类",DocumentsTable];
+        LBLog(@"%@",hintStr);
+    }
+    
+    NSError *error;
+    [_docFetchResultController  performFetch:&error];
+    if (error == nil) {
+        return _docFetchResultController ;
+    }else{
+        return nil;
+    }
+}
+- (NSMutableArray *)selectDocumentsWithName:(NSString *)dayStr{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc]
+                                            initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc]
+                                initWithObjects:sortDescriptorDate, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSPredicate *predicate = [NSPredicate
+                              predicateWithFormat:@"name CONTAINS[cd] %@",dayStr];
+    fetchRequest.predicate = predicate;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:DocumentsTable inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSMutableArray *resultArray = [NSMutableArray array];
+    if (entity == nil) {
+        NSString *hintStr = [NSString stringWithFormat:@"没有 %@ 这个实体类",DocumentsTable];
+        LBLog(@"%@",hintStr);
+        return resultArray;
+    }
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    int i = 0;
+    for (Document *docu in fetchedObjects) {
+        Document *notObDocument = [Document copyWithManagedObject:docu];
+        [resultArray addObject:notObDocument];
+    }
+    return resultArray;
+}
 
 - (NSMutableArray *)selectDocumentsWithDay:(NSString *)dayStr{
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -240,8 +336,37 @@ singleton_implementation(DocmentDatabase)
     NSEntityDescription *entity = [NSEntityDescription entityForName:DocumentsTable inManagedObjectContext:context];
     
     NSPredicate *predicate = [NSPredicate
-                              predicateWithFormat:@"(name like[cd] %@) AND (path like[cd] %@)",
-                              docment.name, docment.path];
+                              predicateWithFormat:@"(date like[cd] %@) AND (path like[cd] %@)",
+                              docment.date, docment.path];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *datas = [context executeFetchRequest:request error:&error];
+    if (!error && datas && [datas count])
+    {
+        int i = 0;
+        for (NSManagedObject *obj in datas)
+        {
+            i++;
+            [context deleteObject:obj];
+            LBLog(@" Delete Document form DB i : %d",i);
+        }
+        if (![context save:&error])
+        {
+            NSLog(@"error:%@",error);
+        }
+    }
+}
+
+// 按文档属性删除
+- (void)deleteDataWithDocumentProperty:(NSString *)property withValue:(NSString *)value{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:DocumentsTable inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate
+                              predicateWithFormat:@"%@ like[cd] %@",
+                              property,value];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];

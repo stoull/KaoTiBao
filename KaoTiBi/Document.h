@@ -11,8 +11,10 @@
 @interface Document : NSObject
 @property (nonatomic, copy)     NSString    *date;     // yyyy-MM-dd HH:mm:ss
 @property (nonatomic, copy)     NSString    *dateName; // yyyyMMddHHmmss;
+@property (nonatomic, copy)     NSString    *identifierYear;     // 年标识
 @property (nonatomic, copy)     NSString    *identifierMonth;   // 月标识 yyyy-MM
 @property (nonatomic, copy)     NSString    *identifierDay;     // 日标识 yyyy-MM-dd
+@property (nonatomic, copy)     NSString    *folderName;          // 文件夹名称
 @property (nonatomic, assign)   int16_t   year;     // 年
 @property (nonatomic, assign)   int16_t   month;    // 月
 @property (nonatomic, assign)   int16_t   day;      // 日

@@ -14,6 +14,7 @@
 
 @interface DocmentDatabase : NSObject
 singleton_interface(DocmentDatabase)
+
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -32,11 +33,17 @@ singleton_interface(DocmentDatabase)
 
 - (NSFetchedResultsController *)selectGroupWithDay;
 
+- (NSFetchedResultsController *)selectGroupWithYear;
+
+- (NSFetchedResultsController *)selectGroupWithFolderName;
+
 // 查询某天的记录
 - (NSMutableArray *)selectDocumentsWithDay:(NSString *)dayStr;
+- (NSMutableArray *)selectDocumentsWithName:(NSString *)dayStr;
 
 //删除
 - (void)deleteDataWithDocument:(Document *)docment;
+- (void)deleteDataWithDocumentProperty:(NSString *)property withValue:(NSString *)value;
 
 //更新
 - (void)updateDocumentProperty:(NSString *)property oldValue:(NSString *)oldValue newValue:(NSString *)newValue;

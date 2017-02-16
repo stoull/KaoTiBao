@@ -29,9 +29,13 @@
 //    [userDef setBool:false forKey:kisLocalAuthorization];
     
     
-    // 初始化用户选择的年级
+    // 初始化用户选择
     if ([userDef objectForKey:kKTBDocManagerType] == nil) {
         [userDef setInteger:KTBDocManagerTypeByTime forKey:kKTBDocManagerType];
+    }
+    
+    if ([userDef objectForKey:kKTBDocManagerTimeSortType] == nil) {
+        [userDef setInteger:KTBDocManagerTimeSortTypeDay forKey:kKTBDocManagerTimeSortType];
     }
     
     [userDef synchronize];

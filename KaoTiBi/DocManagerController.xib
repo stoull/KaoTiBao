@@ -11,11 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DocManagerController">
             <connections>
-                <outlet property="headerScrollView" destination="syd-PW-EKk" id="Yi9-60-Gym"/>
+                <outlet property="createFolderButton" destination="gfi-iD-L85" id="lRH-83-981"/>
+                <outlet property="daySortButton" destination="HVE-b1-MOC" id="q6y-7m-Xhz"/>
                 <outlet property="headerView" destination="BvM-hf-pqC" id="T2b-qd-Lzd"/>
-                <outlet property="statusBarBackgroundView" destination="gs3-JP-8wK" id="QXo-ap-wv8"/>
+                <outlet property="managerButton" destination="4Ws-VL-474" id="cWL-eQ-faX"/>
+                <outlet property="monthSortButton" destination="loz-Y9-waJ" id="qq7-OY-5je"/>
+                <outlet property="multipeSelectButton" destination="apy-z3-0Mz" id="LIo-cd-nwn"/>
                 <outlet property="tableView" destination="Vgw-E7-7kD" id="o80-QP-VeE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="yEb-MR-EDx"/>
+                <outlet property="yearSortButton" destination="CYX-r5-hlD" id="czl-Hq-gCa"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -34,49 +38,109 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvM-hf-pqC">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syd-PW-EKk">
-                            <rect key="frame" x="92" y="24" width="243" height="35"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="35" id="feH-WP-JmE"/>
-                            </constraints>
-                        </scrollView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7c-fd-0re">
                             <rect key="frame" x="337" y="26" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="NjB-33-EX9"/>
-                                <constraint firstAttribute="height" constant="30" id="iMF-nB-EjB"/>
+                                <constraint firstAttribute="height" constant="30" id="JM8-KQ-cKG"/>
+                                <constraint firstAttribute="width" constant="30" id="oWz-nm-aO8"/>
                             </constraints>
                             <state key="normal" image="shousuo"/>
+                            <connections>
+                                <action selector="searchDidClick:" destination="-1" eventType="touchUpInside" id="HcI-D7-QZO"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ws-VL-474">
-                            <rect key="frame" x="8" y="21.5" width="80" height="40"/>
+                            <rect key="frame" x="8" y="26" width="40" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="AAt-9S-9KP"/>
-                                <constraint firstAttribute="width" constant="80" id="mj9-N9-HjZ"/>
+                                <constraint firstAttribute="width" constant="40" id="fgV-oL-HSZ"/>
+                                <constraint firstAttribute="height" constant="30" id="sY6-XO-bfN"/>
                             </constraints>
-                            <state key="normal" title="整理方式"/>
+                            <state key="normal" title="布局">
+                                <color key="titleColor" red="0.97757000029999996" green="0.97757000029999996" blue="0.97757000029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                             <connections>
                                 <action selector="switchTouched:" destination="-1" eventType="touchUpInside" id="7Px-o4-a87"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfi-iD-L85">
+                            <rect key="frame" x="297" y="26" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="IaI-s1-b8f"/>
+                                <constraint firstAttribute="width" constant="30" id="PpK-M1-SZa"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="creatFolder"/>
+                            <connections>
+                                <action selector="createDidClick:" destination="-1" eventType="touchUpInside" id="DHr-qo-Yld"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apy-z3-0Mz">
+                            <rect key="frame" x="257" y="26" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="cst-Ky-7b2"/>
+                                <constraint firstAttribute="width" constant="30" id="wym-Nv-47O"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="add"/>
+                            <connections>
+                                <action selector="addDidClick:" destination="-1" eventType="touchUpInside" id="rG7-BD-4eE"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYX-r5-hlD">
+                            <rect key="frame" x="56" y="26" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="2OC-Y6-aBa"/>
+                                <constraint firstAttribute="width" constant="30" id="MRf-oE-ofb"/>
+                            </constraints>
+                            <state key="normal" title="年">
+                                <color key="titleColor" red="0.97757000029999996" green="0.97757000029999996" blue="0.97757000029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="sortByYearClick:" destination="-1" eventType="touchUpInside" id="N4t-QO-ecA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loz-Y9-waJ">
+                            <rect key="frame" x="94" y="26" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="nrp-vY-SYn"/>
+                                <constraint firstAttribute="height" constant="30" id="vOV-VC-Pqg"/>
+                            </constraints>
+                            <state key="normal" title="月">
+                                <color key="titleColor" red="0.97757000029999996" green="0.97757000029999996" blue="0.97757000029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="sortByMonthClick:" destination="-1" eventType="touchUpInside" id="21x-52-V5B"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVE-b1-MOC">
+                            <rect key="frame" x="132" y="26" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="0Db-sq-YXh"/>
+                                <constraint firstAttribute="height" constant="30" id="V4v-VJ-TWt"/>
+                            </constraints>
+                            <state key="normal" title="日">
+                                <color key="titleColor" red="0.97757000029999996" green="0.97757000029999996" blue="0.97757000029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="sortByDayClick:" destination="-1" eventType="touchUpInside" id="Y7S-SN-SMC"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.97757000033553298" green="0.97757000033553298" blue="0.97757000033553298" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.39158131018015296" green="0.76066297225427215" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="syd-PW-EKk" firstAttribute="leading" secondItem="4Ws-VL-474" secondAttribute="trailing" constant="4" id="01V-jW-QBC"/>
-                        <constraint firstItem="N7c-fd-0re" firstAttribute="centerY" secondItem="syd-PW-EKk" secondAttribute="centerY" id="4nH-iO-V4W"/>
-                        <constraint firstItem="syd-PW-EKk" firstAttribute="centerY" secondItem="4Ws-VL-474" secondAttribute="centerY" id="7Ji-G2-fgK"/>
+                        <constraint firstItem="N7c-fd-0re" firstAttribute="leading" secondItem="gfi-iD-L85" secondAttribute="trailing" constant="10" id="3p8-oV-jkW"/>
+                        <constraint firstItem="CYX-r5-hlD" firstAttribute="leading" secondItem="4Ws-VL-474" secondAttribute="trailing" constant="8" id="BDn-za-hH5"/>
                         <constraint firstAttribute="height" constant="64" id="G7f-0o-xUS"/>
-                        <constraint firstAttribute="bottom" secondItem="syd-PW-EKk" secondAttribute="bottom" constant="5" id="IiB-fn-Evp"/>
-                        <constraint firstItem="N7c-fd-0re" firstAttribute="leading" secondItem="syd-PW-EKk" secondAttribute="trailing" constant="2" id="W8a-Cz-LhL"/>
-                        <constraint firstItem="4Ws-VL-474" firstAttribute="leading" secondItem="BvM-hf-pqC" secondAttribute="leading" constant="8" id="Wax-L7-puo"/>
-                        <constraint firstAttribute="trailing" secondItem="N7c-fd-0re" secondAttribute="trailing" constant="8" id="l2Y-Ru-cuT"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gs3-JP-8wK">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="shU-qw-RJU"/>
+                        <constraint firstAttribute="bottom" secondItem="gfi-iD-L85" secondAttribute="bottom" constant="8" id="LxE-N3-bGe"/>
+                        <constraint firstItem="loz-Y9-waJ" firstAttribute="leading" secondItem="CYX-r5-hlD" secondAttribute="trailing" constant="8" id="PBS-e1-Uf2"/>
+                        <constraint firstAttribute="bottom" secondItem="4Ws-VL-474" secondAttribute="bottom" constant="8" id="Pju-Kz-Vm0"/>
+                        <constraint firstItem="loz-Y9-waJ" firstAttribute="centerY" secondItem="4Ws-VL-474" secondAttribute="centerY" id="Wrl-9z-fvS"/>
+                        <constraint firstItem="CYX-r5-hlD" firstAttribute="centerY" secondItem="4Ws-VL-474" secondAttribute="centerY" id="XVK-Qr-crV"/>
+                        <constraint firstItem="gfi-iD-L85" firstAttribute="leading" secondItem="apy-z3-0Mz" secondAttribute="trailing" constant="10" id="YXK-44-DGH"/>
+                        <constraint firstItem="HVE-b1-MOC" firstAttribute="centerY" secondItem="4Ws-VL-474" secondAttribute="centerY" id="fFS-Rf-wfC"/>
+                        <constraint firstAttribute="bottom" secondItem="apy-z3-0Mz" secondAttribute="bottom" constant="8" id="iJN-QR-jnV"/>
+                        <constraint firstItem="4Ws-VL-474" firstAttribute="leading" secondItem="BvM-hf-pqC" secondAttribute="leading" constant="8" id="jLv-7O-4EE"/>
+                        <constraint firstAttribute="bottom" secondItem="N7c-fd-0re" secondAttribute="bottom" constant="8" id="oOp-sP-6ap"/>
+                        <constraint firstItem="HVE-b1-MOC" firstAttribute="leading" secondItem="loz-Y9-waJ" secondAttribute="trailing" constant="8" id="sbN-uK-ZDa"/>
+                        <constraint firstAttribute="trailing" secondItem="N7c-fd-0re" secondAttribute="trailing" constant="8" id="vMO-Qv-yhp"/>
                     </constraints>
                 </view>
             </subviews>
@@ -85,18 +149,17 @@
                 <constraint firstAttribute="bottom" secondItem="Vgw-E7-7kD" secondAttribute="bottom" id="G7d-hu-4rc"/>
                 <constraint firstItem="Vgw-E7-7kD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NeO-uU-llV"/>
                 <constraint firstItem="Vgw-E7-7kD" firstAttribute="top" secondItem="BvM-hf-pqC" secondAttribute="bottom" constant="-20" id="Ojp-Vd-u1h"/>
-                <constraint firstAttribute="trailing" secondItem="gs3-JP-8wK" secondAttribute="trailing" id="QE7-Qw-XeB"/>
-                <constraint firstItem="gs3-JP-8wK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="R3L-HU-ntc"/>
                 <constraint firstItem="BvM-hf-pqC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RDt-4f-jR4"/>
                 <constraint firstAttribute="trailing" secondItem="BvM-hf-pqC" secondAttribute="trailing" id="Wzc-Rf-Czj"/>
                 <constraint firstAttribute="trailing" secondItem="Vgw-E7-7kD" secondAttribute="trailing" id="ZtX-Lq-QlX"/>
                 <constraint firstItem="BvM-hf-pqC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mmT-rx-NPJ"/>
-                <constraint firstItem="gs3-JP-8wK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oF3-Wg-G1V"/>
             </constraints>
             <point key="canvasLocation" x="24.5" y="52.5"/>
         </view>
     </objects>
     <resources>
-        <image name="shousuo" width="13" height="12"/>
+        <image name="add" width="128" height="128"/>
+        <image name="creatFolder" width="128" height="128"/>
+        <image name="shousuo" width="128" height="128"/>
     </resources>
 </document>

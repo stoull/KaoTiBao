@@ -21,6 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.docNameLabel.text = self.document.name;
+    
 }
 
 -(void)setDocument:(Document *)document{
@@ -35,6 +36,7 @@
 
 -(void)setDocuments:(NSArray *)documents{
     if (documents == nil || documents.count == 0) {
+        self.docImageView.image = [UIImage imageNamed:@"folder"];
         return;
     }
     _documents = documents;
@@ -46,6 +48,13 @@
     UIImage *image = [UIImage imageWithContentsOfFile:docPath];
     
     self.docImageView.image = [UIImage imageCompressForSize:image targetSize:CGSizeMake(240, 240)];
+}
+
+-(void)setTitle:(NSString *)title{
+    if (title != nil) {
+        _title = title;
+        self.docNameLabel.text = title;
+    }
 }
 
 -(void)setType:(DocumentCellType)type{

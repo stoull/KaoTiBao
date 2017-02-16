@@ -29,6 +29,10 @@
         NSString *dateName = [dateformatter stringFromDate:date];
         _dateName = dateName;
         
+        dateformatter.dateFormat = @"yyyy";
+        _identifierYear = [dateformatter stringFromDate:date];
+        
+        _folderName = @"我的文档";
         
         dateformatter.dateFormat = @"yyyy-MM";
         _identifierMonth = [dateformatter stringFromDate:date];
@@ -84,8 +88,10 @@
     Document *doc = [[Document alloc] init];
     doc.date = self.date;
     doc.dateName = self.dateName;
+    doc.identifierYear = self.identifierYear;
     doc.identifierMonth = self.identifierMonth;
     doc.identifierDay = self.identifierDay;
+    doc.folderName = self.folderName;
     doc.year = self.year;
     doc.month = self.month;
     doc.day = self.day;
@@ -105,9 +111,11 @@
     Document *doc = [[Document alloc] init];
     doc.date = obDocument.date;
     doc.dateName = obDocument.dateName;
+    doc.identifierYear = obDocument.identifierYear;
     doc.identifierMonth = obDocument.identifierMonth;
     doc.identifierDay = obDocument.identifierDay;
     doc.year = obDocument.year;
+    doc.folderName = obDocument.folderName;
     doc.month = obDocument.month;
     doc.day = obDocument.day;
     doc.name = obDocument.name;

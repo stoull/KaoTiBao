@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface DocumentTableViewController : UIViewController
-@property (nonatomic, strong) NSMutableArray *documents;
+#import "DocRecord.h"
+@interface DocumentViewController : UIViewController
+@property (nonatomic, strong) DocRecord *record;
 @end

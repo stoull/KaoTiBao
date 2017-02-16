@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DocRecord.h"
 @class DocManagerCell;
 
 @protocol DocManagerCellDelegate <NSObject>
@@ -22,6 +21,4 @@
 
 @property (nonatomic, assign) BOOL isOpen;
 @property (nonatomic, weak) id<DocManagerCellDelegate>delegate;
-@property (nonatomic, strong) DocRecord *record;
-
 @end

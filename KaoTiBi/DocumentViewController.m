@@ -6,38 +6,37 @@
 //  Copyright © 2017 CCApril. All rights reserved.
 //
 
-#import "DocumentTableViewController.h"
+#import "DocumentViewController.h"
 #import "DocumentCellTableViewCell.h"
 #import "MWPhotoBrowser.h"
 #import "DocumentMgr.h"
 #import "Document.h"
 #import "KTDefine.h"
-#import "HUD.h"
-#import "KTBSearchViewController.h"
-#import "ScreenShot.h"
-
-#define KConfirmButtonHeigth 60
 
 #define kDocumentCellTableViewCellIdentifier @"kDocumentCellTableViewCellIdentifier"
-@interface DocumentTableViewController ()<MWPhotoBrowserDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface DocumentViewController ()<MWPhotoBrowserDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *documents;
 @property (nonatomic, assign) BOOL navigationBarOriginalShow;
 
 // 图片查看器
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSMutableArray *thumbs;
-
-@property (nonatomic, strong) UIButton *confirmButton;
-@property (nonatomic, strong) UIView *confirmView;
-@property (nonatomic, assign) BOOL isConfirmViewShow;
 @end
 
-@implementation DocumentTableViewController
+@implementation DocumentViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationBarOriginalShow = self.navigationController.navigationBar.isHidden;
     self.navigationController.navigationBar.hidden = NO;
+}
+
+-(NSMutableArray *)documents{
+    if (!_documents) {
+        _documents = self.record.documents;
+    }
+    return _documents;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -49,48 +48,13 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = kBackgroundShallowColor;
+    self.title = self.record.date;
     
-    Document *document = [self.documents firstObject];
-    if (document) {
-        self.title = document.folderName;
-    }
+    [self setRefreshView];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DocumentCellTableViewCell" bundle:nil] forCellReuseIdentifier:kDocumentCellTableViewCellIdentifier];
     
-    
-    if (self.documents.count > 0) {
-        UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        [searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
-        [searchButton setTitle:@"" forState:UIControlStateNormal];
-        [searchButton setImage:[UIImage imageNamed:@"shousuo"] forState:UIControlStateNormal];
-        searchButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        UIBarButtonItem *searchItem =  [[UIBarButtonItem alloc] initWithCustomView:searchButton];
-        
-        UIButton *creatButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        [creatButton addTarget:self action:@selector(createClick:) forControlEvents:UIControlEventTouchUpInside];
-        [creatButton setTitle:@"" forState:UIControlStateNormal];
-        [creatButton setImage:[UIImage imageNamed:@"creatFolder"] forState:UIControlStateNormal];
-        creatButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        UIBarButtonItem *creatItem = [[UIBarButtonItem alloc] initWithCustomView:creatButton];
-        
-        self.navigationItem.rightBarButtonItems = @[searchItem, creatItem];
-    }
-    
     [self.tableView reloadData];
-}
-
-- (void)searchClick:(UIButton*)button{
-    UIImage *screenIm = [ScreenShot screenShot];
-    KTBSearchViewController *searchController = [[KTBSearchViewController alloc] initWithNibName:@"KTBSearchViewController" bundle:nil];
-    searchController.backGroundImage = screenIm;
-    UINavigationController *nVC = [[UINavigationController alloc] initWithRootViewController:searchController];
-    [self presentViewController:nVC animated:NO completion:^{
-        
-    }];
-}
-
-- (void)createClick:(UIButton *)button{
-    [self switchMultipleOperation];
 }
 
 #pragma mark 设置tableview刷新控件
@@ -101,6 +65,7 @@
 }
 
 - (void)refreshControlStatusDidChange:(UIRefreshControl *)refreshControl{
+    self.documents = [DocumentMgr selectDocumentsWithDayStr:self.record.date];
     [self.tableView reloadData];
     [self performSelector:@selector(refreshControlEndRefreshing) withObject:nil afterDelay:1.0];
 }
@@ -118,42 +83,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DocumentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentCellTableViewCellIdentifier forIndexPath:indexPath];
     Document *doc = self.documents[indexPath.row];
-    cell.type = DocumentCellTypeCell;
     cell.document = doc;
     return cell;
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
-}
-
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.tableView.isEditing) {
-        
-    }else{
-        Document *doc = self.documents[indexPath.row];
-        [self previewPhotosWithPhotoBrowserWithFile:doc];
-    }
-    
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Document *docu = self.documents[indexPath.row];
-        [self.documents removeObjectAtIndex:indexPath.row];
-        [DocumentMgr deleteDocument:docu];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        [DocumentMgr shareDocumentMgr].isNeedUpdate = YES;
-    }
+    Document *doc = self.documents[indexPath.row];
+    [self previewPhotosWithPhotoBrowserWithFile:doc];
 }
 
 #pragma -mark MWPhoto图片查看器
@@ -262,73 +203,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-#pragma mark 多选切换
-// 多选和取消操作
-- (void)switchMultipleOperation{
-    if (self.tableView.isEditing) {
-        [self.tableView setEditing:NO animated:YES];
-        [self hiddenConfirmView];
-    }else{
-        [self.tableView setEditing:YES animated:YES];
-        [self showConfirmView];
-    }
-}
-
--(UIView *)confirmView{
-    if (!_confirmView) {
-        _confirmView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, KConfirmButtonHeigth)];
-        _confirmView.backgroundColor = [UIColor whiteColor];
-        _isConfirmViewShow = NO;
-        UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 2, self.view.bounds.size.width, KConfirmButtonHeigth - 4)];
-        [confirmButton setTitle:@"删除" forState:UIControlStateNormal];
-        [confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        confirmButton.backgroundColor = kThemeColor;
-        confirmButton.layer.cornerRadius = 5.0;
-        [confirmButton addTarget:self action:@selector(confirmDeleteFile:) forControlEvents:UIControlEventTouchUpInside];
-        [_confirmView addSubview:confirmButton];
-    }
-    return _confirmView;
-}
-
-#pragma -mark 确定按钮的推出
-- (void)showConfirmView{
-    if (_isConfirmViewShow) {
-        return;
-    }
-    UIWindow *mainWindow = [UIApplication sharedApplication].keyWindow;
-    self.confirmView.frame = CGRectMake(0, mainWindow.bounds.size.height, mainWindow.bounds.size.width, KConfirmButtonHeigth);
-    [mainWindow addSubview:self.confirmView];
-    [UIView animateWithDuration:0.25 animations:^{
-        self.confirmView.frame = CGRectMake(0, mainWindow.bounds.size.height - KConfirmButtonHeigth, mainWindow.bounds.size.width, KConfirmButtonHeigth);
-    }];
-    _isConfirmViewShow = YES;
-}
-
-- (void)hiddenConfirmView{
-    if (!_isConfirmViewShow) {
-        return;
-    }
-    UIWindow *mainWindow = [UIApplication sharedApplication].keyWindow;
-    [UIView animateWithDuration:0.25 animations:^{
-        self.confirmView.frame = CGRectMake(0, mainWindow.bounds.size.height, mainWindow.bounds.size.width, KConfirmButtonHeigth);
-    } completion:^(BOOL finished) {
-        [self.confirmView removeFromSuperview];
-        _isConfirmViewShow = NO;
-    }];
-}
-
-#pragma mark - 确认删除
-- (void)confirmDeleteFile:(UIButton *)deleteButton{
-    NSArray *selectRows = [self.tableView indexPathsForSelectedRows];
-    if (selectRows.count == 0) {
-        [[HUD shareHUD] hintMessage:@"未选择文件夹"];
-        return;
-    }
-    [[HUD shareHUD] hintMessage:@"删除成功!"];
-    [self switchMultipleOperation];
 }
 
 /*

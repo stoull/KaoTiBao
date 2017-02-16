@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,9 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="h3q-DF-u3p"/>
                             </constraints>
-                            <state key="normal" title="取消"/>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" red="0.97757000029999996" green="0.97757000029999996" blue="0.97757000029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                             <connections>
                                 <action selector="didCancelClick:" destination="-1" eventType="touchUpInside" id="LL2-2K-GDw"/>
                             </connections>
@@ -96,7 +98,9 @@
                                 <constraint firstAttribute="height" constant="30" id="DIc-uP-VXL"/>
                                 <constraint firstAttribute="width" constant="40" id="KRf-xL-SBQ"/>
                             </constraints>
-                            <state key="normal" title="保存"/>
+                            <state key="normal" title="保存">
+                                <color key="titleColor" red="0.97757000029999996" green="0.97757000029999996" blue="0.97757000029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                             <connections>
                                 <action selector="saveButtonDidClick:" destination="-1" eventType="touchUpInside" id="rDG-jl-dAC"/>
                             </connections>

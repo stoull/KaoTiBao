@@ -27,6 +27,7 @@ static NSString * const reuseIdentifier = @"DocCollectionViewCellId";
     [super viewDidLoad];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"DocCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {

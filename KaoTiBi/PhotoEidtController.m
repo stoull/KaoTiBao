@@ -7,6 +7,7 @@
 //
 
 #import "PhotoEidtController.h"
+#import "DocumentMgr.h"
 #import "Document.h"
 #import "HUD.h"
 @import Photos;
@@ -84,6 +85,7 @@
 - (IBAction)saveButtonDidClick:(id)sender {
     [self.currentDoc saveToDataBase];
     [self didCancelClick:nil];
+    [DocumentMgr shareDocumentMgr].isNeedUpdate = YES;
 }
 
 // cancel

@@ -19,4 +19,5 @@ typedef enum: NSInteger {
 
 @property (nonatomic, assign) DocumentCellType type;
 @property (nonatomic, strong) NSArray *documents;
+@property (nonatomic, copy) NSString *title;
 @end

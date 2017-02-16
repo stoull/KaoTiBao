@@ -18,6 +18,12 @@
 #import "DocMgrCellFooterLayout.h"
 #import "MWPhotoBrowser.h"
 #import "DocumentCollectionController.h"
+#import "HolomorphyValidate.h"
+#import "KTBSearchViewController.h"
+#import "HUD.h"
+#import "ScreenShot.h"
+
+#define KConfirmButtonHeigth 60
 
 #define kDocManagerCellIdentifier @"kDocManagerCellIdentifier"
 #define kDocumentCellIdentifier @"kDocumentCellIdentifier"
@@ -29,13 +35,19 @@
 }
 
 @property (nonatomic, assign) KTBDocManagerType managerType;
+@property (nonatomic, assign) KTBDocManagerTimeSortType managerTimeSortType;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *statusBarBackgroundView;
+@property (weak, nonatomic) IBOutlet UIButton *createFolderButton;
+@property (weak, nonatomic) IBOutlet UIButton *multipeSelectButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *managerButton;
+@property (weak, nonatomic) IBOutlet UIButton *yearSortButton;
+@property (weak, nonatomic) IBOutlet UIButton *monthSortButton;
+@property (weak, nonatomic) IBOutlet UIButton *daySortButton;
+
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
-@property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
-
 @property (nonatomic, strong) NSMutableArray *structRecords;
 
 @property (nonatomic, strong) NSArray *menuArrays;
@@ -47,10 +59,14 @@
 @property (nonatomic, strong) NSMutableArray *thumbs;
 
 @property (nonatomic, strong) NSFetchedResultsController *resulutController;
+@property (nonatomic, strong) NSMutableArray *directoryArray;
+
+@property (nonatomic, strong) UIButton *confirmButton;
+@property (nonatomic, strong) UIView *confirmView;
+@property (nonatomic, assign) BOOL isConfirmViewShow;
 @end
 
 @implementation DocManagerController
-
 -(NSMutableArray *)menuButtonArray{
     if (!_menuButtonArray) {
         _menuButtonArray = [NSMutableArray array];
@@ -67,11 +83,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.managerType = [[NSUserDefaults standardUserDefaults] integerForKey:kKTBDocManagerType];
+    NSUserDefaults *useDef = [NSUserDefaults standardUserDefaults];
+    self.managerType = [useDef integerForKey:kKTBDocManagerType];
+    self.managerTimeSortType = [useDef integerForKey:kKTBDocManagerTimeSortType];
+    
     // Do any additional setup after loading the view from its nib.
-    self.statusBarBackgroundView.backgroundColor = kThemeColor;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = kBackgroundShallowColor;
+//    self.tableView.allowsSelectionDuringEditing = NO;
+//    self.tableView.allowsSelection = NO;
 //    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DocManagerCell" bundle:nil] forCellReuseIdentifier:kDocManagerCellIdentifier];
@@ -84,12 +104,24 @@
     [self setSideSlipView];
     [self setRefreshView];
     
-    self.resulutController = [DocumentMgr selectGroupWithDay];
+    // 获取数据
+    if (self.managerTimeSortType == KTBDocManagerTimeSortTypeYear) {
+        self.resulutController = [DocumentMgr selectGroupWithYear];
+    }else if (self.managerTimeSortType == KTBDocManagerTimeSortTypeMonth){
+        self.resulutController = [DocumentMgr selectGroupWithMonth];
+    }else{
+        self.resulutController = [DocumentMgr selectGroupWithDay];
+    }
+    
+    [self updateDataAndView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    if ([DocumentMgr shareDocumentMgr].isNeedUpdate) {
+        [self updateDataAndView];
+        [DocumentMgr shareDocumentMgr].isNeedUpdate = NO;
+    }
 }
 
 #pragma mark 设置tableview刷新控件
@@ -101,8 +133,7 @@
 
 - (void)refreshControlStatusDidChange:(UIRefreshControl *)refreshControl{
     self.resulutController = [DocumentMgr selectGroupWithDay];
-    // 生成结构数据
-    [self.tableView reloadData];
+    [self updateDataAndView];
     [self performSelector:@selector(refreshControlEndRefreshing) withObject:nil afterDelay:1.0];
 }
 
@@ -110,32 +141,89 @@
     [self.tableView.refreshControl endRefreshing];
 }
 
+- (void)updateDataAndView{
+    if (self.managerType == KTBDocManagerTypeByTime) {
+        self.createFolderButton.hidden = YES;
+        self.multipeSelectButton.hidden = YES;
+        
+        self.daySortButton.hidden = NO;
+        self.monthSortButton.hidden = NO;
+        self.yearSortButton.hidden = NO;
+        
+        // 获取数据
+        [self.daySortButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.monthSortButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.yearSortButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        if (self.managerTimeSortType == KTBDocManagerTimeSortTypeYear) {
+            self.resulutController = [DocumentMgr selectGroupWithYear];
+            [self.yearSortButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        }else if (self.managerTimeSortType == KTBDocManagerTimeSortTypeMonth){
+            self.resulutController = [DocumentMgr selectGroupWithMonth];
+            [self.monthSortButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        }else{
+            self.resulutController = [DocumentMgr selectGroupWithDay];
+            [self.daySortButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        }
+        
+    }else if (self.managerType == KTBDocManagerTypeByFileSystem){
+        self.createFolderButton.hidden = NO;
+        self.multipeSelectButton.hidden = NO;
+        self.daySortButton.hidden = YES;
+        self.monthSortButton.hidden = YES;
+        self.yearSortButton.hidden = YES;
+        self.directoryArray = [[DocumentMgr directoryInfor] mutableCopy];
+        self.resulutController = [DocumentMgr selectGroupWithFolderName];
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - 设置头部菜单
 - (void)setHeaderMenuView{
     NSArray *menuArray = @[@"语文",@"数学",@"物理",@"化学",@"英语",@"生物"];
     self.menuArrays = menuArray;
-    
-    CGFloat originY = 2;
-    CGFloat buttonWidth = 80;
-    CGFloat buttonGap = 2;
-    CGFloat buttonHeight = 34;
-    int i = 0;
-    for (NSString *menu in menuArray){
-        UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(i * (buttonWidth + buttonGap), originY, buttonWidth, buttonHeight)];
-        [menuButton setTitle:menu forState:UIControlStateNormal];
-        [menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [menuButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        if (i == 0) {
-            [menuButton setSelected:true];
-        }
-        menuButton.tag = i;
-        [menuButton addTarget:self action:@selector(headerMenuButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.headerScrollView addSubview:menuButton];
-        [self.menuButtonArray addObject:menuButton];
-        i++;
-    }
-    self.headerScrollView.contentSize = CGSizeMake(i * (buttonWidth + buttonGap) + buttonGap, self.headerScrollView.frame.size.height);
-    self.headerScrollView.showsHorizontalScrollIndicator = false;
+    self.headerView.backgroundColor = kThemeColor;
+}
+
+#pragma mark - 搜索点击
+- (IBAction)searchDidClick:(id)sender {
+    UIImage *screenIm = [ScreenShot screenShot];
+    KTBSearchViewController *searchController = [[KTBSearchViewController alloc] initWithNibName:@"KTBSearchViewController" bundle:nil];
+    searchController.backGroundImage = screenIm;
+    UINavigationController *nVC = [[UINavigationController alloc] initWithRootViewController:searchController];
+    [self presentViewController:nVC animated:NO completion:^{
+        
+    }];
+}
+
+#pragma mark - 新建点击
+- (IBAction)createDidClick:(id)sender {
+    [self switchMultipleOperation];
+}
+
+#pragma mark - 添加点击
+- (IBAction)addDidClick:(id)sender {
+    [self createNewFolderWithName];
+}
+
+#pragma 排序方式
+- (IBAction)sortByYearClick:(id)sender {
+    self.managerTimeSortType = KTBDocManagerTimeSortTypeYear;
+    [[NSUserDefaults standardUserDefaults] setInteger:KTBDocManagerTimeSortTypeYear forKey:kKTBDocManagerTimeSortType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self updateDataAndView];
+}
+- (IBAction)sortByMonthClick:(id)sender {
+    self.managerTimeSortType = KTBDocManagerTimeSortTypeMonth;
+    [[NSUserDefaults standardUserDefaults] setInteger:KTBDocManagerTimeSortTypeMonth forKey:kKTBDocManagerTimeSortType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self updateDataAndView];
+}
+- (IBAction)sortByDayClick:(id)sender {
+    self.managerTimeSortType = KTBDocManagerTimeSortTypeDay;
+    [[NSUserDefaults standardUserDefaults] setInteger:KTBDocManagerTimeSortTypeDay forKey:kKTBDocManagerTimeSortType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self updateDataAndView];
 }
 
 #pragma mark - 设置侧滑菜单
@@ -154,13 +242,12 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (type != self.managerType) {
                     self.managerType = type;
-                    [self.tableView reloadData];
+                    [self updateDataAndView];
                 }
             });
         }
 //        [_sideSlipView hide];
     }];
-
     
     [self.view addSubview:_sideSlipView];
 }
@@ -183,7 +270,7 @@
     
     CGPoint point = CGPointMake(button.frame.origin.x - (screenSize.width / 2 - button.frame.size.width / 2), 0);
     
-    [self.headerScrollView setContentOffset:point animated:YES];
+//    [self.headerScrollView setContentOffset:point animated:YES];
     
     LBLog(@"Click : %@",self.menuArrays[button.tag]);
 }
@@ -217,7 +304,8 @@
     if (self.managerType == KTBDocManagerTypeByTime) {
         return 1;
     }else{
-        return self.resulutController.sections.count;
+        return self.directoryArray.count;
+//        return self.resulutController.sections.count;
     }
 }
 
@@ -228,13 +316,23 @@
         //特定section下的信息array,再允許indexPath.row找某條消息
         NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
         cell.title = title;
-        
         return cell;
     }else{
         DocumentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentCellTableViewCellIdentifier forIndexPath:indexPath];
-        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+        NSString *folderTitle = self.directoryArray[indexPath.row];
+        NSArray *array = [NSArray array];
+        for (int i = 0; i< self.resulutController.sections.count; i++){
+            if ( indexPath.row <self.resulutController.sections.count) {
+                NSString *sectionName = [self.resulutController.sections objectAtIndex:indexPath.row].name;
+                if ([folderTitle isEqualToString:sectionName]) {
+                    array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+                    break;
+                }
+            }
+        }
         cell.type = DocumentCellTypeGroup;
         cell.documents = array;
+        cell.title = self.directoryArray[indexPath.row];
         return cell;
     }
 }
@@ -259,6 +357,10 @@
     }
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+}
+
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -270,6 +372,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.tableView.isEditing) {
+        return;
+    }
     if (self.managerType == KTBDocManagerTypeByTime) {
         NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
         DocCollectionViewLayout *flowLayout = [[DocCollectionViewLayout alloc] init];
@@ -281,7 +386,18 @@
     }else{
         
         DocumentTableViewController *docTVC = [[DocumentTableViewController alloc] initWithNibName:@"DocumentTableViewController" bundle:nil];
-        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+        NSString *folderTitle = self.directoryArray[indexPath.row];
+        docTVC.title = folderTitle;
+        NSArray *array = [NSArray array];
+        for (int i = 0; i< self.resulutController.sections.count; i++){
+            if (indexPath.row < self.resulutController.sections.count) {
+                NSString *sectionName = [self.resulutController.sections objectAtIndex:indexPath.row].name;
+                if ([folderTitle isEqualToString:sectionName]) {
+                    array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+                    break;
+                }
+            }
+        }
         docTVC.documents = [array mutableCopy];
         [self.navigationController pushViewController:docTVC animated:YES];
         
@@ -457,6 +573,118 @@
     }else if ([item.title isEqualToString:@"题目"]){
         LBLog(@"题目 picIndex: %ld",item.tag);
     }
+}
+
+#pragma mark 新建文件夹
+- (void)createNewFolderWithName{
+    if (self.tableView.isEditing) {
+        [self.tableView setEditing:NO];
+    }
+    UIAlertController *textAlertController = [UIAlertController alertControllerWithTitle:@"新建文件夹" message:@"文件夹名称不能含有/\\:*?\"<>|等特殊字符" preferredStyle:UIAlertControllerStyleAlert];
+    [textAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.placeholder = @"文件夹名";
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    UIAlertAction *comfirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 获取用户输入的文件夹名称
+        UITextField *textField = [textAlertController.textFields firstObject];
+        NSString *dirName = textField.text;
+        if (dirName.length < 1) {
+            [[HUD shareHUD] hintMessage:@"未输入文件名字！"];
+            return ;
+        }
+        
+        if ([HolomorphyValidate checkIsHaveSpecialCharaterWithString:dirName]) {
+            [[HUD shareHUD] hintMessage:@"文件夹名称含有非法字符！"];
+            return;
+        }
+        
+        [self.directoryArray addObject:dirName];
+        [DocumentMgr saveDirectoryInfor:self.directoryArray];
+        [self updateDataAndView];
+    }];
+    
+    [textAlertController addAction:cancelAction];
+    [textAlertController addAction:comfirmAction];
+    [self presentViewController:textAlertController animated:YES completion:nil];
+}
+
+#pragma mark 多选切换
+// 多选和取消操作
+- (void)switchMultipleOperation{
+    if (self.tableView.isEditing) {
+        [self.tableView setEditing:NO animated:YES];
+        [self hiddenConfirmView];
+    }else{
+        [self.tableView setEditing:YES animated:YES];
+        [self showConfirmView];
+    }
+}
+
+-(UIView *)confirmView{
+    if (!_confirmView) {
+        _confirmView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, KConfirmButtonHeigth)];
+        _confirmView.backgroundColor = [UIColor whiteColor];
+        _isConfirmViewShow = NO;
+        UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 2, self.view.bounds.size.width, KConfirmButtonHeigth - 4)];
+        [confirmButton setTitle:@"删除" forState:UIControlStateNormal];
+        [confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        confirmButton.backgroundColor = kThemeColor;
+        confirmButton.layer.cornerRadius = 5.0;
+        [confirmButton addTarget:self action:@selector(confirmDeleteFile:) forControlEvents:UIControlEventTouchUpInside];
+        [_confirmView addSubview:confirmButton];
+    }
+    return _confirmView;
+}
+
+#pragma -mark 确定按钮的推出
+- (void)showConfirmView{
+    if (_isConfirmViewShow) {
+        return;
+    }
+    UIWindow *mainWindow = [UIApplication sharedApplication].keyWindow;
+    self.confirmView.frame = CGRectMake(0, mainWindow.bounds.size.height, mainWindow.bounds.size.width, KConfirmButtonHeigth);
+    [mainWindow addSubview:self.confirmView];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.confirmView.frame = CGRectMake(0, mainWindow.bounds.size.height - KConfirmButtonHeigth, mainWindow.bounds.size.width, KConfirmButtonHeigth);
+    }];
+    _isConfirmViewShow = YES;
+}
+
+- (void)hiddenConfirmView{
+    if (!_isConfirmViewShow) {
+        return;
+    }
+    UIWindow *mainWindow = [UIApplication sharedApplication].keyWindow;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.confirmView.frame = CGRectMake(0, mainWindow.bounds.size.height, mainWindow.bounds.size.width, KConfirmButtonHeigth);
+    } completion:^(BOOL finished) {
+        [self.confirmView removeFromSuperview];
+        _isConfirmViewShow = NO;
+    }];
+}
+
+#pragma mark - 确认删除
+- (void)confirmDeleteFile:(UIButton *)deleteButton{
+    NSArray *selectRows = [self.tableView indexPathsForSelectedRows];
+    if (selectRows.count == 0) {
+        [[HUD shareHUD] hintMessage:@"未选择文件夹"];
+        return;
+    }
+    
+    for (NSIndexPath *selIndex in selectRows){
+        NSString *folderName = self.directoryArray[selIndex.row];
+        if (folderName != nil) {
+            [DocumentMgr deleteDocumentByDocumentProperty:@"folderName" withValue:folderName];
+            [self.directoryArray removeObjectAtIndex:selIndex.row];
+        }
+    }
+    [DocumentMgr saveDirectoryInfor:self.directoryArray];
+    [self updateDataAndView];
+    [[HUD shareHUD] hintMessage:@"删除成功!"];
+    [self switchMultipleOperation];
 }
 
 @end

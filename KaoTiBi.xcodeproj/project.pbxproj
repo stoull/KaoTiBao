@@ -134,6 +134,11 @@
 		E4AC2F5E1E27686D00992E5B /* Shader2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E4AC2F5C1E27686D00992E5B /* Shader2.fsh */; };
 		E4AC2F641E27753300992E5B /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AC2F631E27753300992E5B /* UIViewController+Utils.m */; };
 		E4AC2F671E277CFC00992E5B /* UIDevice+deviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AC2F661E277CFC00992E5B /* UIDevice+deviceModel.m */; };
+		E4AD883A1E55A5BF00D91662 /* KTBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AD88381E55A5BF00D91662 /* KTBSearchViewController.m */; };
+		E4AD883B1E55A5BF00D91662 /* KTBSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AD88391E55A5BF00D91662 /* KTBSearchViewController.xib */; };
+		E4AD883F1E55AD9200D91662 /* ScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AD883E1E55AD9200D91662 /* ScreenShot.m */; };
+		E4AD88411E55BB5300D91662 /* LBBaseEmptyBGView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AD88401E55BB5300D91662 /* LBBaseEmptyBGView.xib */; };
+		E4AD88431E55BB7300D91662 /* LBSearchNoResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AD88421E55BB7300D91662 /* LBSearchNoResultView.xib */; };
 		E4D6EF8F1E2B2ADB00964431 /* KTDocumentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4D6EF8D1E2B2ADB00964431 /* KTDocumentModel.xcdatamodeld */; };
 		E4D6EF9E1E2B356C00964431 /* NSDate+customizedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6EF9D1E2B356C00964431 /* NSDate+customizedFormatter.m */; };
 		E4D6EFAA1E2B3A9E00964431 /* AESEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6EFA11E2B3A9E00964431 /* AESEncrypt.m */; };
@@ -145,7 +150,6 @@
 		E4D6EFC31E2B5B8B00964431 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6EFC21E2B5B8B00964431 /* Document.m */; };
 		E4E1542E1E1BD412004457C3 /* DocManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E1542C1E1BD412004457C3 /* DocManagerCell.m */; };
 		E4E1542F1E1BD412004457C3 /* DocManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E1542D1E1BD412004457C3 /* DocManagerCell.xib */; };
-		E4E154321E1BD60B004457C3 /* DocRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E154311E1BD60B004457C3 /* DocRecord.m */; };
 		E4E154371E1BDBF1004457C3 /* NSString+comparaCurrentTime.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E154361E1BDBF1004457C3 /* NSString+comparaCurrentTime.m */; };
 		E4E517401E51DBBD0087F93E /* DocManagerCellFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E5173F1E51DBBD0087F93E /* DocManagerCellFooterView.m */; };
 		E4E517431E51DF360087F93E /* DocMgrCellFooterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E517421E51DF360087F93E /* DocMgrCellFooterLayout.m */; };
@@ -546,6 +550,13 @@
 		E4AC2F631E27753300992E5B /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
 		E4AC2F651E277CFC00992E5B /* UIDevice+deviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+deviceModel.h"; sourceTree = "<group>"; };
 		E4AC2F661E277CFC00992E5B /* UIDevice+deviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+deviceModel.m"; sourceTree = "<group>"; };
+		E4AD88371E55A5BF00D91662 /* KTBSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTBSearchViewController.h; sourceTree = "<group>"; };
+		E4AD88381E55A5BF00D91662 /* KTBSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTBSearchViewController.m; sourceTree = "<group>"; };
+		E4AD88391E55A5BF00D91662 /* KTBSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTBSearchViewController.xib; sourceTree = "<group>"; };
+		E4AD883D1E55AD9200D91662 /* ScreenShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenShot.h; sourceTree = "<group>"; };
+		E4AD883E1E55AD9200D91662 /* ScreenShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenShot.m; sourceTree = "<group>"; };
+		E4AD88401E55BB5300D91662 /* LBBaseEmptyBGView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBaseEmptyBGView.xib; sourceTree = "<group>"; };
+		E4AD88421E55BB7300D91662 /* LBSearchNoResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSearchNoResultView.xib; sourceTree = "<group>"; };
 		E4D6EF8E1E2B2ADB00964431 /* KTDocumentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KTDocumentModel.xcdatamodel; sourceTree = "<group>"; };
 		E4D6EF9C1E2B356C00964431 /* NSDate+customizedFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+customizedFormatter.h"; sourceTree = "<group>"; };
 		E4D6EF9D1E2B356C00964431 /* NSDate+customizedFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+customizedFormatter.m"; sourceTree = "<group>"; };
@@ -566,8 +577,6 @@
 		E4E1542B1E1BD412004457C3 /* DocManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocManagerCell.h; sourceTree = "<group>"; };
 		E4E1542C1E1BD412004457C3 /* DocManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocManagerCell.m; sourceTree = "<group>"; };
 		E4E1542D1E1BD412004457C3 /* DocManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocManagerCell.xib; sourceTree = "<group>"; };
-		E4E154301E1BD60B004457C3 /* DocRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocRecord.h; sourceTree = "<group>"; };
-		E4E154311E1BD60B004457C3 /* DocRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocRecord.m; sourceTree = "<group>"; };
 		E4E154351E1BDBF1004457C3 /* NSString+comparaCurrentTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+comparaCurrentTime.h"; sourceTree = "<group>"; };
 		E4E154361E1BDBF1004457C3 /* NSString+comparaCurrentTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+comparaCurrentTime.m"; sourceTree = "<group>"; };
 		E4E5173E1E51DBBD0087F93E /* DocManagerCellFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocManagerCellFooterView.h; sourceTree = "<group>"; };
@@ -767,6 +776,7 @@
 		C9DB7AD01E18A9FE00591F93 /* DocManager */ = {
 			isa = PBXGroup;
 			children = (
+				E4AD88361E55A59C00D91662 /* KTBSearch */,
 				C949E0281E5216BB00858BEB /* DocManagerController.h */,
 				C949E0291E5216BB00858BEB /* DocManagerController.m */,
 				C949E02A1E5216BB00858BEB /* DocManagerController.xib */,
@@ -855,6 +865,8 @@
 				C949E0181E5208AD00858BEB /* DocCollectionViewCell.xib */,
 				C9C3A9291E37227400C4296C /* KTBSortView.h */,
 				C9C3A92A1E37227400C4296C /* KTBSortView.m */,
+				E4AD88401E55BB5300D91662 /* LBBaseEmptyBGView.xib */,
+				E4AD88421E55BB7300D91662 /* LBSearchNoResultView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -862,8 +874,6 @@
 		E408DF9B1E1E4CBF00F1CC82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E4E154301E1BD60B004457C3 /* DocRecord.h */,
-				E4E154311E1BD60B004457C3 /* DocRecord.m */,
 				E4D6EFC11E2B5B8B00964431 /* Document.h */,
 				E4D6EFC21E2B5B8B00964431 /* Document.m */,
 				E4395B041E262F7200965124 /* DocumentMgr.h */,
@@ -1252,6 +1262,25 @@
 			path = simulator;
 			sourceTree = "<group>";
 		};
+		E4AD88361E55A59C00D91662 /* KTBSearch */ = {
+			isa = PBXGroup;
+			children = (
+				E4AD88371E55A5BF00D91662 /* KTBSearchViewController.h */,
+				E4AD88381E55A5BF00D91662 /* KTBSearchViewController.m */,
+				E4AD88391E55A5BF00D91662 /* KTBSearchViewController.xib */,
+			);
+			name = KTBSearch;
+			sourceTree = "<group>";
+		};
+		E4AD883C1E55AD6F00D91662 /* ScreenShot */ = {
+			isa = PBXGroup;
+			children = (
+				E4AD883D1E55AD9200D91662 /* ScreenShot.h */,
+				E4AD883E1E55AD9200D91662 /* ScreenShot.m */,
+			);
+			name = ScreenShot;
+			sourceTree = "<group>";
+		};
 		E4D6EF9F1E2B3A8D00964431 /* Encryption */ = {
 			isa = PBXGroup;
 			children = (
@@ -1272,6 +1301,7 @@
 		E4E154331E1BDBCE004457C3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E4AD883C1E55AD6F00D91662 /* ScreenShot */,
 				E4D6EF9F1E2B3A8D00964431 /* Encryption */,
 				E4AB1E991E20D28B00DE1804 /* GetIPAddress */,
 				E4AB1E981E20D28000DE1804 /* ZhenZhePangDuan */,
@@ -1436,6 +1466,7 @@
 			files = (
 				C9E60BF71E1E82B700E0CE73 /* SignInViewController.xib in Resources */,
 				E4395ABE1E26290200965124 /* ImageSelectedSmallOn.png in Resources */,
+				E4AD88411E55BB5300D91662 /* LBBaseEmptyBGView.xib in Resources */,
 				E4395ACC1E26290200965124 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				E4395ABC1E26290200965124 /* ImageSelectedSmallOff@2x.png in Resources */,
 				E4395AC51E26290200965124 /* PlayButtonOverlayLargeTap@2x.png in Resources */,
@@ -1468,8 +1499,10 @@
 				E4395ABD1E26290200965124 /* ImageSelectedSmallOff@3x.png in Resources */,
 				E408DF991E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib in Resources */,
 				E4AB1EB51E20D38500DE1804 /* ResetPWDController.xib in Resources */,
+				E4AD883B1E55A5BF00D91662 /* KTBSearchViewController.xib in Resources */,
 				E4395AC41E26290200965124 /* PlayButtonOverlayLargeTap.png in Resources */,
 				C9E60BFC1E1E82C900E0CE73 /* LogInViewController.xib in Resources */,
+				E4AD88431E55BB7300D91662 /* LBSearchNoResultView.xib in Resources */,
 				C9DB7A9E1E18A2B300591F93 /* Main.storyboard in Resources */,
 				E4395AC21E26290200965124 /* PlayButtonOverlayLarge@2x.png in Resources */,
 				C949E02C1E5216BB00858BEB /* DocManagerController.xib in Resources */,
@@ -1656,6 +1689,7 @@
 			files = (
 				E4AB1E961E20D1EC00DE1804 /* LBBaseRequest.m in Sources */,
 				E4395AEA1E26292900965124 /* MWGridCell.m in Sources */,
+				E4AD883A1E55A5BF00D91662 /* KTBSearchViewController.m in Sources */,
 				E4395AE91E26292900965124 /* MWCaptionView.m in Sources */,
 				C9DB7A9B1E18A2B300591F93 /* ViewController.m in Sources */,
 				E4D6EFAB1E2B3A9E00964431 /* Base64.m in Sources */,
@@ -1703,8 +1737,8 @@
 				C98889B51E1FEB430012EBC7 /* GateControl.m in Sources */,
 				E4AC2F641E27753300992E5B /* UIViewController+Utils.m in Sources */,
 				E4AB1EA81E20D2CC00DE1804 /* NSString+blankSpace.m in Sources */,
-				E4E154321E1BD60B004457C3 /* DocRecord.m in Sources */,
 				E4395AEC1E26292900965124 /* MWPhoto.m in Sources */,
+				E4AD883F1E55AD9200D91662 /* ScreenShot.m in Sources */,
 				E4D6EFAE1E2B3A9E00964431 /* URLCode.m in Sources */,
 				E4AB1EB81E20E0CE00DE1804 /* SetingTableViewController.m in Sources */,
 				C9DB7AE81E1A852100591F93 /* ShootingController.m in Sources */,

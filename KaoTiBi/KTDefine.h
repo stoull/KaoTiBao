@@ -28,6 +28,12 @@ typedef enum : NSInteger {
     KTBDocManagerTypeByFileSystem   // 按文件系统管理
 }KTBDocManagerType;
 
+typedef enum : NSInteger {
+    KTBDocManagerTimeSortTypeDay,
+    KTBDocManagerTimeSortTypeMonth,
+    KTBDocManagerTimeSortTypeYear
+}KTBDocManagerTimeSortType;
+
 #pragma mark -网络API
 
 #pragma mark -消息通知
@@ -43,6 +49,8 @@ typedef enum : NSInteger {
 // 当前用户选择的是那一种管理方式 value  为 KTBDocManagerType
 #define kKTBDocManagerType @"kKTBDocManagerType"
 
+// 当前用户选择的是那一种时间维度查看 value  为 kKTBDocManagerType
+#define kKTBDocManagerTimeSortType @"kKTBDocManagerTimeSortType"
 
 // 是否是本地授权 value 为 BOOL
 #define kisLocalAuthorization @"kLBIsLocalAuthorization"

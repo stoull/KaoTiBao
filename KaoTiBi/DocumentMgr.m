@@ -14,8 +14,10 @@
 #import "KTBUserManager.h"
 
 #define kRelativeRootPath @"DocRecords"
+#define kDirectoryFileName @"directoryFileInfor"
 
 @implementation DocumentMgr
+singleton_implementation(DocumentMgr)
 
 + (NSString *)documentAbsoluteStorageRootPath{
     NSString *rootPath = [kPathDocument stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",[KTBUserManager userUniqueIdentifer],kRelativeRootPath]];
@@ -49,6 +51,11 @@
     return [[DocmentDatabase shareDocmentDatabase] selectDocumentsWithDay:dayStr];
 }
 
++ (NSMutableArray *)selectDocumentsWithName:(NSString *)name{
+    // 分组查询
+    return [[DocmentDatabase shareDocmentDatabase] selectDocumentsWithName:name];
+}
+
 // 按月分组查询数据库
 + (NSFetchedResultsController *)selectGroupWithMonth{
     // 分组查询
@@ -60,8 +67,54 @@
     return [[DocmentDatabase shareDocmentDatabase] selectGroupWithDay];
 }
 
++ (NSFetchedResultsController *)selectGroupWithYear{
+    // 分组查询
+    return [[DocmentDatabase shareDocmentDatabase] selectGroupWithYear];
+}
+
++ (NSFetchedResultsController *)selectGroupWithFolderName{
+    return [[DocmentDatabase shareDocmentDatabase] selectGroupWithFolderName];
+}
+
++ (void)deleteDocument:(Document *)docment{
+    if (docment == nil) {
+        return;
+    }
+    [[DocmentDatabase shareDocmentDatabase] deleteDataWithDocument:docment];
+}
+
++ (void)deleteDocumentByDocumentProperty:(NSString *)property withValue:(NSString *)value{
+    if (property == nil || value == nil) {
+        return;
+    }
+    [[DocmentDatabase shareDocmentDatabase] deleteDataWithDocumentProperty:property withValue:value];
+}
+
 // 更新NSString 类型 属性的 值 
 + (void)updateDocumentProperty:(NSString *)property oldValue:(NSString *)oldValue newValue:(NSString *)newValue{
     [[DocmentDatabase shareDocmentDatabase] updateDocumentProperty:property oldValue:oldValue newValue:newValue];
+}
+
++ (NSArray *)directoryInfor{
+    NSString *rootPath = [kPathDocument stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",[KTBUserManager userUniqueIdentifer],kRelativeRootPath]];
+    NSString *directFilePath = [rootPath stringByAppendingPathComponent:kDirectoryFileName];
+    
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    if (![fileMgr fileExistsAtPath:directFilePath]) {
+        [DocumentMgr saveDirectoryInfor:@[@"我的文档"]];
+    }
+    NSArray *directoryArray = [NSArray arrayWithContentsOfFile:directFilePath];
+    return directoryArray;
+}
+
++ (void)saveDirectoryInfor:(NSArray *)directors{
+    NSString *rootPath = [kPathDocument stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",[KTBUserManager userUniqueIdentifer],kRelativeRootPath]];
+    NSString *directFilePath = [rootPath stringByAppendingPathComponent:kDirectoryFileName];
+    BOOL isSuccessfu = [directors writeToFile:directFilePath atomically:YES];
+    if (isSuccessfu) {
+        LBLog(@"目录信息写入成功");
+    }else{
+        LBLog(@"目录信息写入失败");
+    }
 }
 @end
