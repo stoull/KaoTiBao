@@ -61,6 +61,8 @@ typedef enum : NSInteger {
 // 是否需要更新数据，主要是单例中的Get方法中使用 value 为 BOOL
 #define kIsNeedUpdateSingle @"kIsNeedUpdateSingle"
 
+#define KDefaultSaveDirectory @"KDefaultSaveDirectory"
+
 // 是否是仅wifi传输 value 为 BOOL
 #define kIsTransferOnlyWifi @"kIsTransferOnlyWifi"
 

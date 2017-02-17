@@ -678,7 +678,28 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (MWCaptionView *)captionViewForPhotoAtIndex:(NSUInteger)index {
     MWCaptionView *captionView = nil;
     if ([_delegate respondsToSelector:@selector(photoBrowser:captionViewForPhotoAtIndex:)]) {
-        captionView = [_delegate photoBrowser:self captionViewForPhotoAtIndex:index];
+//        captionView = [_delegate photoBrowser:self captionViewForPhotoAtIndex:index];
+        
+        MWPhoto *photo = [self.photosArray objectAtIndex:index];
+        
+        MWCaptionView *creatCaptionView = [[MWCaptionView alloc] initWithPhoto:photo];
+        creatCaptionView.userInteractionEnabled = YES;
+        
+        UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+        item2.tag = index;
+        UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+        item4.tag = index;
+        UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+        item6.tag = index;
+        
+        UIBarButtonItem *item7 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        
+        [creatCaptionView setItems:@[item1,item2,item3,item4,item5,item6,item7]];
+        captionView = creatCaptionView;
+        
     } else {
         id <MWPhoto> photo = [self photoAtIndex:index];
         if ([photo respondsToSelector:@selector(caption)]) {
@@ -687,6 +708,30 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
     captionView.alpha = [self areControlsHidden] ? 0 : 1; // Initial alpha
     return captionView;
+}
+
+- (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
+    if ([item.title isEqualToString:@"原图"]) {
+        LBLog(@"原图 picIndex: %ld",item.tag);
+    }else if ([item.title isEqualToString:@"答案"]){
+        LBLog(@"答案 picIndex: %ld",item.tag);
+    }else if ([item.title isEqualToString:@"题目"]){
+        LBLog(@"题目 picIndex: %ld",item.tag);
+    }
+    
+    NSURL *photoURL = self.photosArray[item.tag];
+    
+//    MWZoomingScrollView *page = [self pageDisplayingPhoto:[MWPhoto photoWithURL:photoURL]];
+    
+    MWZoomingScrollView *page = [self dequeueRecycledPage];
+    page = [[MWZoomingScrollView alloc] initWithPhotoBrowser:self];
+    
+    page.frame = [self frameForPageAtIndex:item.tag];
+    page.index = item.tag;
+//    [_visiblePages addObject:page];
+    page.photo = [MWPhoto photoWithURL:photoURL];
+    
+    [self.view addSubview:page];
 }
 
 - (BOOL)photoIsSelectedAtIndex:(NSUInteger)index {

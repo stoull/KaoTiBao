@@ -20,7 +20,7 @@
 #define KConfirmButtonHeigth 60
 
 #define kDocumentCellTableViewCellIdentifier @"kDocumentCellTableViewCellIdentifier"
-@interface DocumentTableViewController ()<MWPhotoBrowserDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface DocumentTableViewController ()<MWPhotoBrowserDelegate,UITableViewDelegate,UITableViewDataSource,LBSelectFloderControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) BOOL navigationBarOriginalShow;
 
@@ -159,7 +159,11 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    if (self.tableView.isEditing) {
+        return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    }else{
+        return UITableViewCellEditingStyleDelete;
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -248,6 +252,7 @@
     browser.displaySelectionButtons = displaySelectionButtons;
     browser.alwaysShowControls = displaySelectionButtons;
     browser.zoomPhotosToFill = YES;
+    browser.photosArray = photos;
     browser.enableGrid = enableGrid;
     browser.startOnGrid = startOnGrid;
     browser.enableSwipeToDismiss = NO;
@@ -276,39 +281,39 @@
     MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
     captionView.userInteractionEnabled = YES;
     
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-    item2.tag = index;
-    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-    item4.tag = index;
-    UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-    item6.tag = index;
-
-    
-//    UIButton *button6 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-//    [button6 setTitle:@"aa" forState:UIControlStateNormal];
-//    [button6 addTarget:self action:@selector(photoBrowserButtonItemDidClick) forControlEvents:UIControlEventTouchUpInside];
-    
-//    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithCustomView:button6];
-    
-    UIBarButtonItem *item7 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    
-    [captionView setItems:@[item1,item2,item3,item4,item5,item6,item7]];
+//    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+//    item2.tag = index;
+//    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+//    item4.tag = index;
+//    UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+//    item6.tag = index;
+//
+//    
+////    UIButton *button6 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+////    [button6 setTitle:@"aa" forState:UIControlStateNormal];
+////    [button6 addTarget:self action:@selector(photoBrowserButtonItemDidClick) forControlEvents:UIControlEventTouchUpInside];
+//    
+////    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithCustomView:button6];
+//    
+//    UIBarButtonItem *item7 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    
+//    [captionView setItems:@[item1,item2,item3,item4,item5,item6,item7]];
     
     return captionView;        //此方法可以定制图片游览页下边的toorBar
 }
 
-- (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
-    if ([item.title isEqualToString:@"原图"]) {
-        LBLog(@"原图 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"答案"]){
-        LBLog(@"答案 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"题目"]){
-        LBLog(@"题目 picIndex: %ld",item.tag);
-    }
-}
+//- (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
+//    if ([item.title isEqualToString:@"原图"]) {
+//        LBLog(@"原图 picIndex: %ld",item.tag);
+//    }else if ([item.title isEqualToString:@"答案"]){
+//        LBLog(@"答案 picIndex: %ld",item.tag);
+//    }else if ([item.title isEqualToString:@"题目"]){
+//        LBLog(@"题目 picIndex: %ld",item.tag);
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -393,13 +398,42 @@
 }
 #pragma mark - 确认移动
 - (void)confirmMoveFile:(UIButton *)moveButton{
-    [self switchMultipleOperation];
+    
+    if ([DocumentMgr directoryInfor].count < 1) {
+        [[HUD shareHUD] hintMessage:@"请新增文件夹后进行移动！"];
+        return;
+    }
+    
     LBSelectFolderController *moveVC = [[LBSelectFolderController alloc] init];
     moveVC.title = @"移动";
     moveVC.oldFolderName = self.title;
+    NSArray *selecIndex = [self.tableView indexPathsForSelectedRows];
+    NSMutableArray *docs = [NSMutableArray array];
+    for (NSIndexPath *indexPH in selecIndex){
+        [docs addObject:self.documents[indexPH.row]];
+    }
+    moveVC.documets = docs;
+    moveVC.selectedIndexPath = selecIndex;
+    moveVC.delegate = self;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:moveVC];
     [self presentViewController:nvc animated:YES completion:nil];
+    [self switchMultipleOperation];
 }
+
+#pragma mark - LBSelectFloderControllerDelegate
+- (void)successfullMoveDocumentsWithSelectedIndexPath:(NSArray *)selectedIndexPath{
+    for (NSIndexPath *seInPath in selectedIndexPath){
+        [self.documents removeObjectAtIndex:seInPath.row];
+    }
+    if (self.documents.count == 0){
+        [self updateView];
+    }else {
+        [self.tableView deleteRowsAtIndexPaths:selectedIndexPath withRowAnimation:UITableViewRowAnimationLeft];
+    }
+    
+    [DocumentMgr shareDocumentMgr].isNeedUpdate = YES;
+}
+
 /*
 #pragma mark - Navigation
 

@@ -11,7 +11,7 @@
 @interface LBQRFilePreview () <UIWebViewDelegate>
 @property (strong, nonatomic)  UIWebView *QRPreview;
 
-//@property (nonatomic, strong) UILabel *fileUrlLable;
+@property (nonatomic, strong) UILabel *fileUrlLable;
 @end
 
 @implementation LBQRFilePreview
@@ -31,18 +31,20 @@
     // Do any additional setup after loading the view.
     [self loadQRPreview];
     
+    self.title = @"扫描结果";
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-//    self.fileUrlLable = [[UILabel alloc] initWithFrame:CGRectMake(0, screenSize.height - 44, screenSize.width, 44)];
-//    self.fileUrlLable.numberOfLines = 4;
-//    self.fileUrlLable.text = self.fileUrl;
-//    self.fileUrlLable.font = [UIFont systemFontOfSize:12];
-//    self.fileUrlLable.textColor = [UIColor whiteColor];
-//    [self.view addSubview:self.fileUrlLable];
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    self.fileUrlLable = [[UILabel alloc] initWithFrame:CGRectMake(0, screenSize.height - 44, screenSize.width, 44)];
+    self.fileUrlLable.numberOfLines = 4;
+    self.fileUrlLable.text = self.fileUrl;
+    self.fileUrlLable.font = [UIFont systemFontOfSize:12];
+    self.fileUrlLable.textColor = [UIColor whiteColor];
+    [self.view addSubview:self.fileUrlLable];
     
     UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [backBtn setImage:[UIImage imageNamed:@"bank"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"goBack"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backToRootController:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtnItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
@@ -67,10 +69,10 @@
         make.top.right.left.bottom.equalTo(self.view);
     }];
     
-//    [self.fileUrlLable mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.bottom.equalTo(@(0));
-//        make.height.equalTo(@(44));
-//    }];
+    [self.fileUrlLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(@(0));
+        make.height.equalTo(@(44));
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

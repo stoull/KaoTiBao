@@ -34,10 +34,15 @@
 
 -(UIImageView *)scanWindow{
     if (!_scanWindow) {
-        _scanWindow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+        _scanWindow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
         _scanWindow.center = self.view.center;
         _scanWindow.image = [UIImage imageNamed:@"QRScaner"];
+        UILabel *hintLable = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_scanWindow.frame), _scanWindow.bounds.size.width, 30)];
+        hintLable.textColor = [UIColor whiteColor];
+        hintLable.textAlignment = NSTextAlignmentCenter;
+        hintLable.text = @"请将二码码置于框内扫描";
         [self.view addSubview:_scanWindow];
+        [self.view addSubview:hintLable];
     }
     return _scanWindow;
 }
@@ -114,6 +119,10 @@
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex : 0 ];
         //输出扫描字符串
         NSLog(@"%@",metadataObject.stringValue);
+        
+        
+        
+        
         LBQRFilePreview *filePreview = [[LBQRFilePreview alloc] init];
         filePreview.fileUrl = metadataObject.stringValue;
         [self.navigationController pushViewController:filePreview animated:YES];

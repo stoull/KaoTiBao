@@ -91,8 +91,13 @@ singleton_implementation(DocumentMgr)
 }
 
 // 更新NSString 类型 属性的 值 
-+ (void)updateDocumentProperty:(NSString *)property oldValue:(NSString *)oldValue newValue:(NSString *)newValue{
-    [[DocmentDatabase shareDocmentDatabase] updateDocumentProperty:property oldValue:oldValue newValue:newValue];
++ (void)updateDocumentDateNameIdentifer:(NSString *)identifer property:(NSString *)property newValue:(NSString *)newValue{
+    [[DocmentDatabase shareDocmentDatabase] updateDocumentDateNameIdentifer:identifer property:property newValue:newValue];
+}
+
+// 更新NSString 类型 属性的 值
++ (void)updateDocumentDateNameIdentifers:(NSArray *)docus property:(NSString *)property newValue:(NSString *)newValue{
+    [[DocmentDatabase shareDocmentDatabase] updateDocumentDateNameIdentifers:docus property:property newValue:newValue];
 }
 
 + (NSArray *)directoryInfor{

@@ -105,14 +105,6 @@
     [self setRefreshView];
     
     // 获取数据
-    if (self.managerTimeSortType == KTBDocManagerTimeSortTypeYear) {
-        self.resulutController = [DocumentMgr selectGroupWithYear];
-    }else if (self.managerTimeSortType == KTBDocManagerTimeSortTypeMonth){
-        self.resulutController = [DocumentMgr selectGroupWithMonth];
-    }else{
-        self.resulutController = [DocumentMgr selectGroupWithDay];
-    }
-    
     [self updateDataAndView];
 }
 
@@ -314,7 +306,7 @@
         DocManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocManagerCellIdentifier forIndexPath:indexPath];
         NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
         //特定section下的信息array,再允許indexPath.row找某條消息
-        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
+//        NSArray *array = [self.resulutController.sections objectAtIndex:indexPath.section].objects;
         cell.title = title;
         return cell;
     }else{
@@ -322,10 +314,13 @@
         NSString *folderTitle = self.directoryArray[indexPath.row];
         NSArray *array = [NSArray array];
         for (int i = 0; i< self.resulutController.sections.count; i++){
-            if ( indexPath.row <self.resulutController.sections.count) {
-                NSString *sectionName = [self.resulutController.sections objectAtIndex:indexPath.row].name;
+            if ( i < self.resulutController.sections.count) {
+//                for (NSString *dirName in self.directoryArray){
+//                    
+//                }
+                NSString *sectionName = [self.resulutController.sections objectAtIndex:i].name;
                 if ([folderTitle isEqualToString:sectionName]) {
-                    array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+                    array = [self.resulutController.sections objectAtIndex:i].objects;
                     break;
                 }
             }
@@ -349,16 +344,38 @@
     if (self.managerType == KTBDocManagerTypeByTime) {
         
     }else{
-        id tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
         if (editingStyle == UITableViewCellEditingStyleDelete) {
-//            [self.documents removeObjectAtIndex:indexPath.row];
-//            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            if (self.managerType == KTBDocManagerTypeByTime) {
+                NSString *title = [self.resulutController.sections objectAtIndex:indexPath.section].name;
+                if (self.managerTimeSortType == KTBDocManagerTimeSortTypeYear) {
+                    [DocumentMgr deleteDocumentByDocumentProperty:@"identifierYear" withValue:title];
+                    [self.directoryArray removeObjectAtIndex:indexPath.row];
+                    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                }else if (self.managerTimeSortType == KTBDocManagerTimeSortTypeMonth){
+                    [DocumentMgr deleteDocumentByDocumentProperty:@"identifierMonth" withValue:title];
+                    [self.directoryArray removeObjectAtIndex:indexPath.row];
+                    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                }else{
+                    [DocumentMgr deleteDocumentByDocumentProperty:@"identifierDay" withValue:title];
+                    [self.directoryArray removeObjectAtIndex:indexPath.row];
+                    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                }
+            }else if (self.managerType == KTBDocManagerTypeByFileSystem){
+                NSString *folderName = self.directoryArray[indexPath.row];
+                [DocumentMgr deleteDocumentByDocumentProperty:@"folderName" withValue:folderName];
+                [self.directoryArray removeObjectAtIndex:indexPath.row];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            }
         }
     }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    if (self.tableView.isEditing) {
+        return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    }else{
+        return UITableViewCellEditingStyleDelete;
+    }
 }
 
 
@@ -390,10 +407,10 @@
         docTVC.title = folderTitle;
         NSArray *array = [NSArray array];
         for (int i = 0; i< self.resulutController.sections.count; i++){
-            if (indexPath.row < self.resulutController.sections.count) {
-                NSString *sectionName = [self.resulutController.sections objectAtIndex:indexPath.row].name;
+            if (i < self.resulutController.sections.count) {
+                NSString *sectionName = [self.resulutController.sections objectAtIndex:i].name;
                 if ([folderTitle isEqualToString:sectionName]) {
-                    array = [self.resulutController.sections objectAtIndex:indexPath.row].objects;
+                    array = [self.resulutController.sections objectAtIndex:i].objects;
                     break;
                 }
             }
@@ -541,38 +558,28 @@
     MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
     captionView.userInteractionEnabled = YES;
     
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-    item2.tag = index;
-    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-    item4.tag = index;
-    UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-    item6.tag = index;
-    
-    
-    //    UIButton *button6 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    //    [button6 setTitle:@"aa" forState:UIControlStateNormal];
-    //    [button6 addTarget:self action:@selector(photoBrowserButtonItemDidClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    //    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithCustomView:button6];
-    
-    UIBarButtonItem *item7 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    
-    [captionView setItems:@[item1,item2,item3,item4,item5,item6,item7]];
+//    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+//    item2.tag = index;
+//    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+//    item4.tag = index;
+//    UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+//    item6.tag = index;
+//    
+//    
+//    //    UIButton *button6 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//    //    [button6 setTitle:@"aa" forState:UIControlStateNormal];
+//    //    [button6 addTarget:self action:@selector(photoBrowserButtonItemDidClick) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    //    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithCustomView:button6];
+//    
+//    UIBarButtonItem *item7 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    
+//    [captionView setItems:@[item1,item2,item3,item4,item5,item6,item7]];
     
     return captionView;        //此方法可以定制图片游览页下边的toorBar
-}
-
-- (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
-    if ([item.title isEqualToString:@"原图"]) {
-        LBLog(@"原图 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"答案"]){
-        LBLog(@"答案 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"题目"]){
-        LBLog(@"题目 picIndex: %ld",item.tag);
-    }
 }
 
 #pragma mark 新建文件夹
@@ -600,6 +607,14 @@
             [[HUD shareHUD] hintMessage:@"文件夹名称含有非法字符！"];
             return;
         }
+        
+        for (NSString *folderName in self.directoryArray){
+            if ([folderName isEqualToString:dirName]) {
+                [[HUD shareHUD] hintMessage:@"已存在同名的文件夹！"];
+                return;
+            }
+        }
+        
         
         [self.directoryArray addObject:dirName];
         [DocumentMgr saveDirectoryInfor:self.directoryArray];

@@ -104,6 +104,11 @@
 		E4395B011E262AB300965124 /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4395AFC1E262AB300965124 /* test1.jpg */; };
 		E4395B031E262AD900965124 /* test5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4395B021E262AD900965124 /* test5.jpg */; };
 		E4395B061E262F7200965124 /* DocumentMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = E4395B051E262F7200965124 /* DocumentMgr.m */; };
+		E45C2BD01E56ACBA009AFC82 /* KTBPopInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E45C2BCF1E56ACBA009AFC82 /* KTBPopInputView.xib */; };
+		E45C2BD31E56AEF8009AFC82 /* KTBPopInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = E45C2BD21E56AEF8009AFC82 /* KTBPopInputView.m */; };
+		E45C2BD61E56B37F009AFC82 /* InputDoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = E45C2BD51E56B37F009AFC82 /* InputDoneView.m */; };
+		E45C2BD91E56CF75009AFC82 /* KTBSelectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E45C2BD81E56CF75009AFC82 /* KTBSelectTableView.m */; };
+		E45C2BDB1E56CF86009AFC82 /* KTBSelectTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E45C2BDA1E56CF86009AFC82 /* KTBSelectTableView.xib */; };
 		E4AB1E881E20D16A00DE1804 /* LBAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1E871E20D16A00DE1804 /* LBAlert.m */; };
 		E4AB1E8B1E20D18200DE1804 /* WCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1E8A1E20D18200DE1804 /* WCAlertView.m */; };
 		E4AB1E901E20D19C00DE1804 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1E8D1E20D19C00DE1804 /* HUD.m */; };
@@ -331,6 +336,14 @@
 		E4395B021E262AD900965124 /* test5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test5.jpg; sourceTree = "<group>"; };
 		E4395B041E262F7200965124 /* DocumentMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentMgr.h; sourceTree = "<group>"; };
 		E4395B051E262F7200965124 /* DocumentMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentMgr.m; sourceTree = "<group>"; };
+		E45C2BCF1E56ACBA009AFC82 /* KTBPopInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTBPopInputView.xib; sourceTree = "<group>"; };
+		E45C2BD11E56AEF8009AFC82 /* KTBPopInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTBPopInputView.h; sourceTree = "<group>"; };
+		E45C2BD21E56AEF8009AFC82 /* KTBPopInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTBPopInputView.m; sourceTree = "<group>"; };
+		E45C2BD41E56B37F009AFC82 /* InputDoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDoneView.h; sourceTree = "<group>"; };
+		E45C2BD51E56B37F009AFC82 /* InputDoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDoneView.m; sourceTree = "<group>"; };
+		E45C2BD71E56CF75009AFC82 /* KTBSelectTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTBSelectTableView.h; sourceTree = "<group>"; };
+		E45C2BD81E56CF75009AFC82 /* KTBSelectTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTBSelectTableView.m; sourceTree = "<group>"; };
+		E45C2BDA1E56CF86009AFC82 /* KTBSelectTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTBSelectTableView.xib; sourceTree = "<group>"; };
 		E4AB1E861E20D16A00DE1804 /* LBAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBAlert.h; sourceTree = "<group>"; };
 		E4AB1E871E20D16A00DE1804 /* LBAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBAlert.m; sourceTree = "<group>"; };
 		E4AB1E891E20D18200DE1804 /* WCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCAlertView.h; sourceTree = "<group>"; };
@@ -777,6 +790,7 @@
 				C9B21F4F1E27C97900454A55 /* PhotoEidtController.h */,
 				C9B21F501E27C97900454A55 /* PhotoEidtController.m */,
 				C9B21F511E27C97900454A55 /* PhotoEidtController.xib */,
+				E45C2BCE1E56AC85009AFC82 /* View */,
 			);
 			name = Shooting;
 			sourceTree = "<group>";
@@ -1004,6 +1018,21 @@
 				E4395AFC1E262AB300965124 /* test1.jpg */,
 			);
 			name = TestImage;
+			sourceTree = "<group>";
+		};
+		E45C2BCE1E56AC85009AFC82 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E45C2BD41E56B37F009AFC82 /* InputDoneView.h */,
+				E45C2BD51E56B37F009AFC82 /* InputDoneView.m */,
+				E45C2BD11E56AEF8009AFC82 /* KTBPopInputView.h */,
+				E45C2BD21E56AEF8009AFC82 /* KTBPopInputView.m */,
+				E45C2BCF1E56ACBA009AFC82 /* KTBPopInputView.xib */,
+				E45C2BD71E56CF75009AFC82 /* KTBSelectTableView.h */,
+				E45C2BD81E56CF75009AFC82 /* KTBSelectTableView.m */,
+				E45C2BDA1E56CF86009AFC82 /* KTBSelectTableView.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		E4AB1E821E20D12600DE1804 /* LBAlert */ = {
@@ -1496,9 +1525,11 @@
 				E4395AD21E26290200965124 /* VideoOverlay@3x.png in Resources */,
 				E4AB1EBD1E20F36000DE1804 /* CommonViewController.xib in Resources */,
 				C9DB7AA31E18A2B300591F93 /* LaunchScreen.storyboard in Resources */,
+				E45C2BDB1E56CF86009AFC82 /* KTBSelectTableView.xib in Resources */,
 				E4395AD01E26290200965124 /* VideoOverlay.png in Resources */,
 				E4395ACD1E26290200965124 /* UIBarButtonItemGrid.png in Resources */,
 				E4395ACB1E26290200965124 /* UIBarButtonItemArrowRight@2x.png in Resources */,
+				E45C2BD01E56ACBA009AFC82 /* KTBPopInputView.xib in Resources */,
 				E4395AB91E26290200965124 /* ImageSelectedOn@2x.png in Resources */,
 				E4395AFD1E262AB300965124 /* test3.jpg in Resources */,
 				E4AC2F5D1E27686D00992E5B /* Shader1.fsh in Resources */,
@@ -1744,6 +1775,7 @@
 				E4AB1EAB1E20D2CC00DE1804 /* UIImage+UICycle.m in Sources */,
 				E4D6EFBD1E2B46BF00964431 /* DocmentDatabase.m in Sources */,
 				E4D6EF8F1E2B2ADB00964431 /* KTDocumentModel.xcdatamodeld in Sources */,
+				E45C2BD31E56AEF8009AFC82 /* KTBPopInputView.m in Sources */,
 				E408DF981E1E4CB000F1CC82 /* DocumentCellTableViewCell.m in Sources */,
 				C949E0191E5208AD00858BEB /* DocCollectionViewCell.m in Sources */,
 				E4395AF51E26294300965124 /* DACircularProgressView.m in Sources */,
@@ -1759,6 +1791,7 @@
 				C9C3A93A1E372A1B00C4296C /* MenuView.m in Sources */,
 				C98889B51E1FEB430012EBC7 /* GateControl.m in Sources */,
 				E4AC2F641E27753300992E5B /* UIViewController+Utils.m in Sources */,
+				E45C2BD91E56CF75009AFC82 /* KTBSelectTableView.m in Sources */,
 				E4AB1EA81E20D2CC00DE1804 /* NSString+blankSpace.m in Sources */,
 				E4395AEC1E26292900965124 /* MWPhoto.m in Sources */,
 				E4AD883F1E55AD9200D91662 /* ScreenShot.m in Sources */,
@@ -1778,6 +1811,7 @@
 				C9C3A9371E372A1B00C4296C /* CCSideSlipView.m in Sources */,
 				C9C3A9381E372A1B00C4296C /* MenuCell.m in Sources */,
 				E4AB1EAF1E20D35800DE1804 /* ForgotPWDViewController.m in Sources */,
+				E45C2BD61E56B37F009AFC82 /* InputDoneView.m in Sources */,
 				E4AB1E881E20D16A00DE1804 /* LBAlert.m in Sources */,
 				C9DB7A951E18A2B300591F93 /* main.m in Sources */,
 				C9C3A92B1E37227400C4296C /* KTBSortView.m in Sources */,

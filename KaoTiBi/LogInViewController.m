@@ -102,6 +102,14 @@
                 [GateControl  switchControllerWithWindow:[UIApplication sharedApplication].keyWindow];
             }else{
                 [[HUD shareHUD] hintMessage:emsg];
+                if ([emsg isEqualToString:@"用户已经登录"]) {
+                    KTBUser *currentUser = [KTBUserManager currentUser];
+                    [KTBBaseAPI logoutWithUserId:currentUser.userId successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
+                        
+                    } failure:^(NSString * _Nonnull errorMessage) {
+                        
+                    }];
+                }
             }
         } failure:^(NSString * _Nonnull errorMessage) {
             [[HUD shareHUD] hintMessage:errorMessage];

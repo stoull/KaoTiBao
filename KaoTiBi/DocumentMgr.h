@@ -35,7 +35,9 @@ singleton_interface(DocumentMgr)
 + (void)deleteDocumentByDocumentProperty:(NSString *)property withValue:(NSString *)value;
 
 // 更新NSString 类型 属性的 值
-+ (void)updateDocumentProperty:(NSString *)property oldValue:(NSString *)oldValue newValue:(NSString *)newValue;
++ (void)updateDocumentDateNameIdentifer:(NSString *)identifer property:(NSString *)property newValue:(NSString *)newValue;
+// 更新NSString 类型 属性的 值
++ (void)updateDocumentDateNameIdentifers:(NSArray *)docus property:(NSString *)property newValue:(NSString *)newValue;
 
 + (NSString *)documentAbsoluteStorageRootPath;  // 完整的记录存储路径
 + (NSString *)docuemntRelativeStorageRootPath;  // 相对于Documnt的相对存储路径

@@ -390,12 +390,12 @@ singleton_implementation(DocmentDatabase)
 }
 
 //更新
-- (void)updateDocumentProperty:(NSString *)property oldValue:(NSString *)oldValue newValue:(NSString *)newValue
+- (void)updateDocumentDateNameIdentifer:(NSString *)identifer property:(NSString *)property newValue:(NSString *)newValue
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
     NSPredicate *predicate = [NSPredicate
-                              predicateWithFormat:@"%@ like[cd] %@",property, oldValue];
+                              predicateWithFormat:@"dateName like[cd] %@", identifer];
     
     //首先你需要建立一个request
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
@@ -408,9 +408,6 @@ singleton_implementation(DocmentDatabase)
     for (Document *doc in result) {
         [doc setValue:newValue forKey:property];
     }
-    
-#pragma mark - 今天就到这里......
-    
     //保存
     if ([context save:&error]) {
         //更新成功
@@ -418,4 +415,30 @@ singleton_implementation(DocmentDatabase)
     }
 }
 
+//更新
+- (void)updateDocumentDateNameIdentifers:(NSArray *)docments property:(NSString *)property newValue:(NSString *)newValue
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    for (Document *doc in docments){
+        NSPredicate *predicate = [NSPredicate
+                                  predicateWithFormat:@"dateName like[cd] %@", doc.dateName];
+        //首先你需要建立一个request
+        NSFetchRequest * request = [[NSFetchRequest alloc] init];
+        [request setEntity:[NSEntityDescription entityForName:DocumentsTable inManagedObjectContext:context]];
+        [request setPredicate:predicate];//这里相当于sqlite中的查询条件，具体格式参考苹果文档
+        
+        //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Predicates/Articles/pCreating.html
+        NSError *error = nil;
+        NSArray *result = [context executeFetchRequest:request error:&error];//这里获取到的是一个数组，你需要取出你要更新的那个obj
+        for (Document *doc in result) {
+            [doc setValue:newValue forKey:property];
+        }
+        //保存
+        if ([context save:&error]) {
+            //更新成功
+            NSLog(@"更新成功");
+        }
+    }
+}
 @end

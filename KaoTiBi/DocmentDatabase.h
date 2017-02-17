@@ -46,5 +46,6 @@ singleton_interface(DocmentDatabase)
 - (void)deleteDataWithDocumentProperty:(NSString *)property withValue:(NSString *)value;
 
 //更新
-- (void)updateDocumentProperty:(NSString *)property oldValue:(NSString *)oldValue newValue:(NSString *)newValue;
+- (void)updateDocumentDateNameIdentifer:(NSString *)identifer property:(NSString *)property newValue:(NSString *)newValue;
+- (void)updateDocumentDateNameIdentifers:(NSArray *)docments property:(NSString *)property newValue:(NSString *)newValue;
 @end

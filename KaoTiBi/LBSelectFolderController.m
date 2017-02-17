@@ -93,8 +93,12 @@
 - (void)confirmSelectThisFile:(UIButton *)button{
     NSIndexPath *selecIndexPaht = [[self.tableView indexPathsForSelectedRows] lastObject];
     NSString *newFolderName = self.folderArray[selecIndexPaht.row];
+    [DocumentMgr updateDocumentDateNameIdentifers:self.documets property:@"folderName" newValue:newFolderName];
     
-    [DocumentMgr updateDocumentProperty:@"folderName" oldValue:self.oldFolderName newValue:newFolderName];
+    if ([self.delegate respondsToSelector:@selector(successfullMoveDocumentsWithSelectedIndexPath:)]) {
+        [self.delegate successfullMoveDocumentsWithSelectedIndexPath:self.selectedIndexPath];
+    }
+    
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -117,6 +121,13 @@
 
     self.title = @"选择文件夹";
     self.folderArray = [[DocumentMgr directoryInfor] mutableCopy];
+    for (int i = 0; i < self.folderArray.count; i++){
+        NSString *dirName = self.folderArray[i];
+        if ([dirName isEqualToString:self.oldFolderName]) {
+            [self.folderArray removeObjectAtIndex:i];
+            break;
+        }
+    }
 
     UIButton *cancleButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [cancleButton addTarget:self action:@selector(cancelSelected:) forControlEvents:UIControlEventTouchUpInside];

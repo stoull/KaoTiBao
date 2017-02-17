@@ -121,23 +121,27 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        if (self.user.userId == -1) {
-            [LBAlert showAlertWithTitle:@"当前为试用版本" message:@"是否登录／注册为正式用户？" completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
-                if (actionIndex == 1) {
-                    [self logOutAction:nil];
-                }
-            } cancelActionTitle:@"下次" otherActionTitles:@[@"确定"]];
-        }else{
-            KTBUserInfoController *userInfoVC = [[KTBUserInfoController alloc] initWithNibName:@"KTBUserInfoController" bundle:nil];
-            [self.navigationController pushViewController:userInfoVC animated:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            if (self.user.userId == -1) {
+                [LBAlert showAlertWithTitle:@"当前为试用版本" message:@"是否登录／注册为正式用户？" completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
+                    if (actionIndex == 1) {
+                        [self logOutAction:nil];
+                    }
+                } cancelActionTitle:@"下次" otherActionTitles:@[@"确定"]];
+            }else{
+                KTBUserInfoController *userInfoVC = [[KTBUserInfoController alloc] initWithNibName:@"KTBUserInfoController" bundle:nil];
+                [self.navigationController pushViewController:userInfoVC animated:YES];
+            }
         }
-    }else if (indexPath.row == 1){
-        LBQRScaner *QRScaner = [[LBQRScaner alloc] init];
-        [self.navigationController pushViewController:QRScaner animated:YES];
-    }else{
-        CommonViewController *commmonController = [[CommonViewController alloc] initWithNibName:@"CommonViewController" bundle:nil];
-        [self.navigationController pushViewController:commmonController animated:YES];
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0){
+            LBQRScaner *QRScaner = [[LBQRScaner alloc] init];
+            [self.navigationController pushViewController:QRScaner animated:YES];
+        }else{
+            CommonViewController *commmonController = [[CommonViewController alloc] initWithNibName:@"CommonViewController" bundle:nil];
+            [self.navigationController pushViewController:commmonController animated:YES];
+        }
     }
 }
 

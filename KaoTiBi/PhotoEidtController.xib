@@ -208,17 +208,25 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHO-Mu-QqQ">
                     <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Id0-LB-DnA"/>
-                        <barButtonItem title="名称" style="plain" id="reb-Jd-Lv0">
+                        <barButtonItem tag="999" style="plain" systemItem="flexibleSpace" id="Id0-LB-DnA"/>
+                        <barButtonItem title="目录" style="plain" id="reb-Jd-Lv0">
                             <connections>
                                 <action selector="toolBarButtonItemAction:" destination="-1" id="DPd-8A-ScO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="U1Q-uR-ezi"/>
-                        <barButtonItem tag="1" title="描述" style="plain" id="b3H-3x-OW6"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="kd3-d4-UVI"/>
-                        <barButtonItem tag="2" title="分类" id="xIL-g4-bUJ"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="6Tu-d0-1Aj"/>
+                        <barButtonItem tag="999" style="plain" systemItem="flexibleSpace" id="U1Q-uR-ezi"/>
+                        <barButtonItem tag="1" title="名称" style="plain" id="b3H-3x-OW6">
+                            <connections>
+                                <action selector="toolBarButtonItemAction:" destination="-1" id="HsW-7f-sld"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="999" style="plain" systemItem="flexibleSpace" id="kd3-d4-UVI"/>
+                        <barButtonItem tag="2" title="描述" id="xIL-g4-bUJ">
+                            <connections>
+                                <action selector="toolBarButtonItemAction:" destination="-1" id="nGT-Tv-zuM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="999" style="plain" systemItem="flexibleSpace" id="6Tu-d0-1Aj"/>
                     </items>
                 </toolbar>
             </subviews>
