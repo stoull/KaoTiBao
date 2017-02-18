@@ -40,7 +40,7 @@
         return;
     }
     _documents = documents;
-    Document *document = [documents firstObject];
+    Document *document = [documents lastObject];
     self.docNameLabel.text = document.identifierDay;
     NSString *docPath = [kPathDocument stringByAppendingPathComponent:document.path];
     docPath = [docPath stringByAppendingPathComponent:document.dateName];

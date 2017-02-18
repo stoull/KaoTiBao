@@ -9,14 +9,24 @@
 #import "ResetPWDController.h"
 #import "KTBBaseAPI.h"
 #import "HolomorphyValidate.h"
+#import "LBMD5.h"
+#import "KTBUserManager.h"
 #import "NSString+blankSpace.h"
+#import "KTBUserInfoController.h"
 #import "HUD.h"
 
 @interface ResetPWDController ()
+@property (weak, nonatomic) IBOutlet UILabel *labelOne;
+@property (weak, nonatomic) IBOutlet UILabel *labelTwo;
+@property (weak, nonatomic) IBOutlet UILabel *labelThree;
+
+
+
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *RePasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *vCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *resetPWDButton;
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *allToTopConstraint;
 @property (nonatomic, assign) CGFloat originToTopConstraint;
@@ -26,7 +36,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"重置密码";
+    if (self.isChangPassword) {
+        self.title = @"修改密码";
+        [self.confirmButton setTitle:@"修改密码" forState:UIControlStateNormal];
+        self.labelOne.text = @"原密码：";
+        self.passwordTextField.placeholder = @"请输入原密码";
+        self.labelTwo.text = @"新密码：";
+        self.RePasswordTextField.placeholder = @"请输入新密码";
+        self.labelThree.text = @"确认新密码：";
+        self.vCodeTextField.placeholder = @"请再次输入新密码";
+    }else{
+        self.title = @"重置密码";
+        [self.confirmButton setTitle:@"重置密码" forState:UIControlStateNormal];
+        self.labelOne.text = @"新密码：";
+        self.passwordTextField.placeholder = @"请输入新密码";
+        self.labelTwo.text = @"确认新密码：";
+        self.RePasswordTextField.placeholder = @"请再次输入新密码";
+        self.labelThree.text = @"验证码：";
+        self.vCodeTextField.placeholder = @"验证码已发至对应的注册邮箱";
+    }
     self.resetPWDButton.layer.cornerRadius = 10.0;
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -106,7 +134,6 @@
     NSString *password = self.passwordTextField.text = [NSString removeBlankSpace:self.passwordTextField.text];
     NSString *confirmPWD = self.RePasswordTextField.text = [NSString removeBlankSpace:self.RePasswordTextField.text];
     NSString *vCode = self.vCodeTextField.text = [NSString removeBlankSpace:self.vCodeTextField.text];
-    
     if (password.length == 0) {
         [[HUD shareHUD] hintMessage:@"密码不能为空哦！"];
         return;
@@ -115,44 +142,103 @@
         return;
     }
     
-    if (![password isEqualToString:confirmPWD]) {
-        [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
-        return;
-    }
-    
-    if (vCode.length != 6) {
-        [[HUD shareHUD] hintMessage:@"输入的验证码不正确哦！"];
-        return;
-    }
-    
-    /*
-     loginname		登录名， 可以是 email， phoneNumber,  关联好友号username。。
-     loginType		登录方式， 2 email， 3 phoneNumber， 4 username2
-     resetCodeKey		重置密码验证码的Key, forgetPass操作返回的key
-     resetCode		重置密码验证码，这个参数是用户填写的
-     newpassword		新密码
-     comfirmPassword	重复密码
-     */
-    NSDictionary *resetDic = @{@"loginname" : self.logInName,
-                               @"loginType" : self.loginType,
-                               @"vcodeKey"  : self.vcodeKey,
-                               @"vcode"     : self.vcode,
-                               @"resetCodeKey" : self.resetCodeKey,
-                               @"resetCode" : vCode,
-                               @"password" : password,
-                               @"comfirmPassword" : confirmPWD};
-    [[HUD shareHUD] showActivityWithText:@"正重置密码..."];
-    [KTBBaseAPI resetPasswordWithParaDic:resetDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
-        if (kTBAPIResponseStatusSuccessful == status) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            [[HUD shareHUD] hintMessage:@"重置成功"];
-        }else{
-            [[HUD shareHUD] hintMessage:emsg];
+    if (self.isChangPassword) {
+        if (![vCode isEqualToString:confirmPWD]) {
+            [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
+            return;
         }
-    } failure:^(NSString * _Nonnull errorMessage) {
-        [[HUD shareHUD] hintMessage:errorMessage];
-    }];
+        
+    }else{
+        if (![password isEqualToString:confirmPWD]) {
+            [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
+            return;
+        }
+        
+        if (vCode.length != 6) {
+            [[HUD shareHUD] hintMessage:@"输入的验证码不正确哦！"];
+            return;
+        }
+    }
+
+    password = [NSString stringWithFormat:@"ktbapp2017%@",password];
+    password = [LBMD5 getmd5WithString:password];
+    
+    confirmPWD = [NSString stringWithFormat:@"ktbapp2017%@",confirmPWD];
+    confirmPWD = [LBMD5 getmd5WithString:confirmPWD];
+    
+    
+    if (self.isChangPassword) {
+        
+        KTBUser *currentUser = [KTBUserManager currentUser];
+        
+        NSDictionary *resetDic = @{@"userId" : [NSNumber numberWithInteger:currentUser.userId],
+                                   @"password" : password,
+                                   @"newpassword"  : confirmPWD,
+                                   @"comfirmPassword"     : confirmPWD};
+        [[HUD shareHUD] showActivityWithText:@"正修改密码..."];
+        [KTBBaseAPI changePasswordWithParaDic:resetDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
+            if (kTBAPIResponseStatusSuccessful == status) {
+                
+//                [self changePWLogOutAction];
+                [self.navigationController popViewControllerAnimated:YES];
+                [[HUD shareHUD] hintMessage:@"修改成功,下次请用新密码登录！"];
+            }else{
+                [[HUD shareHUD] hintMessage:emsg];
+            }
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [[HUD shareHUD] hintMessage:errorMessage];
+        }];
+    }else{
+        /*
+         loginname		登录名， 可以是 email， phoneNumber,  关联好友号username。。
+         loginType		登录方式， 2 email， 3 phoneNumber， 4 username2
+         resetCodeKey		重置密码验证码的Key, forgetPass操作返回的key
+         resetCode		重置密码验证码，这个参数是用户填写的
+         newpassword		新密码
+         comfirmPassword	重复密码
+         */
+        
+        NSDictionary *resetDic = @{@"loginname" : self.logInName,
+                                   @"loginType" : self.loginType,
+                                   @"vcodeKey"  : self.vcodeKey,
+                                   @"vcode"     : self.vcode,
+                                   @"resetCodeKey" : self.resetCodeKey,
+                                   @"resetCode" : vCode,
+                                   @"password" : password,
+                                   @"comfirmPassword" : confirmPWD};
+        [[HUD shareHUD] showActivityWithText:@"正重置密码..."];
+        [KTBBaseAPI resetPasswordWithParaDic:resetDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
+            if (kTBAPIResponseStatusSuccessful == status) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [[HUD shareHUD] hintMessage:@"重置成功"];
+            }else{
+                [[HUD shareHUD] hintMessage:emsg];
+            }
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [[HUD shareHUD] hintMessage:errorMessage];
+        }];
+
+    }
+    
 }
+
+
+- (void)changePWLogOutAction{
+    KTBUser *currentUser = [KTBUserManager currentUser];
+    
+    if (currentUser.userId == -1) {
+        [KTBUserInfoController logOutSettings];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+        [KTBUserInfoController logOutSettings];
+        [KTBBaseAPI logoutWithUserId:currentUser.userId successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
+            if (kTBAPIResponseStatusSuccessful == status) {
+            }
+        } failure:^(NSString * _Nonnull errorMessage) {
+        }];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

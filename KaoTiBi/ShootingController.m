@@ -10,9 +10,11 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "GPUImage.h"
 #import "UIDevice+deviceModel.h"
+#import "KTBBaseDataStorer.h"
 #import "PhotoEidtController.h"
 #import "Masonry.h"
 #import "Document.h"
+#import "UserColorPenInfo.h"
 
 #define kWitheBlanceSelectViewWidth 320
 int lineCount = 3;
@@ -68,6 +70,67 @@ CGFloat offset = 2;
     [whiteBlanceBtn setBackgroundImage:[UIImage imageNamed:@"white_balance"] forState:UIControlStateNormal];
     
     [whiteBlanceBtn addTarget:self action:@selector(selectWhiteBlance) forControlEvents:UIControlEventTouchUpInside];
+    
+    UserColorPenInfo *userPen = [[UserColorPenInfo alloc] initWithDic:[KTBBaseDataStorer colorPenInfor]];
+    if (userPen != nil) {
+        CGFloat hintLabelWidth = 75.0;
+        UILabel *hintuseLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 20, hintLabelWidth, 30)];
+        hintuseLabel.text = @"当前可用笔：";
+        hintuseLabel.textColor = [UIColor whiteColor];
+        hintuseLabel.font = [UIFont systemFontOfSize:12];
+        [headerView addSubview:hintuseLabel];
+        int i = 1;
+        CGFloat width = 20;
+        CGFloat topOffset = 25;
+        if (userPen.redTime > 0) {
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"RedPen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+        if (userPen.orangeTime > 0){
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"OrangePen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+        if (userPen.yellowTime > 0){
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"YellowPen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+        if (userPen.cyanTime > 0){
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"CyanPen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+        if (userPen.greenTime > 0){
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"GreenPen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+        if (userPen.blueTime > 0){
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"BluePen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+        if (userPen.pinkTime > 0){
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"PinkPen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+        if (userPen.grayTime > 0){
+            UIImageView *rePenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width +  i * 5 + hintLabelWidth, topOffset, width, width)];
+            rePenImageView.image = [UIImage imageNamed:@"GrayPen"];
+            [headerView addSubview:rePenImageView];
+            i++;
+        }
+    }
     
     [headerView addSubview:whiteBlanceBtn];
     

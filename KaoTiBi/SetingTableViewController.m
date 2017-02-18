@@ -17,6 +17,8 @@
 #import "KTBUserManager.h"
 #import "LBAlert.h"
 #import "LBQRScaner.h"
+#import "PenTableViewController.h"
+#import "AboutViewController.h"
 
 @interface SetingTableViewController ()
 
@@ -138,6 +140,12 @@
         if (indexPath.row == 0){
             LBQRScaner *QRScaner = [[LBQRScaner alloc] init];
             [self.navigationController pushViewController:QRScaner animated:YES];
+        }else if (indexPath.row == 1){
+            PenTableViewController *penCV = [[PenTableViewController alloc] initWithNibName:@"PenTableViewController" bundle:nil];
+            [self.navigationController pushViewController:penCV animated:YES];
+        }else if (indexPath.row == 4){
+            AboutViewController *aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+            [self.navigationController pushViewController:aboutVC animated:YES];
         }else{
             CommonViewController *commmonController = [[CommonViewController alloc] initWithNibName:@"CommonViewController" bundle:nil];
             [self.navigationController pushViewController:commmonController animated:YES];

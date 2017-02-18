@@ -49,6 +49,10 @@ typedef enum:NSInteger {
 + (void)loginWithParameter:(nonnull NSDictionary *)parameterDic
                 successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
                    failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+// 自动
++ (void)atuoLoginSuccessful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
+                   failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+
 // 注销
 + (void)logoutWithUserId:(NSInteger)userId
               successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg))successHandler
@@ -70,10 +74,49 @@ typedef enum:NSInteger {
 + (void)resetPasswordWithParaDic:(nonnull NSDictionary *)resestParaDic
                            successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg))successHandler
                               failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+// 修改密码
+/*
+ userId			用户id
+ password		原密码
+ newpassword		新密码
+ comfirmPassword	重复密码
+ vcodeKey		验证码key, 这个参数是进入changePass页面后，发送genVcode请求新生成的
+ vcode			验证码, 这个参数是用户填写的
 
+ */
++ (void)changePasswordWithParaDic:(nonnull NSDictionary *)resestParaDic
+                       successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg))successHandler
+                          failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+
+// 激活荧光笔
++ (void)activatePenWithAcId:(nonnull NSString *)acId
+                           successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
+                              failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+
+// 获取所有激活码信息 如果是全部的话 就填all 如果是其它的话那就是
++ (void)getAllACsWithColor:(nonnull NSString *)color
+                 successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
+                    failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+
+//获取用户信息 其中包括 可用的笔的信息
++ (void)getUserSettingsSuccessful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
+                   failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+
+// 获取系统信息
++ (void)getSystemInfoSuccessful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
+                        failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
 // 获取验证码
 + (void)getVcodeWithUserName:(nonnull NSString *)loginname
                   successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
                      failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+
+//设置默认颜色
++ (void)setDefaultColorWithColor:(nonnull NSString *)color
+                      successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic))successHandler
+                         failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
+
++ (void)changeUserInfoWithParaDic:(nonnull NSDictionary *)resestParaDic
+                      successful:(nullable void (^)(kTBAPIResponseStatus status, NSString * _Nullable emsg))successHandler
+                          failure:(nullable void (^)(NSString * _Nonnull errorMessage))failureHandler;
 
 @end

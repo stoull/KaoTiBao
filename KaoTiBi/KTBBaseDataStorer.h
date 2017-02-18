@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "KTBUser.h"
 @interface KTBBaseDataStorer : NSObject
-
++ (NSDictionary *)colorPenInfor;
++ (void)saveColorPenInfo:(NSDictionary *)colorDic;
 @end

@@ -31,5 +31,6 @@
 - (instancetype)initWithAssetURL:(NSURL *)assetUrl;
 // 存入数据库
 - (void)saveToDataBase;
+- (void)saveWitPathUrlDataBase;
 + (Document *)copyWithManagedObject:(Document *)obDocument;
 @end

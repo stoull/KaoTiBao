@@ -711,27 +711,27 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 }
 
 - (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
-    if ([item.title isEqualToString:@"原图"]) {
-        LBLog(@"原图 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"答案"]){
-        LBLog(@"答案 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"题目"]){
-        LBLog(@"题目 picIndex: %ld",item.tag);
-    }
-    
-    NSURL *photoURL = self.photosArray[item.tag];
-    
-//    MWZoomingScrollView *page = [self pageDisplayingPhoto:[MWPhoto photoWithURL:photoURL]];
-    
-    MWZoomingScrollView *page = [self dequeueRecycledPage];
-    page = [[MWZoomingScrollView alloc] initWithPhotoBrowser:self];
-    
-    page.frame = [self frameForPageAtIndex:item.tag];
-    page.index = item.tag;
-//    [_visiblePages addObject:page];
-    page.photo = [MWPhoto photoWithURL:photoURL];
-    
-    [self.view addSubview:page];
+//    if ([item.title isEqualToString:@"原图"]) {
+//        LBLog(@"原图 picIndex: %ld",item.tag);
+//    }else if ([item.title isEqualToString:@"答案"]){
+//        LBLog(@"答案 picIndex: %ld",item.tag);
+//    }else if ([item.title isEqualToString:@"题目"]){
+//        LBLog(@"题目 picIndex: %ld",item.tag);
+//    }
+//    
+//    NSURL *photoURL = self.photosArray[item.tag];
+//    
+////    MWZoomingScrollView *page = [self pageDisplayingPhoto:[MWPhoto photoWithURL:photoURL]];
+//    
+//    MWZoomingScrollView *page = [self dequeueRecycledPage];
+//    page = [[MWZoomingScrollView alloc] initWithPhotoBrowser:self];
+//    
+//    page.frame = [self frameForPageAtIndex:item.tag];
+//    page.index = item.tag;
+////    [_visiblePages addObject:page];
+//    page.photo = [MWPhoto photoWithURL:photoURL];
+//    
+//    [self.view addSubview:page];
 }
 
 - (BOOL)photoIsSelectedAtIndex:(NSUInteger)index {

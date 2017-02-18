@@ -31,7 +31,20 @@
 
 // tableView 字体颜色
 #define kTabelViewTextColor         UIColorFromRGB(0x333333)
-#define kTabelViewTextDarkColor     UIColorFromRGB(0x999999);
+#define kTabelViewTextDarkColor     UIColorFromRGB(0x999999)
+
+// 各颜色值
+#define kTBRedColor UIColorFromRGB(0xFF0000)
+#define kTBOrangeColor UIColorFromRGB(0xFFA500)
+#define kTBYellowColor UIColorFromRGB(0xFFFF00)
+#define kTBCyanColor UIColorFromRGB(0x00FFFF)
+#define kTBGreenColor UIColorFromRGB(0x00FF00)
+#define kTBBlueColor UIColorFromRGB(0x1E90FF)
+#define kTBBlackColor UIColorFromRGB(0x000000)
+#define kTBDarkColor UIColorFromRGB(0x363636)
+#define kTBGrayColor UIColorFromRGB(0xB5B5B5)
+#define kTBPinkColor UIColorFromRGB(0xFFC0CB)
+
 
 //带有RGBA的颜色设置
 // rgb颜色转换（16进制->10进制）

@@ -20,6 +20,8 @@
 #define kAPIActivate        @"ws/activate"          // 激活荧光笔
 #define kAPIGetACs          @"ws/getACs"            // 获取所有激活码信息
 #define kAPIPenInfo         @"ws/penInfo"           // 获取荧光笔信息
+#define kGetUserSettings    @"ws/userSettings"      // 个人荧光笔信息
+#define kSetDefaultColor    @"ws/setDefaultColor"   // 设置默认颜色
 
 #define kAPISysInfo         @"ws/sysInfo"           // 获取系统信息
 

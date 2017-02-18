@@ -9,6 +9,8 @@
 #import "LBQRScaner.h"
 #import <AVFoundation/AVFoundation.h>
 #import "LBQRFilePreview.h"
+#import "KTBBaseAPI.h"
+#import "HUD.h"
 
 @interface LBQRScaner ()<AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>
 //捕获设备，通常是前置摄像头，后置摄像头，麦克风（音频输入）
@@ -37,7 +39,7 @@
         _scanWindow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
         _scanWindow.center = self.view.center;
         _scanWindow.image = [UIImage imageNamed:@"QRScaner"];
-        UILabel *hintLable = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_scanWindow.frame), _scanWindow.bounds.size.width, 30)];
+        UILabel *hintLable = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(_scanWindow.frame) - 30, _scanWindow.bounds.size.width, 30)];
         hintLable.textColor = [UIColor whiteColor];
         hintLable.textAlignment = NSTextAlignmentCenter;
         hintLable.text = @"请将二码码置于框内扫描";
@@ -119,13 +121,34 @@
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex : 0 ];
         //输出扫描字符串
         NSLog(@"%@",metadataObject.stringValue);
+        NSString *metadataString = metadataObject.stringValue;
         
+        // 1307;red;0fe441a8-eecd-42be-83ac-bff7adc95355
+        NSString *acId = [[metadataString componentsSeparatedByString:@";"] firstObject];
         
+        [KTBBaseAPI activatePenWithAcId:acId successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
+            if (status == kTBAPIResponseStatusSuccessful) {
+                [[HUD shareHUD] hintMessage:@"激话成功!"];
+                [KTBBaseAPI getUserSettingsSuccessful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
+                    if (kTBAPIResponseStatusSuccessful == status) {
+                    }else{
+                    }
+                } failure:^(NSString * _Nonnull errorMessage) {
+                }];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [[HUD shareHUD] hintMessage:emsg];
+                [self.session startRunning];
+            }
+            
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [[HUD shareHUD] hintMessage:errorMessage];
+            [self.session startRunning];
+        }];
         
-        
-        LBQRFilePreview *filePreview = [[LBQRFilePreview alloc] init];
-        filePreview.fileUrl = metadataObject.stringValue;
-        [self.navigationController pushViewController:filePreview animated:YES];
+//        LBQRFilePreview *filePreview = [[LBQRFilePreview alloc] init];
+//        filePreview.fileUrl = metadataObject.stringValue;
+//        [self.navigationController pushViewController:filePreview animated:YES];
     }
 }
 

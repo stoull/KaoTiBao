@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,10 +12,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController">
             <connections>
                 <outlet property="PwdRequiedImageView" destination="yKT-j5-gZW" id="3nS-ch-yDh"/>
+                <outlet property="confirmButton" destination="cZQ-51-MMd" id="idi-pw-OuH"/>
                 <outlet property="confirmPWDRequiedImageView" destination="txL-hc-wyn" id="Gey-mG-aFR"/>
                 <outlet property="confirmPWDTextField" destination="nI9-FW-XMj" id="s13-YA-rFL"/>
                 <outlet property="emailRequeiedImageView" destination="sjV-5k-Dic" id="G4K-BK-H2l"/>
                 <outlet property="emailTextField" destination="AWY-Fp-CaF" id="mbZ-1u-u5m"/>
+                <outlet property="labelFive" destination="5cW-mj-nq4" id="JSw-76-GSe"/>
+                <outlet property="labelFour" destination="vSv-dd-ufK" id="hSI-9y-pgT"/>
+                <outlet property="labelOne" destination="Yl6-ad-ApC" id="dQr-ON-i6z"/>
+                <outlet property="labelSix" destination="did-PX-11N" id="Nfy-ZR-2dS"/>
+                <outlet property="labelThree" destination="GBK-4b-mT5" id="abW-Q7-bTW"/>
+                <outlet property="labelTwo" destination="fom-5F-RXT" id="mKm-ub-t7l"/>
                 <outlet property="nickNameRequiedImageView" destination="0f7-Ch-Hrp" id="bmq-yI-tk5"/>
                 <outlet property="nickNameTextField" destination="L5M-aa-eDt" id="D2P-qr-a3F"/>
                 <outlet property="passwordTextField" destination="rXn-C9-bfB" id="m49-bM-SFj"/>

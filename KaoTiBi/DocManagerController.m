@@ -22,6 +22,8 @@
 #import "KTBSearchViewController.h"
 #import "HUD.h"
 #import "ScreenShot.h"
+#import "KTBBaseAPI.h"
+#import "UserColorPenInfo.h"
 
 #define KConfirmButtonHeigth 60
 
@@ -104,8 +106,15 @@
     [self setSideSlipView];
     [self setRefreshView];
     
+    [self autoLogin];
+    
     // 获取数据
     [self updateDataAndView];
+    
+    //获取笔信息
+    [self getPenInformation];
+    
+    [NSThread sleepForTimeInterval:2.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -131,6 +140,14 @@
 
 - (void)refreshControlEndRefreshing{
     [self.tableView.refreshControl endRefreshing];
+}
+
+- (void)autoLogin{
+//    [KTBBaseAPI atuoLoginSuccessful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
+//        
+//    } failure:^(NSString * _Nonnull errorMessage) {
+//        
+//    }];
 }
 
 - (void)updateDataAndView{
@@ -169,6 +186,16 @@
     }
     [self.tableView reloadData];
 }
+
+- (void)getPenInformation{
+    [KTBBaseAPI getUserSettingsSuccessful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
+        if (kTBAPIResponseStatusSuccessful == status) {
+        }else{
+        }
+    } failure:^(NSString * _Nonnull errorMessage) {
+    }];
+}
+
 
 #pragma mark - 设置头部菜单
 - (void)setHeaderMenuView{
@@ -224,7 +251,7 @@
     _sideSlipView.backgroundColor = [UIColor clearColor];
     MenuView *menu = [MenuView menuView];
     menu.items = @[@{@"title":@"时间轴",@"imagename":@"4"},
-                   @{@"title":@"文件系统",@"imagename":@"4"}];
+                   @{@"title":@"文件目录",@"imagename":@"4"}];
     
     [_sideSlipView setContentView:menu];
     [menu didSelectRowAtIndexPath:^(id cell, NSIndexPath *indexPath) {
@@ -558,29 +585,40 @@
     MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
     captionView.userInteractionEnabled = YES;
     
-//    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-//    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-//    item2.tag = index;
-//    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-//    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-//    item4.tag = index;
-//    UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-//    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
-//    item6.tag = index;
-//    
-//    
-//    //    UIButton *button6 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-//    //    [button6 setTitle:@"aa" forState:UIControlStateNormal];
-//    //    [button6 addTarget:self action:@selector(photoBrowserButtonItemDidClick) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    //    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithCustomView:button6];
-//    
-//    UIBarButtonItem *item7 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-//    
-//    [captionView setItems:@[item1,item2,item3,item4,item5,item6,item7]];
+    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    item2.tag = index;
+    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    item4.tag = index;
+    UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    item6.tag = index;
+    
+    
+    //    UIButton *button6 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    //    [button6 setTitle:@"aa" forState:UIControlStateNormal];
+    //    [button6 addTarget:self action:@selector(photoBrowserButtonItemDidClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    //    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithCustomView:button6];
+    
+    UIBarButtonItem *item7 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    [captionView setItems:@[item1,item2,item3,item4,item5,item6,item7]];
     
     return captionView;        //此方法可以定制图片游览页下边的toorBar
 }
+
+- (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
+    if ([item.title isEqualToString:@"原图"]) {
+        LBLog(@"原图 picIndex: %ld",item.tag);
+    }else if ([item.title isEqualToString:@"答案"]){
+        LBLog(@"答案 picIndex: %ld",item.tag);
+    }else if ([item.title isEqualToString:@"题目"]){
+        LBLog(@"题目 picIndex: %ld",item.tag);
+    }
+}
+
 
 #pragma mark 新建文件夹
 - (void)createNewFolderWithName{

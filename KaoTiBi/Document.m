@@ -57,7 +57,6 @@
     return self;
 }
 
-
 - (void)saveToDataBase{
     NSURL *assetUrl = [NSURL URLWithString:self.assetURLString];
     PHAsset *asset = [[PHAsset fetchAssetsWithALAssetURLs:@[assetUrl] options:nil] firstObject];
@@ -78,9 +77,27 @@
                 
                 [imageData writeToFile:absolutpath atomically:YES];
                 [[DocmentDatabase shareDocmentDatabase] insertCoreData:@[self]];
-                
             }
         }];
+    }
+}
+
+- (void)saveWitPathUrlDataBase{
+    NSData *imageData = [NSData dataWithContentsOfFile:self.assetURLString];
+    if (imageData != nil) {
+        _fileSize = imageData.length;
+        NSString *dataMd5 = [LBMD5 getMD5WithData:imageData];
+        _path = [NSString stringWithFormat:@"%@/%@",[DocumentMgr docuemntRelativeStorageRootPath],dataMd5];
+        NSString *absolutpath = [DocumentMgr documentAbsoluteStorageRootPath];
+        absolutpath = [absolutpath stringByAppendingPathComponent:dataMd5];
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:absolutpath withIntermediateDirectories:YES attributes:nil error:nil];
+        absolutpath = [absolutpath stringByAppendingPathComponent:_dateName];
+        
+        LBLog(@" sfakdfaXXXX??? : %@",absolutpath);
+        
+        [imageData writeToFile:absolutpath atomically:YES];
+        [[DocmentDatabase shareDocmentDatabase] insertCoreData:@[self]];
     }
 }
 

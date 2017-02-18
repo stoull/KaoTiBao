@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SignInViewController : UIViewController
-
+@property (nonatomic, assign) BOOL isChangUserInfo;
 @end

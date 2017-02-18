@@ -11,8 +11,11 @@
 #import "Document.h"
 #import "KTBPopInputView.h"
 #import "KTBSelectTableView.h"
+#import "KTBBaseDataStorer.h"
 #import "HUD.h"
 #import "KTDefine.h"
+#import "UserColorPenInfo.h"
+#import "KTBUserManager.h"
 
 @import Photos;
 
@@ -37,6 +40,36 @@ typedef enum : NSInteger{
 @property (nonatomic, copy) NSString *directoryName;
 
 @property (nonatomic, assign) CurrentInputType inputType;
+
+/*
+ Printing description of resDic:
+ {
+ black = "";
+ blue = "";
+ cyan = "";
+ dark = "";
+ gray = "";
+ green = "";
+ orange = "";
+ pink = "";
+ yellow = "";
+ }
+ */
+
+@property (weak, nonatomic) IBOutlet UIButton *redColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *orangeColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *yellowColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *greenColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *cyanColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *blueColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *pinkColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *grayColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *blackColorButton;
+@property (weak, nonatomic) IBOutlet UIButton *darkColorButton;
+
+
+
+@property (nonatomic, strong) NSDictionary *colorPenDic;
 
 @end
 
@@ -77,6 +110,47 @@ typedef enum : NSInteger{
             }
         }
     }
+    
+    KTBUser *currentUser = [KTBUserManager currentUser];
+    // 这个为试用版本
+    if (currentUser.userId == -1) {
+        [self.orangeColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+        [self.yellowColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+        [self.cyanColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+        [self.greenColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+        [self.blueColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+        [self.pinkColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+        [self.grayColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+    }else{
+        self.colorPenDic = [KTBBaseDataStorer colorPenInfor];
+        UserColorPenInfo *userPen = [[UserColorPenInfo alloc] initWithDic:self.colorPenDic];
+        if (userPen != nil) {
+//            if (userPen.redTime == 0) {
+//                [self.redColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+//            }
+            if (userPen.orangeTime == 0){
+                [self.orangeColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+            }
+            if (userPen.yellowTime == 0){
+                [self.yellowColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+            }
+            if (userPen.cyanTime == 0){
+                [self.cyanColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+            }
+            if (userPen.greenTime == 0){
+                [self.greenColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+            }
+            if (userPen.blueTime == 0){
+                [self.blueColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+            }
+            if (userPen.pinkTime == 0){
+                [self.pinkColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+            }
+            if (userPen.grayTime == 0){
+                [self.grayColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+            }
+        }
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -113,6 +187,7 @@ typedef enum : NSInteger{
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[HUD shareHUD] showActivityWithText:@"正分析红色标记..."];
+    [self performSelector:@selector(hiddenHUD) withObject:nil afterDelay:2.0];
 }
 
 - (void)loadImageWithAssetURl:(NSURL *)assetUrl{
@@ -161,24 +236,49 @@ typedef enum : NSInteger{
 
 // caculate the pic
 - (IBAction)colorDidSelected:(UIButton *)sender {
+    LBLog(@"Button Title : %@",sender.currentTitle);
     switch (sender.tag) {
         case 11:            // 红色
-            [[HUD shareHUD] showActivityWithText:@"正分析红色标记..."];
+            if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
+                [[HUD shareHUD] showActivityWithText:@"正分析红色标记..."];
+            }else{
+                [[HUD shareHUD] hintMessage:@"红色笔未激活，不可用！"];
+            }
             break;
         case 12:            // 橙色
-            [[HUD shareHUD] showActivityWithText:@"正分析橙色标记..."];
+            if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
+                 [[HUD shareHUD] showActivityWithText:@"正分析橙色标记..."];
+            }else{
+               [[HUD shareHUD] hintMessage:@"橙色笔未激活，不可用！"];
+            }
             break;
         case 13:            // 绿色
-            [[HUD shareHUD] showActivityWithText:@"正分析绿色标记..."];
+            if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
+                [[HUD shareHUD] showActivityWithText:@"正分析绿色标记..."];
+            }else{
+                [[HUD shareHUD] hintMessage:@"绿色笔未激活，不可用！"];
+            }
             break;
         case 14:            // 青色
-            [[HUD shareHUD] showActivityWithText:@"正分析青色标记..."];
+            if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
+                [[HUD shareHUD] showActivityWithText:@"正分析青色标记..."];
+            }else{
+                [[HUD shareHUD] hintMessage:@"青色笔未激活，不可用！"];
+            }
             break;
-        case 15:            // 淡蓝色
-            [[HUD shareHUD] showActivityWithText:@"正分析淡蓝色标记..."];
+        case 15:            // 粉红色
+            if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
+                [[HUD shareHUD] showActivityWithText:@"正分析粉红色标记..."];
+            }else{
+                [[HUD shareHUD] hintMessage:@"粉色笔未激活，不可用！"];
+            }
             break;
-        case 16:            // 蓝色
-            [[HUD shareHUD] showActivityWithText:@"正分析蓝色标记..."];
+        case 16:            // 黄色
+            if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
+                [[HUD shareHUD] showActivityWithText:@"正分析黄色标记..."];
+            }else{
+                [[HUD shareHUD] hintMessage:@"黄色笔未激活，不可用！"];
+            }
             break;
         default:
             break;

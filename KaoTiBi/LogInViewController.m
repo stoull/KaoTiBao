@@ -18,6 +18,7 @@
 #import "UIDevice+deviceModel.h"
 #import "LBMD5.h"
 #import "KTBUserManager.h"
+#import "Document.h"
 
 @interface LogInViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -37,6 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.loginButton.layer.cornerRadius = 10.0;
+    
+    [NSThread sleepForTimeInterval:2.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -70,9 +73,9 @@
         NSString *loginType = @"";
         NSString *userName = self.usernameTextField.text;
         NSString *password = self.passwordTextField.text;
-//        NSString *password = [LBMD5 getmd5WithString:self.passwordTextField.text];
+        password = [NSString stringWithFormat:@"ktbapp2017%@",password];
+        password = [LBMD5 getmd5WithString:password];
         NSString *phoneType = [UIDevice phoneAndOperartionSysInfor];
-        
         if ([HolomorphyValidate validatePhoneNumberWithText:userName]) {
             loginType = @"3";
         }else if ([HolomorphyValidate validateEmailWithText:userName]){
@@ -80,7 +83,6 @@
         }else{
             loginType = @"1";
         }
-        
         NSDictionary *paraDic = @{@"loginname" : userName,
                                   @"password"  : password,
                                   @"loginType" : loginType,
@@ -93,7 +95,22 @@
                 
                 // 存储用户信息
                 KTBUser *user = [[KTBUser alloc] initWithUserInforDic:resDic];
+                user.password = password;
                 [KTBUserManager storageUserToLocal:user];
+                
+                BOOL isFirstRun = [self isAppFirstRun];
+                if (isFirstRun) {
+                    NSBundle *mainBundle = [NSBundle mainBundle];
+                    
+                    NSString *example1Path = [mainBundle pathForResource:@"example1" ofType:@"jpg"];
+                    NSString *example2Path = [mainBundle pathForResource:@"example2" ofType:@"jpg"];
+                    NSURL *example1URL = [NSURL URLWithString:example1Path];
+                    NSURL *example2URL = [NSURL URLWithString:example2Path];
+                    Document *docOne = [[Document alloc] initWithAssetURL:example1URL];
+                    Document *docTwo = [[Document alloc] initWithAssetURL:example2URL];
+                    [docOne saveWitPathUrlDataBase];
+                    [docTwo saveWitPathUrlDataBase];
+                }
                 
                 // 跳转
                 NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
@@ -141,6 +158,19 @@
 #pragma mark 试用
 - (IBAction)guestTryUseAction:(id)sender {
     [KTBUserManager useAppOnTrial];
+    BOOL isFirstRun = [self isAppFirstRun];
+    if (isFirstRun) {
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        
+        NSString *example1Path = [mainBundle pathForResource:@"example1" ofType:@"jpg"];
+        NSString *example2Path = [mainBundle pathForResource:@"example2" ofType:@"jpg"];
+        NSURL *example1URL = [NSURL URLWithString:example1Path];
+        NSURL *example2URL = [NSURL URLWithString:example2Path];
+        Document *docOne = [[Document alloc] initWithAssetURL:example1URL];
+        Document *docTwo = [[Document alloc] initWithAssetURL:example2URL];
+        [docOne saveWitPathUrlDataBase];
+        [docTwo saveWitPathUrlDataBase];
+    }
     [GateControl  switchControllerWithWindow:[UIApplication sharedApplication].keyWindow];
 }
 
@@ -219,18 +249,27 @@
         self.allToTopConstraint.constant = self.originToTopConstraint;
 //    }];
 }
+
 - (IBAction)nextInputAction:(id)sender {
     [self.passwordTextField becomeFirstResponder];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)isAppFirstRun{
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary]
+                                objectForKey:@"CFBundleShortVersionString"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastRunKey = [defaults objectForKey:@"last_run_version_key"];
+    if (!lastRunKey) {
+        [defaults setObject:currentVersion forKey:@"last_run_version_key"];
+        return YES;
+    }else if (![lastRunKey isEqualToString:currentVersion]) {
+        [defaults setObject:currentVersion forKey:@"last_run_version_key"];
+        return YES;
+        // App has been updated since last run
+        //有版本号，但是和当前版本号不同，说明程序已经更新了版本
+    }
+    return NO;
 }
-*/
+
 
 @end

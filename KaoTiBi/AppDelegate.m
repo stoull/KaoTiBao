@@ -18,16 +18,10 @@
 @end
 
 @implementation AppDelegate
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     [KTBUserManager removeOnTrial];
-    // 测试用
-//    [userDef setBool:false forKey:kisLocalAuthorization];
-    
     
     // 初始化用户选择
     if ([userDef objectForKey:kKTBDocManagerType] == nil) {
@@ -39,7 +33,6 @@
     }
     
     [userDef synchronize];
-    
     [GateControl switchControllerWithWindow:self.window];
     
     return YES;
@@ -71,6 +64,4 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     [KTBUserInfoController loggingOffUser];
 }
-
-
 @end

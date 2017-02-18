@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KTBUserInfoController">
             <connections>
                 <outlet property="logoutButton" destination="vbn-zm-iOW" id="ZBN-7M-Ebc"/>
+                <outlet property="tableView" destination="0XO-Py-YKX" id="tRj-WD-cPp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,13 +34,26 @@
                         <action selector="logOutAction:" destination="-1" eventType="touchUpInside" id="sNa-Ky-sKp"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0XO-Py-YKX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="D1t-ie-PwC"/>
+                        <outlet property="delegate" destination="-1" id="KGi-2r-58M"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="vbn-zm-iOW" secondAttribute="bottom" constant="8" id="0cw-Hi-Etl"/>
                 <constraint firstAttribute="trailing" secondItem="vbn-zm-iOW" secondAttribute="trailing" constant="20" id="A4a-vP-E4Z"/>
+                <constraint firstItem="0XO-Py-YKX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FEJ-vB-eJu"/>
+                <constraint firstItem="0XO-Py-YKX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YrF-Vb-wze"/>
+                <constraint firstAttribute="trailing" secondItem="0XO-Py-YKX" secondAttribute="trailing" id="hVf-wD-Nck"/>
                 <constraint firstItem="vbn-zm-iOW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="siR-VW-PtJ"/>
+                <constraint firstItem="vbn-zm-iOW" firstAttribute="top" secondItem="0XO-Py-YKX" secondAttribute="bottom" id="zuE-ga-BVh"/>
             </constraints>
+            <point key="canvasLocation" x="60.5" y="53.5"/>
         </view>
     </objects>
 </document>

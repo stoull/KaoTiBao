@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ResetPWDController : UIViewController
+
+
+// 修改密码 为 yes 。 重置密码 为 no
+@property (nonatomic, assign) BOOL isChangPassword;
+
 @property (nonatomic, copy) NSString *resetCodeKey;
 @property (nonatomic, copy) NSString *logInName;
 @property (nonatomic, copy) NSString *loginType;

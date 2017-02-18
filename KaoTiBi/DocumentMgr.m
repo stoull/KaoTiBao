@@ -109,6 +109,10 @@ singleton_implementation(DocumentMgr)
         [DocumentMgr saveDirectoryInfor:@[@"我的文档"]];
     }
     NSArray *directoryArray = [NSArray arrayWithContentsOfFile:directFilePath];
+    if (directoryArray == nil || directoryArray.count == 0) {
+        directoryArray = @[@"我的文档"];
+        [DocumentMgr saveDirectoryInfor:directoryArray];
+    }
     return directoryArray;
 }
 

@@ -11,6 +11,7 @@
 #import "NSString+blankSpace.h"
 #import "KTBBaseAPI.h"
 #import "HUD.h"
+#import "LBMD5.h"
 
 @interface SignInViewController (){
     NSInteger kCountdownTime;
@@ -30,6 +31,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *verificationTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *verifRequiedImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelOne;
+@property (weak, nonatomic) IBOutlet UILabel *labelTwo;
+@property (weak, nonatomic) IBOutlet UILabel *labelThree;
+@property (weak, nonatomic) IBOutlet UILabel *labelFour;
+@property (weak, nonatomic) IBOutlet UILabel *labelFive;
+@property (weak, nonatomic) IBOutlet UILabel *labelSix;
+
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *verificationCodeButton;
 @property (nonatomic, strong)NSTimer *verificationTimer;
 
@@ -48,7 +59,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.signInButton.layer.cornerRadius = 10.0;
-    self.title = @"注册";
+    if (self.isChangUserInfo) {
+        self.title = @"修改资料";
+        /*
+         name			真实姓名
+         age			年纪
+         gender			性别，男，女，保密，未知
+         birthday			生日
+         address			住址
+         region			国家/地区/省份，如内地各大城市，香港/台湾/美国等等
+         school			学校
+         job			职业
+
+         */
+        [self.confirmButton setTitle:@"确认修改" forState:UIControlStateNormal];
+        self.labelOne.text = @"真实姓名:";
+        self.labelTwo.text = @"生日:";
+        self.labelThree.text = @"性别:";
+        self.labelFour.text = @"住址:";
+        self.labelFive.text = @"学校:";
+        self.labelSix.text = @"职业:";
+    }else{
+        self.title = @"注册";
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -132,92 +166,140 @@
     NSString *phoneNumber = [NSString removeBlankSpace:self.phoneNumberTextField.text];
     NSString *vierification = [NSString removeBlankSpace:self.verificationTextField.text];
     
-    if (nickName.length == 0) {
-        [[HUD shareHUD] hintMessage:@"昵称不能为空哦！"];
-        [self.nickNameRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-        return;
-    }else if (nickName.length > 20){
-        [[HUD shareHUD] hintMessage:@"昵称只能小于20个字符哦！"];
-        [self.nickNameRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-        return;
-    }
-    
-    if (realName.length == 0) {
+    if (self.isChangUserInfo) {
+        [self.confirmButton setTitle:@"确认修改" forState:UIControlStateNormal];
+        self.labelOne.text = @"真实姓名:";
+        self.labelTwo.text = @"生日:";
+        self.labelThree.text = @"性别:";
+        self.labelFour.text = @"住址:";
+        self.labelFive.text = @"学校:";
+        self.labelSix.text = @"职业:";
+        
+        /*
+         name			真实姓名
+         age			年纪
+         gender			性别，男，女，保密，未知
+         birthday			生日
+         address			住址
+         region			国家/地区/省份，如内地各大城市，香港/台湾/美国等等
+         school			学校
+         job			职业
+
+         */
+        
+        NSDictionary *dic = @{@"name" : nickName,
+                              @"gender" : password,
+                              @"birthday" : realName,
+                              @"address" : confirmPWD,
+                              @"school" : emailText,
+                              @"job" : phoneNumber};
+        [[HUD shareHUD] showActivityWithText:@"正修改..."];
+        [KTBBaseAPI registerWithParameter:dic successful:^(kTBAPIResponseStatus status, NSString * _Nullable msg, NSString * _Nullable emsg) {
+            if (kTBAPIResponseStatusSuccessful == status) {
+                [self.navigationController popViewControllerAnimated:YES];
+                [[HUD shareHUD] hintMessage:@"修改成功！"];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [[HUD shareHUD] hintMessage:emsg];
+            }
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [[HUD shareHUD] hintMessage:errorMessage];
+        }];
         
     }else{
+        password = [NSString stringWithFormat:@"ktbapp2017%@",password];
+        password = [LBMD5 getmd5WithString:password];
         
-    }
-    
-    if (password.length == 0) {
-        [[HUD shareHUD] hintMessage:@"密码不能为空哦！"];
-        [self.PwdRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-        return;
-    }else if ([HolomorphyValidate validatePasswordWithText:password]){
-        [[HUD shareHUD] hintMessage:@"密码为6-20个字符，必须包含字母大小以及数字哦！"];
-        [self.PwdRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-        return;
-    }
-    
-    if (![password isEqualToString:confirmPWD]) {
-        [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
-        [self.confirmPWDRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-        return;
-    }
-    
-    if (emailText.length == 0) {
-        [[HUD shareHUD] hintMessage:@"邮箱不能为空哦！"];
-        [self.emailRequeiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-        return;
-    }else if (![HolomorphyValidate validateEmailWithText:emailText]){
-        [[HUD shareHUD] hintMessage:@"邮箱格式不正确哦！"];
-        [self.emailRequeiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-        return;
-    }
-    
-    if (phoneNumber.length == 0) {
+        confirmPWD = [NSString stringWithFormat:@"ktbapp2017%@",confirmPWD];
+        confirmPWD = [LBMD5 getmd5WithString:confirmPWD];
         
-    }
-    
-//    if (vierification.length == 0) {
-//        [[HUD shareHUD] hintMessage:@"验证码不能为空哦！"];
-//        [self.verifRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
-//        return;
-//    }
-    
-    NSDictionary *parameDic = @{@"username" : nickName,
-                                @"password" : password,
-                                @"comfirmPassword" : confirmPWD,
-                                @"email": emailText,
-//                                @"phoneNumber" : phoneNumber,
-//                                @"name" : realName,
-//                                @"type" : @"",
-//                                @"code" : @"",
-//                                @"age" : @"",
-//                                @"gender" : @"",
-////                                @"birthday" : @"",
-//                                @"address" : @"",
-//                                @"region" : @"",
-//                                @"school" : @"",
-//                                @"grade" : @"",
-//                                @"job" : @"",
-//                                @"phoneType" : @"",
-//                                @"phoneVersion" : @"",
-//                                @"phoneInfo" : @"",
-//                                @"sns" : @""
-                                };
-    
-    [[HUD shareHUD] showActivityWithText:@"正注册..."];
-    [KTBBaseAPI registerWithParameter:parameDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable msg, NSString * _Nullable emsg) {
-        if (kTBAPIResponseStatusSuccessful == status) {
-            [self.navigationController popViewControllerAnimated:YES];
-            [[HUD shareHUD] hintMessage:@"注册成功！"];
-        }else{
-            [[HUD shareHUD] hintMessage:emsg];
+        if (nickName.length == 0) {
+            [[HUD shareHUD] hintMessage:@"昵称不能为空哦！"];
+            [self.nickNameRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+            return;
+        }else if (nickName.length > 20){
+            [[HUD shareHUD] hintMessage:@"昵称只能小于20个字符哦！"];
+            [self.nickNameRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+            return;
         }
-    } failure:^(NSString * _Nonnull errorMessage) {
-        [[HUD shareHUD] hintMessage:errorMessage];
         
-    }];
+        if (realName.length == 0) {
+            
+        }else{
+            
+        }
+        
+        if (password.length == 0) {
+            [[HUD shareHUD] hintMessage:@"密码不能为空哦！"];
+            [self.PwdRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+            return;
+        }else if ([HolomorphyValidate validatePasswordWithText:password]){
+            [[HUD shareHUD] hintMessage:@"密码为6-20个字符，必须包含字母大小以及数字哦！"];
+            [self.PwdRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+            return;
+        }
+        
+        if (![password isEqualToString:confirmPWD]) {
+            [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
+            [self.confirmPWDRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+            return;
+        }
+        
+        if (emailText.length == 0) {
+            [[HUD shareHUD] hintMessage:@"邮箱不能为空哦！"];
+            [self.emailRequeiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+            return;
+        }else if (![HolomorphyValidate validateEmailWithText:emailText]){
+            [[HUD shareHUD] hintMessage:@"邮箱格式不正确哦！"];
+            [self.emailRequeiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+            return;
+        }
+        
+        if (phoneNumber.length == 0) {
+            
+        }
+        
+        //    if (vierification.length == 0) {
+        //        [[HUD shareHUD] hintMessage:@"验证码不能为空哦！"];
+        //        [self.verifRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
+        //        return;
+        //    }
+        
+        NSDictionary *parameDic = @{@"username" : nickName,
+                                    @"password" : password,
+                                    @"comfirmPassword" : confirmPWD,
+                                    @"email": emailText,
+                                    //                                @"phoneNumber" : phoneNumber,
+                                    //                                @"name" : realName,
+                                    //                                @"type" : @"",
+                                    //                                @"code" : @"",
+                                    //                                @"age" : @"",
+                                    //                                @"gender" : @"",
+                                    ////                                @"birthday" : @"",
+                                    //                                @"address" : @"",
+                                    //                                @"region" : @"",
+                                    //                                @"school" : @"",
+                                    //                                @"grade" : @"",
+                                    //                                @"job" : @"",
+                                    //                                @"phoneType" : @"",
+                                    //                                @"phoneVersion" : @"",
+                                    //                                @"phoneInfo" : @"",
+                                    //                                @"sns" : @""
+                                    };
+        
+        [[HUD shareHUD] showActivityWithText:@"正注册..."];
+        [KTBBaseAPI registerWithParameter:parameDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable msg, NSString * _Nullable emsg) {
+            if (kTBAPIResponseStatusSuccessful == status) {
+                [self.navigationController popViewControllerAnimated:YES];
+                [[HUD shareHUD] hintMessage:@"注册成功！"];
+            }else{
+                [[HUD shareHUD] hintMessage:emsg];
+            }
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [[HUD shareHUD] hintMessage:errorMessage];
+            
+        }];
+    }
 }
 
 

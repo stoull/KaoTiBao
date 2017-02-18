@@ -16,7 +16,17 @@
 		C949E02B1E5216BB00858BEB /* DocManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C949E0291E5216BB00858BEB /* DocManagerController.m */; };
 		C949E02C1E5216BB00858BEB /* DocManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C949E02A1E5216BB00858BEB /* DocManagerController.xib */; };
 		C963AFDF1E432E090087CE9C /* KTBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C963AFDE1E432E090087CE9C /* KTBUser.m */; };
+		C97749321E5804BB0013BCF3 /* PenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97749301E5804BB0013BCF3 /* PenTableViewController.m */; };
+		C97749331E5804BB0013BCF3 /* PenTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97749311E5804BB0013BCF3 /* PenTableViewController.xib */; };
+		C97749361E5808930013BCF3 /* UserColorPenInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C97749351E5808930013BCF3 /* UserColorPenInfo.m */; };
+		C977493A1E5818450013BCF3 /* penTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C97749381E5818450013BCF3 /* penTableViewCell.m */; };
+		C977493B1E5818450013BCF3 /* penTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97749391E5818450013BCF3 /* penTableViewCell.xib */; };
+		C977493F1E582D5D0013BCF3 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C977493D1E582D5D0013BCF3 /* AboutViewController.m */; };
+		C97749401E582D5D0013BCF3 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C977493E1E582D5D0013BCF3 /* AboutViewController.xib */; };
 		C98889B51E1FEB430012EBC7 /* GateControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C98889B41E1FEB430012EBC7 /* GateControl.m */; };
+		C99D24A61E57F256004FFF23 /* LBAttributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D24A21E57F256004FFF23 /* LBAttributeViewController.m */; };
+		C99D24A71E57F256004FFF23 /* LBFileIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D24A41E57F256004FFF23 /* LBFileIconCell.m */; };
+		C99D24A81E57F256004FFF23 /* LBFileIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99D24A51E57F256004FFF23 /* LBFileIconCell.xib */; };
 		C9A1320D1E4B616A0037845C /* LBQRFilePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A1320A1E4B616A0037845C /* LBQRFilePreview.m */; };
 		C9A1320E1E4B616A0037845C /* LBQRScaner.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A1320C1E4B616A0037845C /* LBQRScaner.m */; };
 		C9B21F521E27C97900454A55 /* PhotoEidtController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B21F501E27C97900454A55 /* PhotoEidtController.m */; };
@@ -29,6 +39,8 @@
 		C9C3A9391E372A1B00C4296C /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9C3A9331E372A1B00C4296C /* MenuCell.xib */; };
 		C9C3A93A1E372A1B00C4296C /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C3A9351E372A1B00C4296C /* MenuView.m */; };
 		C9C3A93B1E372A1B00C4296C /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9C3A9361E372A1B00C4296C /* MenuView.xib */; };
+		C9CEF5321E5896820051F061 /* example1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C9CEF5311E5896820051F061 /* example1.jpg */; };
+		C9CEF5341E5896900051F061 /* example2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C9CEF5331E5896900051F061 /* example2.jpg */; };
 		C9D21F051E470C8F0046F9AD /* KTBUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D21F031E470C8F0046F9AD /* KTBUserInfoController.m */; };
 		C9D21F061E470C8F0046F9AD /* KTBUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9D21F041E470C8F0046F9AD /* KTBUserInfoController.xib */; };
 		C9DB7A951E18A2B300591F93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB7A941E18A2B300591F93 /* main.m */; };
@@ -204,8 +216,24 @@
 		C949E02A1E5216BB00858BEB /* DocManagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocManagerController.xib; sourceTree = "<group>"; };
 		C963AFDD1E432E090087CE9C /* KTBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTBUser.h; sourceTree = "<group>"; };
 		C963AFDE1E432E090087CE9C /* KTBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTBUser.m; sourceTree = "<group>"; };
+		C977492F1E5804BB0013BCF3 /* PenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenTableViewController.h; sourceTree = "<group>"; };
+		C97749301E5804BB0013BCF3 /* PenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenTableViewController.m; sourceTree = "<group>"; };
+		C97749311E5804BB0013BCF3 /* PenTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PenTableViewController.xib; sourceTree = "<group>"; };
+		C97749341E5808930013BCF3 /* UserColorPenInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserColorPenInfo.h; sourceTree = "<group>"; };
+		C97749351E5808930013BCF3 /* UserColorPenInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserColorPenInfo.m; sourceTree = "<group>"; };
+		C97749371E5818450013BCF3 /* penTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = penTableViewCell.h; sourceTree = "<group>"; };
+		C97749381E5818450013BCF3 /* penTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = penTableViewCell.m; sourceTree = "<group>"; };
+		C97749391E5818450013BCF3 /* penTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = penTableViewCell.xib; sourceTree = "<group>"; };
+		C977493C1E582D5D0013BCF3 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		C977493D1E582D5D0013BCF3 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		C977493E1E582D5D0013BCF3 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		C98889B31E1FEB430012EBC7 /* GateControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GateControl.h; sourceTree = "<group>"; };
 		C98889B41E1FEB430012EBC7 /* GateControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GateControl.m; sourceTree = "<group>"; };
+		C99D24A11E57F256004FFF23 /* LBAttributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBAttributeViewController.h; sourceTree = "<group>"; };
+		C99D24A21E57F256004FFF23 /* LBAttributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBAttributeViewController.m; sourceTree = "<group>"; };
+		C99D24A31E57F256004FFF23 /* LBFileIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFileIconCell.h; sourceTree = "<group>"; };
+		C99D24A41E57F256004FFF23 /* LBFileIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFileIconCell.m; sourceTree = "<group>"; };
+		C99D24A51E57F256004FFF23 /* LBFileIconCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBFileIconCell.xib; sourceTree = "<group>"; };
 		C9A132091E4B616A0037845C /* LBQRFilePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBQRFilePreview.h; sourceTree = "<group>"; };
 		C9A1320A1E4B616A0037845C /* LBQRFilePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBQRFilePreview.m; sourceTree = "<group>"; };
 		C9A1320B1E4B616A0037845C /* LBQRScaner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBQRScaner.h; sourceTree = "<group>"; };
@@ -228,6 +256,8 @@
 		C9C3A9341E372A1B00C4296C /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
 		C9C3A9351E372A1B00C4296C /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
 		C9C3A9361E372A1B00C4296C /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		C9CEF5311E5896820051F061 /* example1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example1.jpg; sourceTree = "<group>"; };
+		C9CEF5331E5896900051F061 /* example2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example2.jpg; sourceTree = "<group>"; };
 		C9D21F021E470C8F0046F9AD /* KTBUserInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTBUserInfoController.h; sourceTree = "<group>"; };
 		C9D21F031E470C8F0046F9AD /* KTBUserInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTBUserInfoController.m; sourceTree = "<group>"; };
 		C9D21F041E470C8F0046F9AD /* KTBUserInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTBUserInfoController.xib; sourceTree = "<group>"; };
@@ -654,6 +684,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C977492E1E58048C0013BCF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C97749371E5818450013BCF3 /* penTableViewCell.h */,
+				C97749381E5818450013BCF3 /* penTableViewCell.m */,
+				C97749391E5818450013BCF3 /* penTableViewCell.xib */,
+				E4AB1EB91E20F36000DE1804 /* CommonViewController.h */,
+				E4AB1EBA1E20F36000DE1804 /* CommonViewController.m */,
+				E4AB1EBB1E20F36000DE1804 /* CommonViewController.xib */,
+				C99D24A11E57F256004FFF23 /* LBAttributeViewController.h */,
+				C99D24A21E57F256004FFF23 /* LBAttributeViewController.m */,
+				C99D24A31E57F256004FFF23 /* LBFileIconCell.h */,
+				C99D24A41E57F256004FFF23 /* LBFileIconCell.m */,
+				C99D24A51E57F256004FFF23 /* LBFileIconCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		C9A132081E4B61500037845C /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,6 +780,8 @@
 				C9DB7A9C1E18A2B300591F93 /* Main.storyboard */,
 				C9DB7ADA1E18AA9600591F93 /* CCSingleton.h */,
 				C9DB7ACE1E18A85200591F93 /* KTDefine.h */,
+				C9CEF5311E5896820051F061 /* example1.jpg */,
+				C9CEF5331E5896900051F061 /* example2.jpg */,
 				C9DB7ACD1E18A67900591F93 /* PrefixHeader.pch */,
 				E4395AF71E262A9F00965124 /* TestImage */,
 				C9DB7A9F1E18A2B300591F93 /* Assets.xcassets */,
@@ -828,9 +878,13 @@
 				C9D21F021E470C8F0046F9AD /* KTBUserInfoController.h */,
 				C9D21F031E470C8F0046F9AD /* KTBUserInfoController.m */,
 				C9D21F041E470C8F0046F9AD /* KTBUserInfoController.xib */,
-				E4AB1EB91E20F36000DE1804 /* CommonViewController.h */,
-				E4AB1EBA1E20F36000DE1804 /* CommonViewController.m */,
-				E4AB1EBB1E20F36000DE1804 /* CommonViewController.xib */,
+				C977492F1E5804BB0013BCF3 /* PenTableViewController.h */,
+				C97749301E5804BB0013BCF3 /* PenTableViewController.m */,
+				C97749311E5804BB0013BCF3 /* PenTableViewController.xib */,
+				C977493C1E582D5D0013BCF3 /* AboutViewController.h */,
+				C977493D1E582D5D0013BCF3 /* AboutViewController.m */,
+				C977493E1E582D5D0013BCF3 /* AboutViewController.xib */,
+				C977492E1E58048C0013BCF3 /* View */,
 			);
 			name = Seting;
 			sourceTree = "<group>";
@@ -904,6 +958,8 @@
 				E4D6EFBB1E2B46BF00964431 /* DocmentDatabase.h */,
 				E4D6EFBC1E2B46BF00964431 /* DocmentDatabase.m */,
 				E4D6EF8D1E2B2ADB00964431 /* KTDocumentModel.xcdatamodeld */,
+				C97749341E5808930013BCF3 /* UserColorPenInfo.h */,
+				C97749351E5808930013BCF3 /* UserColorPenInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1516,6 +1572,7 @@
 			files = (
 				C9E60BF71E1E82B700E0CE73 /* SignInViewController.xib in Resources */,
 				E4395ABE1E26290200965124 /* ImageSelectedSmallOn.png in Resources */,
+				C99D24A81E57F256004FFF23 /* LBFileIconCell.xib in Resources */,
 				E4AD88411E55BB5300D91662 /* LBBaseEmptyBGView.xib in Resources */,
 				E4395ACC1E26290200965124 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				E4395ABC1E26290200965124 /* ImageSelectedSmallOff@2x.png in Resources */,
@@ -1527,6 +1584,7 @@
 				C9DB7AA31E18A2B300591F93 /* LaunchScreen.storyboard in Resources */,
 				E45C2BDB1E56CF86009AFC82 /* KTBSelectTableView.xib in Resources */,
 				E4395AD01E26290200965124 /* VideoOverlay.png in Resources */,
+				C97749401E582D5D0013BCF3 /* AboutViewController.xib in Resources */,
 				E4395ACD1E26290200965124 /* UIBarButtonItemGrid.png in Resources */,
 				E4395ACB1E26290200965124 /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				E45C2BD01E56ACBA009AFC82 /* KTBPopInputView.xib in Resources */,
@@ -1534,12 +1592,14 @@
 				E4395AFD1E262AB300965124 /* test3.jpg in Resources */,
 				E4AC2F5D1E27686D00992E5B /* Shader1.fsh in Resources */,
 				E4395AB31E26290200965124 /* ImageError@2x.png in Resources */,
+				C9CEF5321E5896820051F061 /* example1.jpg in Resources */,
 				E4395AB71E26290200965124 /* ImageSelectedOff@3x.png in Resources */,
 				E4AD884B1E55CFED00D91662 /* LBSelectFolderTableViewCell.xib in Resources */,
 				C9D21F061E470C8F0046F9AD /* KTBUserInfoController.xib in Resources */,
 				E408DF941E1E4C4900F1CC82 /* DocumentTableViewController.xib in Resources */,
 				E4395AB51E26290200965124 /* ImageSelectedOff.png in Resources */,
 				E4395AC61E26290200965124 /* PlayButtonOverlayLargeTap@3x.png in Resources */,
+				C97749331E5804BB0013BCF3 /* PenTableViewController.xib in Resources */,
 				C9B21F531E27C97900454A55 /* PhotoEidtController.xib in Resources */,
 				E4395ABF1E26290200965124 /* ImageSelectedSmallOn@2x.png in Resources */,
 				C9DB7AA01E18A2B300591F93 /* Assets.xcassets in Resources */,
@@ -1549,11 +1609,13 @@
 				E4395AB61E26290200965124 /* ImageSelectedOff@2x.png in Resources */,
 				C9C3A9391E372A1B00C4296C /* MenuCell.xib in Resources */,
 				E4395AC31E26290200965124 /* PlayButtonOverlayLarge@3x.png in Resources */,
+				C9CEF5341E5896900051F061 /* example2.jpg in Resources */,
 				E4395ABD1E26290200965124 /* ImageSelectedSmallOff@3x.png in Resources */,
 				E408DF991E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib in Resources */,
 				E4AB1EB51E20D38500DE1804 /* ResetPWDController.xib in Resources */,
 				E4AD883B1E55A5BF00D91662 /* KTBSearchViewController.xib in Resources */,
 				E4395AC41E26290200965124 /* PlayButtonOverlayLargeTap.png in Resources */,
+				C977493B1E5818450013BCF3 /* penTableViewCell.xib in Resources */,
 				C9E60BFC1E1E82C900E0CE73 /* LogInViewController.xib in Resources */,
 				E4AD88431E55BB7300D91662 /* LBSearchNoResultView.xib in Resources */,
 				C9DB7A9E1E18A2B300591F93 /* Main.storyboard in Resources */,
@@ -1748,6 +1810,7 @@
 				E4D6EFAB1E2B3A9E00964431 /* Base64.m in Sources */,
 				E4395AED1E26292900965124 /* MWTapDetectingImageView.m in Sources */,
 				C963AFDF1E432E090087CE9C /* KTBUser.m in Sources */,
+				C97749361E5808930013BCF3 /* UserColorPenInfo.m in Sources */,
 				E4E1542E1E1BD412004457C3 /* DocManagerCell.m in Sources */,
 				E41D1AB91E457A6900FE1FC2 /* KTBUserManager.m in Sources */,
 				C9A1320D1E4B616A0037845C /* LBQRFilePreview.m in Sources */,
@@ -1756,6 +1819,7 @@
 				E4AB1EA91E20D2CC00DE1804 /* NSString+countFileSize.m in Sources */,
 				E4AB1EB41E20D38500DE1804 /* ResetPWDController.m in Sources */,
 				C9E60BF61E1E82B700E0CE73 /* SignInViewController.m in Sources */,
+				C99D24A61E57F256004FFF23 /* LBAttributeViewController.m in Sources */,
 				E4D6EFAC1E2B3A9E00964431 /* DesEncrypt.m in Sources */,
 				C9BB47121E39B85600FBE250 /* KTBBaseAPI.m in Sources */,
 				E408DF931E1E4C4900F1CC82 /* DocumentTableViewController.m in Sources */,
@@ -1771,6 +1835,7 @@
 				E4E517431E51DF360087F93E /* DocMgrCellFooterLayout.m in Sources */,
 				E4AB1E911E20D19C00DE1804 /* LBProgressView.m in Sources */,
 				E4395AE81E26292900965124 /* MWPhotoBrowser.m in Sources */,
+				C97749321E5804BB0013BCF3 /* PenTableViewController.m in Sources */,
 				C949E02B1E5216BB00858BEB /* DocManagerController.m in Sources */,
 				E4AB1EAB1E20D2CC00DE1804 /* UIImage+UICycle.m in Sources */,
 				E4D6EFBD1E2B46BF00964431 /* DocmentDatabase.m in Sources */,
@@ -1803,11 +1868,14 @@
 				E4AB1E9C1E20D2A100DE1804 /* HolomorphyValidate.m in Sources */,
 				C949E0271E52135F00858BEB /* DocCollectionViewLayout.m in Sources */,
 				E4AB1EBC1E20F36000DE1804 /* CommonViewController.m in Sources */,
+				C977493F1E582D5D0013BCF3 /* AboutViewController.m in Sources */,
 				E4395AEF1E26292900965124 /* MWZoomingScrollView.m in Sources */,
 				C9B21F521E27C97900454A55 /* PhotoEidtController.m in Sources */,
+				C99D24A71E57F256004FFF23 /* LBFileIconCell.m in Sources */,
 				C9E60BFB1E1E82C900E0CE73 /* LogInViewController.m in Sources */,
 				E4E154371E1BDBF1004457C3 /* NSString+comparaCurrentTime.m in Sources */,
 				C9DB7A981E18A2B300591F93 /* AppDelegate.m in Sources */,
+				C977493A1E5818450013BCF3 /* penTableViewCell.m in Sources */,
 				C9C3A9371E372A1B00C4296C /* CCSideSlipView.m in Sources */,
 				C9C3A9381E372A1B00C4296C /* MenuCell.m in Sources */,
 				E4AB1EAF1E20D35800DE1804 /* ForgotPWDViewController.m in Sources */,
@@ -1967,8 +2035,10 @@
 			baseConfigurationReference = 13E310F5953856ADCB777E73 /* Pods-KaoTiBi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: ChangChun Chen (RU9G436GBN)";
 				DEVELOPMENT_TEAM = V4W9C35KR3;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KaoTiBi/PrefixHeader.pch;
 				INFOPLIST_FILE = KaoTiBi/Info.plist;
@@ -1983,6 +2053,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8fd6ab23-f3fa-49c8-9f6f-90fa8303d973";
 				PROVISIONING_PROFILE_SPECIFIER = testDevelopment;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1991,8 +2062,10 @@
 			baseConfigurationReference = 2CD4FEDE007F5C25E0C257D1 /* Pods-KaoTiBi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: ChangChun Chen (RU9G436GBN)";
 				DEVELOPMENT_TEAM = V4W9C35KR3;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KaoTiBi/PrefixHeader.pch;
 				INFOPLIST_FILE = KaoTiBi/Info.plist;
@@ -2007,6 +2080,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8fd6ab23-f3fa-49c8-9f6f-90fa8303d973";
 				PROVISIONING_PROFILE_SPECIFIER = testDevelopment;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
