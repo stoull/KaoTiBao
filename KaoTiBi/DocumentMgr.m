@@ -118,7 +118,23 @@ singleton_implementation(DocumentMgr)
 
 + (void)saveDirectoryInfor:(NSArray *)directors{
     NSString *rootPath = [kPathDocument stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",[KTBUserManager userUniqueIdentifer],kRelativeRootPath]];
+    
+    BOOL isRootDirectory = NO;
+    BOOL isRootExt = [[NSFileManager defaultManager] fileExistsAtPath:rootPath isDirectory:&isRootDirectory];
+    if (!isRootExt || !isRootDirectory) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:rootPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    
     NSString *directFilePath = [rootPath stringByAppendingPathComponent:kDirectoryFileName];
+    
+    BOOL isDirectory = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:directFilePath isDirectory:&isDirectory]) {
+        if (!isDirectory) {
+            [[NSFileManager defaultManager] removeItemAtPath:directFilePath error:nil];
+        }
+    }
+    
     BOOL isSuccessfu = [directors writeToFile:directFilePath atomically:YES];
     if (isSuccessfu) {
         LBLog(@"目录信息写入成功");

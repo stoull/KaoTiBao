@@ -217,7 +217,6 @@
     NSString *thumbPort;
     NSMutableArray *docs = self.documents;
     
-    
     // 如果是图片则用图片查看器进行查看
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     NSMutableArray *thumbs = [[NSMutableArray alloc] init];
