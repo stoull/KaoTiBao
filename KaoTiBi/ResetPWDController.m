@@ -37,23 +37,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.isChangPassword) {
-        self.title = @"修改密码";
-        [self.confirmButton setTitle:@"修改密码" forState:UIControlStateNormal];
-        self.labelOne.text = @"原密码：";
-        self.passwordTextField.placeholder = @"请输入原密码";
-        self.labelTwo.text = @"新密码：";
-        self.RePasswordTextField.placeholder = @"请输入新密码";
-        self.labelThree.text = @"确认新密码：";
-        self.vCodeTextField.placeholder = @"请再次输入新密码";
+        self.title = NSLocalizedString(@"Login.modifyPassword", @"修改密码");
+        [self.confirmButton setTitle:NSLocalizedString(@"Login.modifyPassword", @"修改密码") forState:UIControlStateNormal];
+        self.labelOne.text = NSLocalizedString(@"Login.currentPassword", @"原密码：");
+        self.passwordTextField.placeholder = NSLocalizedString(@"Login.inputCurrentPW", @"请输入原密码");
+        self.labelTwo.text = NSLocalizedString(@"Login.newpassword", @"新密码：");
+        self.RePasswordTextField.placeholder = NSLocalizedString(@"Login.inpuNewpassword", @"请输入新密码");
+        self.labelThree.text = NSLocalizedString(@"Login.confirmNewpassword", @"确认新密码：");
+        self.vCodeTextField.placeholder = NSLocalizedString(@"Login.reinputNewPW", @"请再次输入新密码");
     }else{
-        self.title = @"重置密码";
-        [self.confirmButton setTitle:@"重置密码" forState:UIControlStateNormal];
-        self.labelOne.text = @"新密码：";
-        self.passwordTextField.placeholder = @"请输入新密码";
-        self.labelTwo.text = @"确认新密码：";
-        self.RePasswordTextField.placeholder = @"请再次输入新密码";
-        self.labelThree.text = @"验证码：";
-        self.vCodeTextField.placeholder = @"验证码已发至对应的注册邮箱";
+        self.title = NSLocalizedString(@"Login.resetPassword", @"重置密码");
+        [self.confirmButton setTitle:NSLocalizedString(@"Login.resetPassword", @"重置密码") forState:UIControlStateNormal];
+        self.labelOne.text = NSLocalizedString(@"Login.newpassword", @"新密码：");
+        self.passwordTextField.placeholder = NSLocalizedString(@"Login.inpuNewpassword", @"请输入新密码");
+        self.labelTwo.text = NSLocalizedString(@"Login.confirmNewpassword", @"确认新密码：");
+        self.RePasswordTextField.placeholder = NSLocalizedString(@"Login.reinputNewPW", @"请再次输入新密码");
+        self.labelThree.text = NSLocalizedString(@"Login.verificationCode", @"验证码：");
+        self.vCodeTextField.placeholder = NSLocalizedString(@"Login.alreadySentVerificationCode", @"验证码已发至对应的注册邮箱");
     }
     self.resetPWDButton.layer.cornerRadius = 10.0;
 }
@@ -135,27 +135,27 @@
     NSString *confirmPWD = self.RePasswordTextField.text = [NSString removeBlankSpace:self.RePasswordTextField.text];
     NSString *vCode = self.vCodeTextField.text = [NSString removeBlankSpace:self.vCodeTextField.text];
     if (password.length == 0) {
-        [[HUD shareHUD] hintMessage:@"密码不能为空哦！"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.PWCantEmpty", @"密码不能为空哦！")];
         return;
     }else if ([HolomorphyValidate validatePasswordWithText:password]){
-        [[HUD shareHUD] hintMessage:@"密码为6-20个字符，必须包含字母大小以及数字哦！"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.passwordStand", @"密码为6-20个字符，必须包含字母大小以及数字哦！")];
         return;
     }
     
     if (self.isChangPassword) {
         if (![vCode isEqualToString:confirmPWD]) {
-            [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.twicePasswordDiff", @"两次输入的密码不同哦！")];
             return;
         }
         
     }else{
         if (![password isEqualToString:confirmPWD]) {
-            [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.twicePasswordDiff", @"两次输入的密码不同哦！")];
             return;
         }
         
         if (vCode.length != 6) {
-            [[HUD shareHUD] hintMessage:@"输入的验证码不正确哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.verificationCodeError", @"输入的验证码不正确哦！")];
             return;
         }
     }
@@ -175,13 +175,13 @@
                                    @"password" : password,
                                    @"newpassword"  : confirmPWD,
                                    @"comfirmPassword"     : confirmPWD};
-        [[HUD shareHUD] showActivityWithText:@"正修改密码..."];
+        [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Login.processPassword", @"正修改密码...")];
         [KTBBaseAPI changePasswordWithParaDic:resetDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
             if (kTBAPIResponseStatusSuccessful == status) {
                 
 //                [self changePWLogOutAction];
                 [self.navigationController popViewControllerAnimated:YES];
-                [[HUD shareHUD] hintMessage:@"修改成功,下次请用新密码登录！"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.modifyPWSucessful", @"修改成功,下次请用新密码登录！")];
             }else{
                 [[HUD shareHUD] hintMessage:emsg];
             }
@@ -206,11 +206,11 @@
                                    @"resetCode" : vCode,
                                    @"password" : password,
                                    @"comfirmPassword" : confirmPWD};
-        [[HUD shareHUD] showActivityWithText:@"正重置密码..."];
+        [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Login.processResetPW", @"正重置密码...")];
         [KTBBaseAPI resetPasswordWithParaDic:resetDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
             if (kTBAPIResponseStatusSuccessful == status) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
-                [[HUD shareHUD] hintMessage:@"重置成功"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.resetPWSucessful", @"重置成功")];
             }else{
                 [[HUD shareHUD] hintMessage:emsg];
             }

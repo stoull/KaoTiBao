@@ -199,8 +199,8 @@
 
 #pragma mark - 设置头部菜单
 - (void)setHeaderMenuView{
-    NSArray *menuArray = @[@"语文",@"数学",@"物理",@"化学",@"英语",@"生物"];
-    self.menuArrays = menuArray;
+//    NSArray *menuArray = @[@"语文",@"数学",@"物理",@"化学",@"英语",@"生物"];
+//    self.menuArrays = menuArray;
     self.headerView.backgroundColor = kThemeColor;
 }
 
@@ -250,8 +250,10 @@
     _sideSlipView = [[CCSideSlipView alloc] initWithSender:self];
     _sideSlipView.backgroundColor = [UIColor clearColor];
     MenuView *menu = [MenuView menuView];
-    menu.items = @[@{@"title":@"时间轴",@"imagename":@"4"},
-                   @{@"title":@"文件目录",@"imagename":@"4"}];
+    NSString *timeLine = NSLocalizedString(@"Doc.Timeline", @"时间轴");
+    NSString *folder = NSLocalizedString(@"Doc.directory", @"文件目录");
+    menu.items = @[@{@"title":timeLine,@"imagename":@"4"},
+                   @{@"title":folder,@"imagename":@"4"}];
     
     [_sideSlipView setContentView:menu];
     [menu didSelectRowAtIndexPath:^(id cell, NSIndexPath *indexPath) {
@@ -586,13 +588,13 @@
     captionView.userInteractionEnabled = YES;
     
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Doc.originalPhoto", @"原图") style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
     item2.tag = index;
     UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Doc.answerPhoto", @"答案") style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
     item4.tag = index;
     UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Doc.questionPhoto", @"题目") style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
     item6.tag = index;
     
     
@@ -610,11 +612,11 @@
 }
 
 - (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
-    if ([item.title isEqualToString:@"原图"]) {
+    if ([item.title isEqualToString:NSLocalizedString(@"Doc.originalPhoto", @"原图")]) {
         LBLog(@"原图 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"答案"]){
+    }else if ([item.title isEqualToString:NSLocalizedString(@"Doc.answerPhoto", @"答案")]){
         LBLog(@"答案 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"题目"]){
+    }else if ([item.title isEqualToString:NSLocalizedString(@"Doc.questionPhoto", @"题目")]){
         LBLog(@"题目 picIndex: %ld",item.tag);
     }
 }
@@ -625,30 +627,30 @@
     if (self.tableView.isEditing) {
         [self.tableView setEditing:NO];
     }
-    UIAlertController *textAlertController = [UIAlertController alertControllerWithTitle:@"新建文件夹" message:@"文件夹名称不能含有/\\:*?\"<>|等特殊字符" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *textAlertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Doc.creatFolder", @"新建文件夹") message:NSLocalizedString(@"Doc.folderNameCantContainSpecailCH", @"文件夹名称不能含有特殊字符") preferredStyle:UIAlertControllerStyleAlert];
     [textAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.borderStyle = UITextBorderStyleRoundedRect;
-        textField.placeholder = @"文件夹名";
+        textField.placeholder = NSLocalizedString(@"Doc.folderName", @"文件夹名");
     }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"取消") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     }];
-    UIAlertAction *comfirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *comfirmAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Confirm", @"确定") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         // 获取用户输入的文件夹名称
         UITextField *textField = [textAlertController.textFields firstObject];
         NSString *dirName = textField.text;
         if (dirName.length < 1) {
-            [[HUD shareHUD] hintMessage:@"未输入文件名字！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Doc.havenoInputFolderName", @"未输入文件名字！")];
             return ;
         }
         
         if ([HolomorphyValidate checkIsHaveSpecialCharaterWithString:dirName]) {
-            [[HUD shareHUD] hintMessage:@"文件夹名称含有非法字符！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Doc.haveSepcailCH", @"文件夹名称含有非法字符！")];
             return;
         }
         
         for (NSString *folderName in self.directoryArray){
             if ([folderName isEqualToString:dirName]) {
-                [[HUD shareHUD] hintMessage:@"已存在同名的文件夹！"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Doc.existSameNameFolder", @"已存在同名的文件夹！")];
                 return;
             }
         }
@@ -682,7 +684,7 @@
         _confirmView.backgroundColor = [UIColor whiteColor];
         _isConfirmViewShow = NO;
         UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 2, self.view.bounds.size.width, KConfirmButtonHeigth - 4)];
-        [confirmButton setTitle:@"删除" forState:UIControlStateNormal];
+        [confirmButton setTitle:NSLocalizedString(@"Delete", @"删除") forState:UIControlStateNormal];
         [confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         confirmButton.backgroundColor = kThemeColor;
         confirmButton.layer.cornerRadius = 5.0;
@@ -723,7 +725,7 @@
 - (void)confirmDeleteFile:(UIButton *)deleteButton{
     NSArray *selectRows = [self.tableView indexPathsForSelectedRows];
     if (selectRows.count == 0) {
-        [[HUD shareHUD] hintMessage:@"未选择文件夹"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Doc.haveSelectFolder", @"未选择文件夹")];
         return;
     }
     
@@ -736,7 +738,7 @@
     }
     [DocumentMgr saveDirectoryInfor:self.directoryArray];
     [self updateDataAndView];
-    [[HUD shareHUD] hintMessage:@"删除成功!"];
+    [[HUD shareHUD] hintMessage:NSLocalizedString(@"Doc.deleteSucessful", @"删除成功!")];
     [self switchMultipleOperation];
 }
 

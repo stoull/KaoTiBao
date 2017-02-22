@@ -42,7 +42,7 @@
         }
         _isEmptyHintViewIsShow = NO;
         if (hintLabel != nil) {
-            hintLabel.text = @"当前目录没有文件夹哦！";
+            hintLabel.text = NSLocalizedString(@"Doc.currentDirEmpty", @"当前目录没有文档哦！");
         }
     }
     return _emptyHintView;
@@ -53,7 +53,7 @@
         _confirmView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, KConfirmButtonHeigth)];
         _isConfirmViewShow = NO;
         UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 2, self.view.bounds.size.width, KConfirmButtonHeigth - 4)];
-        [confirmButton setTitle:@"确定" forState:UIControlStateNormal];
+        [confirmButton setTitle:NSLocalizedString(@"Confrim", @"确定") forState:UIControlStateNormal];
         [confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         confirmButton.backgroundColor = kThemeColor;
         confirmButton.layer.cornerRadius = 5.0;
@@ -119,7 +119,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"LBSelectFolderTableViewCell" bundle:nil] forCellReuseIdentifier:kLBSelectFolderControllerIdentifier];
 
-    self.title = @"选择文件夹";
+    self.title = NSLocalizedString(@"Doc.selectDirectory", @"选择文件夹");
     self.folderArray = [[DocumentMgr directoryInfor] mutableCopy];
     for (int i = 0; i < self.folderArray.count; i++){
         NSString *dirName = self.folderArray[i];
@@ -131,7 +131,7 @@
 
     UIButton *cancleButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [cancleButton addTarget:self action:@selector(cancelSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [cancleButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancleButton setTitle:NSLocalizedString(@"Cancel", @"取消") forState:UIControlStateNormal];
     cancleButton.titleLabel.font = [UIFont systemFontOfSize:14];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancleButton];
     

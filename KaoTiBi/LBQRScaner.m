@@ -42,7 +42,8 @@
         UILabel *hintLable = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(_scanWindow.frame) - 30, _scanWindow.bounds.size.width, 30)];
         hintLable.textColor = [UIColor whiteColor];
         hintLable.textAlignment = NSTextAlignmentCenter;
-        hintLable.text = @"请将二码码置于框内扫描";
+        hintLable.center = CGPointMake(_scanWindow.center.x, _scanWindow.center.y - 180);
+        hintLable.text = NSLocalizedString(@"Setting.putQRInFrame", @"请将二码码置于框内扫描");
         [self.view addSubview:_scanWindow];
         [self.view addSubview:hintLable];
     }
@@ -52,7 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"扫描";
+    self.title = NSLocalizedString(@"Setting.QRScan", @"扫描");
     [self createQRScaner];
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -65,7 +66,7 @@
     if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied)
     {
         //无权限
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"noPermission", @"express user have not permission") message:NSLocalizedString(@"appNeedAlbumPermission", @"请到设置里面，设置允许文件云访问手机的相机！") delegate:self cancelButtonTitle:NSLocalizedString(@"confirm",@"") otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"noPermission", @"express user have not permission") message:NSLocalizedString(@"appNeedAlbumPermission", @"请到设置里面，设置允许文件云访问手机的相机！") delegate:self cancelButtonTitle:NSLocalizedString(@"Confirm",@"") otherButtonTitles:nil];
         [alertView show];
     }
     self.tabBarController.tabBar.hidden = YES;
@@ -128,7 +129,7 @@
         
         [KTBBaseAPI activatePenWithAcId:acId successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
             if (status == kTBAPIResponseStatusSuccessful) {
-                [[HUD shareHUD] hintMessage:@"激话成功!"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Setting.activitySucessful", @"激话成功!")];
                 [KTBBaseAPI getUserSettingsSuccessful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
                     if (kTBAPIResponseStatusSuccessful == status) {
                     }else{

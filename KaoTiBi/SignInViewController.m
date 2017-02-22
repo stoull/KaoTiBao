@@ -60,7 +60,7 @@
     // Do any additional setup after loading the view from its nib.
     self.signInButton.layer.cornerRadius = 10.0;
     if (self.isChangUserInfo) {
-        self.title = @"修改资料";
+        self.title = NSLocalizedString(@"Login.modifyUserInfo", @"修改资料");
         /*
          name			真实姓名
          age			年纪
@@ -72,15 +72,15 @@
          job			职业
 
          */
-        [self.confirmButton setTitle:@"确认修改" forState:UIControlStateNormal];
-        self.labelOne.text = @"真实姓名:";
-        self.labelTwo.text = @"生日:";
-        self.labelThree.text = @"性别:";
-        self.labelFour.text = @"住址:";
-        self.labelFive.text = @"学校:";
-        self.labelSix.text = @"职业:";
+        [self.confirmButton setTitle:NSLocalizedString(@"Login.confirmModify", @"确认修改") forState:UIControlStateNormal];
+        self.labelOne.text = NSLocalizedString(@"Login.realName", @"真实姓名:");
+        self.labelTwo.text = NSLocalizedString(@"Login.birthday", @"生日:");
+        self.labelThree.text = NSLocalizedString(@"Login.gender", @"性别:");
+        self.labelFour.text = NSLocalizedString(@"Login.address", @"住址:");
+        self.labelFive.text = NSLocalizedString(@"Login.school", @"学校:");
+        self.labelSix.text = NSLocalizedString(@"Login.ocupation", @"职业:");
     }else{
-        self.title = @"注册";
+        self.title = NSLocalizedString(@"Login.register", @"注册");
     }
     
 }
@@ -167,13 +167,13 @@
     NSString *vierification = [NSString removeBlankSpace:self.verificationTextField.text];
     
     if (self.isChangUserInfo) {
-        [self.confirmButton setTitle:@"确认修改" forState:UIControlStateNormal];
-        self.labelOne.text = @"真实姓名:";
-        self.labelTwo.text = @"生日:";
-        self.labelThree.text = @"性别:";
-        self.labelFour.text = @"住址:";
-        self.labelFive.text = @"学校:";
-        self.labelSix.text = @"职业:";
+        [self.confirmButton setTitle:NSLocalizedString(@"Login.confirmModify", @"确认修改") forState:UIControlStateNormal];
+        self.labelOne.text = NSLocalizedString(@"Login.realName", @"真实姓名:");
+        self.labelTwo.text = NSLocalizedString(@"Login.birthday", @"生日:");
+        self.labelThree.text = NSLocalizedString(@"Login.gender", @"性别:");
+        self.labelFour.text = NSLocalizedString(@"Login.address", @"住址:");
+        self.labelFive.text = NSLocalizedString(@"Login.school", @"学校:");
+        self.labelSix.text = NSLocalizedString(@"Login.ocupation", @"职业:");
         
         /*
          name			真实姓名
@@ -193,11 +193,11 @@
                               @"address" : confirmPWD,
                               @"school" : emailText,
                               @"job" : phoneNumber};
-        [[HUD shareHUD] showActivityWithText:@"正修改..."];
+        [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Login.processModify", @"正修改...")];
         [KTBBaseAPI registerWithParameter:dic successful:^(kTBAPIResponseStatus status, NSString * _Nullable msg, NSString * _Nullable emsg) {
             if (kTBAPIResponseStatusSuccessful == status) {
                 [self.navigationController popViewControllerAnimated:YES];
-                [[HUD shareHUD] hintMessage:@"修改成功！"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.modifyUserInfoSuccessful", @"修改成功！")];
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
                 [[HUD shareHUD] hintMessage:emsg];
@@ -214,11 +214,11 @@
         confirmPWD = [LBMD5 getmd5WithString:confirmPWD];
         
         if (nickName.length == 0) {
-            [[HUD shareHUD] hintMessage:@"昵称不能为空哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.nicknameCantEmpty", @"昵称不能为空哦！")];
             [self.nickNameRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
             return;
         }else if (nickName.length > 20){
-            [[HUD shareHUD] hintMessage:@"昵称只能小于20个字符哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.nicknameMaxCharacter", @"昵称只能小于20个字符哦！")];
             [self.nickNameRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
             return;
         }
@@ -230,27 +230,27 @@
         }
         
         if (password.length == 0) {
-            [[HUD shareHUD] hintMessage:@"密码不能为空哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.PWCantEmpty", @"密码不能为空哦！")];
             [self.PwdRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
             return;
         }else if ([HolomorphyValidate validatePasswordWithText:password]){
-            [[HUD shareHUD] hintMessage:@"密码为6-20个字符，必须包含字母大小以及数字哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.passwordStand", @"密码为6-20个字符，必须包含字母大小以及数字哦！")];
             [self.PwdRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
             return;
         }
         
         if (![password isEqualToString:confirmPWD]) {
-            [[HUD shareHUD] hintMessage:@"两次输入的密码不同哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.twicePasswordDiff", @"两次输入的密码不同哦！")];
             [self.confirmPWDRequiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
             return;
         }
         
         if (emailText.length == 0) {
-            [[HUD shareHUD] hintMessage:@"邮箱不能为空哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.emailCantEmpty", @"邮箱不能为空哦！")];
             [self.emailRequeiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
             return;
         }else if (![HolomorphyValidate validateEmailWithText:emailText]){
-            [[HUD shareHUD] hintMessage:@"邮箱格式不正确哦！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.emailFormatError", @"邮箱格式不正确哦！")];
             [self.emailRequeiedImageView setImage:[UIImage imageNamed:@"Required_Red"]];
             return;
         }
@@ -287,11 +287,11 @@
                                     //                                @"sns" : @""
                                     };
         
-        [[HUD shareHUD] showActivityWithText:@"正注册..."];
+        [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Login.registerProcess", @"正注册...")];
         [KTBBaseAPI registerWithParameter:parameDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable msg, NSString * _Nullable emsg) {
             if (kTBAPIResponseStatusSuccessful == status) {
                 [self.navigationController popViewControllerAnimated:YES];
-                [[HUD shareHUD] hintMessage:@"注册成功！"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.registerSuccessful", @"注册成功！")];
             }else{
                 [[HUD shareHUD] hintMessage:emsg];
             }
@@ -317,7 +317,7 @@
     self.emailTextField.text = email;
     BOOL isEmailValidate = [HolomorphyValidate validateEmailWithText:email];
     if (!isEmailValidate) {
-        [[HUD shareHUD] hintMessage:@"邮箱地址不正确！"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.emailFormatError", @"邮箱地址不正确！")];
         return;
     }
     
@@ -338,10 +338,10 @@
     [KTBBaseAPI getVcodeWithUserName:email successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
         if (kTBAPIResponseStatusSuccessful == status) {
             LBLog(@"验证码已发送 : %@",resDic);
-            [[HUD shareHUD] hintMessage:@"验证码已发送！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.verificationCodeSend", @"验证码已发送！")];
             kCountdownTime = 60;
             [self.verificationTimer fire];
-            [self.verificationCodeButton setTitle:@"重新获取（59）" forState:UIControlStateNormal];
+            [self.verificationCodeButton setTitle:NSLocalizedString(@"Login.reGetVerification(59)", @"重新获取（59）") forState:UIControlStateNormal];
             self.verificationCodeButton.enabled = NO;
         }else{
             [[HUD shareHUD] hintMessage:emsg];
@@ -361,11 +361,11 @@
 - (void)upDateCountdown:(NSTimer *)timer{
     if (kCountdownTime-- < 1) {
         self.verificationCodeButton.enabled = YES;
-        [self.verificationCodeButton setTitle:@"重新获取" forState:UIControlStateNormal];
+        [self.verificationCodeButton setTitle:NSLocalizedString(@"Login.reGetVerification", @"重新获取") forState:UIControlStateNormal];
         [self.verificationTimer invalidate];
         self.verificationTimer = nil;
     }else{
-        NSString *timeStr = [NSString stringWithFormat:@"重新获取（%ld）",kCountdownTime];
+        NSString *timeStr = [NSString stringWithFormat:NSLocalizedString(@"Login.reGetVerificationAppendCountdown", @"重新获取（%ld）"),kCountdownTime];
         [self.verificationCodeButton setTitle:timeStr forState:UIControlStateNormal];
         self.verificationCodeButton.titleLabel.text = timeStr;
     }

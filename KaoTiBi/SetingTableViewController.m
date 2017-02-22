@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置";
+    self.title = NSLocalizedString(@"TableBar.setting", @"设置");
     
     self.tableView.backgroundView.backgroundColor = kBackgroundShallowColor;
     self.tableView.tableFooterView = [UIView new];
@@ -62,11 +62,11 @@
     // 设置用户信息
     // 这个为试用版本
     if (self.currentUser.userId == -1) {
-        self.usernameLabel.text = @"试用版本用户";
-        self.userLevelLabel.text = @"当前等级: 0级";
+        self.usernameLabel.text = NSLocalizedString(@"Setting.isTrialUser", @"试用版本用户");
+        self.userLevelLabel.text = NSLocalizedString(@"Setting.level0", @"当前等级: 0级");
     }else{
         self.usernameLabel.text = self.currentUser.username;
-        self.userLevelLabel.text = [NSString stringWithFormat:@"当前等级: %ld级",self.currentUser.level];
+        self.userLevelLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Setting.currentLevel", @"当前等级: %ld级"),self.currentUser.level];
     }
 }
 
@@ -126,11 +126,11 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             if (self.user.userId == -1) {
-                [LBAlert showAlertWithTitle:@"当前为试用版本" message:@"是否登录／注册为正式用户？" completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
+                [LBAlert showAlertWithTitle:NSLocalizedString(@"Setting.currentIsTrial", @"当前为试用版本") message:NSLocalizedString(@"Setting.goToRegister", @"是否登录／注册为正式用户？") completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
                     if (actionIndex == 1) {
                         [self logOutAction:nil];
                     }
-                } cancelActionTitle:@"下次" otherActionTitles:@[@"确定"]];
+                } cancelActionTitle:NSLocalizedString(@"Setting.next", @"下次") otherActionTitles:@[NSLocalizedString(@"Confirm", @"确定")]];
             }else{
                 KTBUserInfoController *userInfoVC = [[KTBUserInfoController alloc] initWithNibName:@"KTBUserInfoController" bundle:nil];
                 [self.navigationController pushViewController:userInfoVC animated:YES];
@@ -159,11 +159,11 @@
     if (currentUser.userId == -1) {
         [KTBUserInfoController logOutSettings];
     }else{
-        [[HUD shareHUD] showActivityWithText:@"正注销..."];
+        [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Setting.processLogout", @"正注销...")];
         [KTBBaseAPI logoutWithUserId:currentUser.userId successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
             if (kTBAPIResponseStatusSuccessful == status) {
                 [self.navigationController popViewControllerAnimated:YES];
-                [[HUD shareHUD] hintMessage:@"注销成功！"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Setting.logoutSuccessful", @"注销成功！")];
                 [KTBUserInfoController logOutSettings];
             }else{
                 [[HUD shareHUD] hintMessage:emsg];

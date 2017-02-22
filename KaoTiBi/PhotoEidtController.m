@@ -90,7 +90,7 @@ typedef enum : NSInteger{
         _selectDirView.frame = [UIScreen mainScreen].bounds;
         _selectDirView.delegate = self;
         _selectDirView.folderArray = [DocumentMgr directoryInfor];
-        _selectDirView.title = @"请选择目录";
+        _selectDirView.title = NSLocalizedString(@"Doc.selectDirectory", @"请选择目录");
     }
     return _selectDirView;
 }
@@ -114,40 +114,42 @@ typedef enum : NSInteger{
     KTBUser *currentUser = [KTBUserManager currentUser];
     // 这个为试用版本
     if (currentUser.userId == -1) {
-        [self.orangeColorButton setTitle:@"未激活" forState:UIControlStateNormal];
-        [self.yellowColorButton setTitle:@"未激活" forState:UIControlStateNormal];
-        [self.cyanColorButton setTitle:@"未激活" forState:UIControlStateNormal];
-        [self.greenColorButton setTitle:@"未激活" forState:UIControlStateNormal];
-        [self.blueColorButton setTitle:@"未激活" forState:UIControlStateNormal];
-        [self.pinkColorButton setTitle:@"未激活" forState:UIControlStateNormal];
-        [self.grayColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+        NSString *noAcititString = NSLocalizedString(@"Shoot.noActivity", @"未激活");
+        [self.orangeColorButton setTitle:noAcititString forState:UIControlStateNormal];
+        [self.yellowColorButton setTitle:noAcititString forState:UIControlStateNormal];
+        [self.cyanColorButton setTitle:noAcititString forState:UIControlStateNormal];
+        [self.greenColorButton setTitle:noAcititString forState:UIControlStateNormal];
+        [self.blueColorButton setTitle:noAcititString forState:UIControlStateNormal];
+        [self.pinkColorButton setTitle:noAcititString forState:UIControlStateNormal];
+        [self.grayColorButton setTitle:noAcititString forState:UIControlStateNormal];
     }else{
         self.colorPenDic = [KTBBaseDataStorer colorPenInfor];
         UserColorPenInfo *userPen = [[UserColorPenInfo alloc] initWithDic:self.colorPenDic];
         if (userPen != nil) {
+            NSString *noAcititString = NSLocalizedString(@"Shoot.noActivity", @"未激活");
 //            if (userPen.redTime == 0) {
-//                [self.redColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+//                [self.redColorButton setTitle:noAcititString forState:UIControlStateNormal];
 //            }
             if (userPen.orangeTime == 0){
-                [self.orangeColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+                [self.orangeColorButton setTitle:noAcititString forState:UIControlStateNormal];
             }
             if (userPen.yellowTime == 0){
-                [self.yellowColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+                [self.yellowColorButton setTitle:noAcititString forState:UIControlStateNormal];
             }
             if (userPen.cyanTime == 0){
-                [self.cyanColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+                [self.cyanColorButton setTitle:noAcititString forState:UIControlStateNormal];
             }
             if (userPen.greenTime == 0){
-                [self.greenColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+                [self.greenColorButton setTitle:noAcititString forState:UIControlStateNormal];
             }
             if (userPen.blueTime == 0){
-                [self.blueColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+                [self.blueColorButton setTitle:noAcititString forState:UIControlStateNormal];
             }
             if (userPen.pinkTime == 0){
-                [self.pinkColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+                [self.pinkColorButton setTitle:noAcititString forState:UIControlStateNormal];
             }
             if (userPen.grayTime == 0){
-                [self.grayColorButton setTitle:@"未激活" forState:UIControlStateNormal];
+                [self.grayColorButton setTitle:noAcititString forState:UIControlStateNormal];
             }
         }
     }
@@ -186,7 +188,8 @@ typedef enum : NSInteger{
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [[HUD shareHUD] showActivityWithText:@"正分析红色标记..."];
+    NSString *hintStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.analyseMark", @"正分析红色标记..."),@"红色"];
+    [[HUD shareHUD] showActivityWithText:hintStr];
     [self performSelector:@selector(hiddenHUD) withObject:nil afterDelay:2.0];
 }
 
@@ -240,44 +243,56 @@ typedef enum : NSInteger{
     switch (sender.tag) {
         case 11:            // 红色
             if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
-                [[HUD shareHUD] showActivityWithText:@"正分析红色标记..."];
+                NSString *hintStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.analyseMark", @"正分析??标记..."),@"红色"];
+                [[HUD shareHUD] showActivityWithText:hintStr];
             }else{
-                [[HUD shareHUD] hintMessage:@"红色笔未激活，不可用！"];
+                NSString *hitStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.noActivityCanUse", @"??笔未激活，不可用！"),@"红色"];
+                [[HUD shareHUD] hintMessage:hitStr];
             }
             break;
         case 12:            // 橙色
             if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
-                 [[HUD shareHUD] showActivityWithText:@"正分析橙色标记..."];
+                NSString *hintStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.analyseMark", @"正分析??标记..."),@"橙色"];
+                 [[HUD shareHUD] showActivityWithText:hintStr];
             }else{
-               [[HUD shareHUD] hintMessage:@"橙色笔未激活，不可用！"];
+                NSString *hitStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.noActivityCanUse", @"??笔未激活，不可用！"),@"橙色"];
+               [[HUD shareHUD] hintMessage:hitStr];
             }
             break;
         case 13:            // 绿色
             if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
-                [[HUD shareHUD] showActivityWithText:@"正分析绿色标记..."];
+                NSString *hintStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.analyseMark", @"正分析??标记..."),@"绿色"];
+                [[HUD shareHUD] showActivityWithText:hintStr];
             }else{
-                [[HUD shareHUD] hintMessage:@"绿色笔未激活，不可用！"];
+                NSString *hitStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.noActivityCanUse", @"??笔未激活，不可用！"),@"绿色"];
+                [[HUD shareHUD] hintMessage:hitStr];
             }
             break;
         case 14:            // 青色
             if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
-                [[HUD shareHUD] showActivityWithText:@"正分析青色标记..."];
+                NSString *hintStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.analyseMark", @"正分析??标记..."),@"青色"];
+                [[HUD shareHUD] showActivityWithText:hintStr];
             }else{
-                [[HUD shareHUD] hintMessage:@"青色笔未激活，不可用！"];
+                NSString *hitStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.noActivityCanUse", @"??笔未激活，不可用！"),@"青色"];
+                [[HUD shareHUD] hintMessage:hitStr];
             }
             break;
         case 15:            // 粉红色
             if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
-                [[HUD shareHUD] showActivityWithText:@"正分析粉红色标记..."];
+                NSString *hintStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.analyseMark", @"正分析??标记..."),@"粉红色"];
+                [[HUD shareHUD] showActivityWithText:hintStr];
             }else{
-                [[HUD shareHUD] hintMessage:@"粉色笔未激活，不可用！"];
+                NSString *hitStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.noActivityCanUse", @"??笔未激活，不可用！"),@"粉红色"];
+                [[HUD shareHUD] hintMessage:hitStr];
             }
             break;
         case 16:            // 黄色
             if (sender.currentTitle == nil || sender.currentTitle.length == 0) {
-                [[HUD shareHUD] showActivityWithText:@"正分析黄色标记..."];
+                NSString *hintStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.analyseMark", @"正分析??标记..."),@"黄色"];
+                [[HUD shareHUD] showActivityWithText:hintStr];
             }else{
-                [[HUD shareHUD] hintMessage:@"黄色笔未激活，不可用！"];
+                NSString *hitStr = [NSString stringWithFormat:NSLocalizedString(@"Shoot.noActivityCanUse", @"??笔未激活，不可用！"),@"黄色"];
+                [[HUD shareHUD] hintMessage:hitStr];
             }
             break;
         default:
@@ -297,16 +312,16 @@ typedef enum : NSInteger{
     if (sender.tag == 0) { // 目录
         [self.selectDirView showInView:self.view];
     }else if (sender.tag == 1){ // 名称
-        self.popInputView.title = @"给照片取个名字";
-        self.popInputView.placeHoldText = @"输入照片名字";
+        self.popInputView.title = NSLocalizedString(@"Shoot.getAName", @"给照片取个名字");
+        self.popInputView.placeHoldText = NSLocalizedString(@"Shoot.inputPhotoName", @"输入照片名字");
         self.popInputView.inputText = self.docName;
         self.popInputView.maxInputCount = 50;
         self.popInputView.inputViewHeight = 44;
         self.inputType = CurrentInputTypeName;
         [self.popInputView showInView:self.view];
     }else if (sender.tag == 2){ // 描述
-        self.popInputView.title = @"给照片添加描述";
-        self.popInputView.placeHoldText = @"输入照片描述";
+        self.popInputView.title = NSLocalizedString(@"Shoot.addPhotoDescrible", @"给照片添加描述");
+        self.popInputView.placeHoldText = NSLocalizedString(@"Shoot.inpuPhotoDescrible", @"输入照片描述");
         self.popInputView.inputText = self.docDescrible;
         self.popInputView.maxInputCount = 250;
         self.popInputView.inputViewHeight = 130;

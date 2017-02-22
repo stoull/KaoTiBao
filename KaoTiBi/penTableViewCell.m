@@ -60,17 +60,16 @@
     _lastTime = lastTime;
     if (lastTime < 1) {
         self.lastTimeValueLabel.hidden = YES;
-        self.lastTimeLabel.text = @"暂未激活";
+        self.lastTimeLabel.text = NSLocalizedString(@"Setting.notActivity", @"暂未激活");
     }else{
-        
         NSInteger day = lastTime / (60*60*24);
         NSInteger hour = (lastTime % (60*60*24)) / (60*60);
         NSInteger mine = (lastTime % (60*60)) / 60;
         NSInteger seconde = lastTime % 60;
-        NSString *stringTim = [NSString stringWithFormat:@"%ld天%ld时%ld分",day,hour,mine];
+        NSString *stringTim = [NSString stringWithFormat:NSLocalizedString(@"Setting.leftTimeDetail", @"%ld天%ld时%ld分"),day,hour,mine];
         self.lastTimeValueLabel.text = stringTim;
         self.lastTimeValueLabel.hidden = NO;
-        self.lastTimeLabel.text = @"剩余时间：";
+        self.lastTimeLabel.text = NSLocalizedString(@"Setting.leftTime", @"剩余时间：");
     }
 }
 

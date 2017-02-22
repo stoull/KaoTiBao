@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"我的信息";
+    self.title = NSLocalizedString(@"Setting.myInformation", @"我的信息");
     self.logoutButton.layer.cornerRadius = 5.0;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LBFileIconCell" bundle:nil] forCellReuseIdentifier:iconCellIdentifier];
@@ -78,16 +78,16 @@
     if (currentUser.userId == -1) {
         [KTBUserInfoController logOutSettings];
     }else{
-        [[HUD shareHUD] showActivityWithText:@"正注销..."];
+        [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Setting.processLogout", @"正注销...")];
         [KTBBaseAPI logoutWithUserId:currentUser.userId successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg) {
             if (kTBAPIResponseStatusSuccessful == status) {
                 [self.navigationController popViewControllerAnimated:YES];
-                [[HUD shareHUD] hintMessage:@"注销成功！"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Setting.logoutSuccessful", @"注销成功！")];
                 [KTBUserInfoController logOutSettings];
             }else{
                 if ([emsg isEqualToString:@"用户尚未登录"]) {
                     [self.navigationController popViewControllerAnimated:YES];
-                    [[HUD shareHUD] hintMessage:@"注销成功！"];
+                    [[HUD shareHUD] hintMessage:NSLocalizedString(@"Setting.logoutSuccessful", @"注销成功！")];
                     [KTBUserInfoController logOutSettings];
                 }else{
                     [[HUD shareHUD] hintMessage:emsg];
@@ -136,28 +136,28 @@
         switch (indexPath.row) {
             case 0:
             {
-                cell.titleName.text = @"用户名:";
+                cell.titleName.text = NSLocalizedString(@"Setting.username", @"用户名:");
                 cell.valueLabel.text = self.currentUser.username;
             }
                 break;
             case 1:
-                cell.titleName.text = @"姓名:";
+                cell.titleName.text = NSLocalizedString(@"Login.realName", @"姓名:");
                 cell.valueLabel.text = self.currentUser.name;
                 break;
                 
             case 2:
-                cell.titleName.text = @"注册时间:";
+                cell.titleName.text = NSLocalizedString(@"Setting.registerTime", @"注册时间:");
                 cell.valueLabel.text = self.currentUser.registerTime;
                 break;
             case 3:
             {
-                cell.titleName.text = @"绑定邮箱:";
+                cell.titleName.text = NSLocalizedString(@"Setting.email", @"绑定邮箱:");
                 cell.valueLabel.text = self.currentUser.email;
             }
                 break;
             case 4:
             {
-                cell.titleName.text = @"绑定手机:";
+                cell.titleName.text = NSLocalizedString(@"Setting.phone", @"绑定手机:");
                 cell.valueLabel.text = self.currentUser.phoneNumber;
             }
                 break;
@@ -167,9 +167,9 @@
     }else{
         cell.isShowHintView = NO;
         if (indexPath.row == 0) {
-            cell.titleName.text = @"修改个人资料";
+            cell.titleName.text = NSLocalizedString(@"Setting.modifyUserInfo", @"修改个人资料");
         }else if (indexPath.row == 1){
-            cell.titleName.text = @"修改密码";
+            cell.titleName.text = NSLocalizedString(@"Login.modifyPassword", @"修改密码");
         }
     }
     

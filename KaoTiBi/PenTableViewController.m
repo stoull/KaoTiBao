@@ -34,7 +34,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的荧光笔";
+    self.title = NSLocalizedString(@"Setting.myPen", @"我的荧光笔");
     [self.tableView registerNib:[UINib nibWithNibName:@"penTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdeintww];
     [self getPenInformation];
 }
@@ -45,7 +45,7 @@
 }
 
 - (void)getPenInformation{
-    [[HUD shareHUD] showActivityWithText:@"正获取荧光笔信息..."];
+    [[HUD shareHUD] showActivityWithText: NSLocalizedString(@"Setting.getMyPenInfo", @"正获取荧光笔信息...")];
     [KTBBaseAPI getUserSettingsSuccessful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
         if (kTBAPIResponseStatusSuccessful == status) {
             self.colorPenInfo = [[UserColorPenInfo alloc] initWithDic:resDic];
@@ -58,7 +58,7 @@
                 [self.tableView reloadData];
                 [[HUD shareHUD] hidden];
             }else{
-                [[HUD shareHUD] hintMessage:@"获取失败！"];
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Setting.getPenInforFailed", @"获取失败！")];
             }
         }
     } failure:^(NSString * _Nonnull errorMessage) {
@@ -68,7 +68,7 @@
             [self.tableView reloadData];
             [[HUD shareHUD] hidden];
         }else{
-            [[HUD shareHUD] hintMessage:@"获取失败！"];
+            [[HUD shareHUD] hintMessage:NSLocalizedString(@"Setting.getPenInforFailed", @"获取失败！")];
         }
     }];
 }

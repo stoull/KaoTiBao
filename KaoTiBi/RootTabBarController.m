@@ -30,14 +30,14 @@
     if (self) {
         // 文档管理界面
         [self addChildViewController:[[DocManagerController alloc] initWithNibName:@"DocManagerController" bundle:nil]
-                           withTitle:@"文档总管"
+                           withTitle:NSLocalizedString(@"TableBar.documentManager", @"文档总管")
                             andImage:@"tb_setting"
                     andSelectedImage:@"tb_setting"];
         
         // 拍摄界面
         //        NSUserDefaults *useDef = [NSUserDefaults standardUserDefaults];
         [self addChildViewController:[[ShootingController alloc] initWithNibName:@"ShootingController" bundle:nil]
-                           withTitle:@"拍摄"
+                           withTitle:NSLocalizedString(@"TableBar.shoot", @"拍摄")
                             andImage:@"tb_camera"
                     andSelectedImage:@"tb_camera"];
      
@@ -45,7 +45,7 @@
         UIStoryboard *mainStroyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SetingTableViewController *settingController = [mainStroyBoard instantiateViewControllerWithIdentifier:@"SetingTableViewController"];
         [self addChildViewController:settingController
-                           withTitle:@"设置"
+                           withTitle:NSLocalizedString(@"TableBar.setting", @"设置")
                             andImage:@"tb_documentation"
                     andSelectedImage:@"tb_documentation"];
         self.delegate = self;

@@ -87,12 +87,11 @@
                                   @"password"  : password,
                                   @"loginType" : loginType,
                                   @"phoneType" : phoneType};
-        [[HUD shareHUD] showActivityWithText:@"正登录..."];
+        [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Login.loginProcess", @"正登录...")];
         [KTBBaseAPI loginWithParameter:paraDic successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
             if (kTBAPIResponseStatusSuccessful == status) {
                 [self.navigationController popViewControllerAnimated:YES];
-                [[HUD shareHUD] hintMessage:@"登录成功！"];
-                
+                [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.loginSucesssfull", @"登录成功！")];
                 // 存储用户信息
                 KTBUser *user = [[KTBUser alloc] initWithUserInforDic:resDic];
                 user.password = password;
@@ -138,11 +137,11 @@
     self.usernameTextField.text = [NSString removeBlankSpace:self.usernameTextField.text];
     self.passwordTextField.text = [NSString removeBlankSpace:self.passwordTextField.text];
     if (!(self.usernameTextField.text != nil && self.usernameTextField.text.length > 0)) {
-        [[HUD shareHUD] hintMessage:@"请输入登录名！"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.hintInputUserName",@"请输入登录名！")];
         return NO;
     }
     if (!(self.passwordTextField.text != nil && self.passwordTextField.text.length > 0)) {
-        [[HUD shareHUD] hintMessage:@"请输入密码！"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.hintInputPassword",@"请输入密码！")];
         return NO;
     }
     

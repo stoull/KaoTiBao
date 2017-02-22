@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"关于考题笔";
+    self.title = NSLocalizedString(@"", @"关于考题笔");
     [self getSysTemInfor];
 }
 
@@ -41,8 +41,8 @@
         if (status == kTBAPIResponseStatusSuccessful) {
             self.describleLabel.text = resDic[@"appDesc"];
             self.aboutBiLabel.text = resDic[@"penDesc"];
-            self.contactLabel.text = [NSString stringWithFormat:@"手机：%@",resDic[@"mgrPhone"]];
-            self.emailLabel.text = [NSString stringWithFormat:@"邮箱：%@",resDic[@"email"]];
+            self.contactLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Setting.phone", @"手机："),resDic[@"mgrPhone"]];
+            self.emailLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Setting.email", @"邮箱："),resDic[@"email"]];
         }else{
             
         }

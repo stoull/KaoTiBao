@@ -281,13 +281,13 @@
     captionView.userInteractionEnabled = YES;
     
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"原图" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Doc.originalPhoto", @"原图") style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
     item2.tag = index;
     UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"答案" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Doc.answerPhoto", @"答案") style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
     item4.tag = index;
     UIBarButtonItem *item5 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:@"题目" style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
+    UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Doc.questionPhoto", @"题目") style:UIBarButtonItemStylePlain target:self action:@selector(photoBrowserButtonItemDidClick:)];
     item6.tag = index;
 
     
@@ -304,16 +304,16 @@
     return captionView;        //此方法可以定制图片游览页下边的toorBar
 }
 
+
 - (void)photoBrowserButtonItemDidClick:(UIBarButtonItem *)item{
-    if ([item.title isEqualToString:@"原图"]) {
+    if ([item.title isEqualToString:NSLocalizedString(@"Doc.originalPhoto", @"原图")]) {
         LBLog(@"原图 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"答案"]){
+    }else if ([item.title isEqualToString:NSLocalizedString(@"Doc.answerPhoto", @"答案")]){
         LBLog(@"答案 picIndex: %ld",item.tag);
-    }else if ([item.title isEqualToString:@"题目"]){
+    }else if ([item.title isEqualToString:NSLocalizedString(@"Doc.questionPhoto", @"题目")]){
         LBLog(@"题目 picIndex: %ld",item.tag);
     }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -1,0 +1,179 @@
+/* 
+  Localizable.strings
+  KaoTiBi
+
+  Created by Stoull Hut on 22/02/2017.
+  Copyright © 2017 CCApril. All rights reserved.
+*/
+
+/* Use to express cancel operaton */
+"Confirm" = "确定";   // 确定
+"Cancel" = "取消";    // 取消
+"Delete" = "删除";    // 删除
+"Ok" = "好的";        // 好的
+"Successful" = "成功";// 成功
+"Failed" = "失败";    // 失败
+"Camera" = "相机";    // 相机
+"Hint" = "提示";      // 提示
+"Back" = "返回";      // 返回
+"Share" = "共享";     // 共享
+"Add" = "添加";       // 添加
+"Login" = "登录";     // 登录
+"Setting" = "设置";
+"Upload" = "上传";
+"None" = "无";
+"Done" = "完成";
+"More" = "更多";
+
+
+// TableBar
+"TableBar.documentManager" = "文档总管";
+"TableBar.shoot" = "拍摄";
+"TableBar.setting" = "设置";
+
+
+// 登录模块 Login
+"Login.loginProcess" = "正登录...";
+"Login.loginSucesssfull" = "登录成功";
+"Login.hintInputUserName" = "请输入登录名！";
+"Login.hintInputPassword" = "请输入密码！";
+
+"Login.modifyUserInfo" = "修改资料";
+"Login.register" = "注册";
+
+"Login.confirmModify" = "确认修改";
+"Login.realName" = "真实姓名:";
+"Login.birthday" = "生日:";
+"Login.gender" = "性别:";
+"Login.address" = "住址:";
+"Login.school" = "学校:";
+"Login.ocupation" = "职业:";
+
+
+"Login.processModify" = "正修改...";
+"Login.modifyUserInfoSuccessful" = "修改成功！";
+"Login.nicknameCantEmpty" = "昵称不能为空哦！";
+"Login.nicknameMaxCharacter" = "昵称只能小于20个字符哦！";
+"Login.PWCantEmpty" = "密码不能为空哦！";
+"Login.passwordStand" = "密码为6-20个字符，必须包含字母大小以及数字哦！";
+"Login.twicePasswordDiff" = "两次输入的密码不同哦！";
+"Login.emailCantEmpty" = "邮箱不能为空哦！";
+"Login.emailFormatError" = "邮箱地址不正确哦！";
+"Login.registerProcess" = "正注册...";
+"Login.registerSuccessful" = "注册成功！";
+"Login.verificationCodeSend" = "验证码已发送！";
+"Login.reGetVerification(59)" = "重新获取（59）";
+"Login.reGetVerification" = "重新获取";
+"Login.reGetVerificationAppendCountdown" = "重新获取（%ld）";
+
+
+"Login.findPassword" = "找回密码";
+"Login.userNameCantEmpty" = "用户名不能为空哦！";
+"Login.dontSupprotPhoneReset" = "暂不支持手机重置密码";
+"Login.onlySupportEmailSupprot" = "暂只支持邮箱找回密码，请输入注册的邮箱进行重置";
+"Login.know" = "知道了";
+"Login.dontSupportUserReset" = "暂不支持用户名重置密码";
+"Login.precoessVerificationInfor" = "正验证信息...";
+"Login.phoneNumberError" = "手机号码不正确！";
+
+
+"Login.modifyPassword" = "修改密码";
+"Login.currentPassword" = "原密码：";
+"Login.inputCurrentPW" = "请输入原密码";
+"Login.newpassword" = "新密码：";
+"Login.inpuNewpassword" = "新密码：";
+"Login.confirmNewpassword" = "确认新密码：";
+"Login.reinputNewPW" = "再次输入新密码";
+"Login.resetPassword" = "重置密码";
+"Login.verificationCode" = "验证码：";
+"Login.alreadySentVerificationCode" = "验证码已发至对应的注册邮箱";
+"Login.verificationCodeError" = "输入的验证码不正确哦！";
+"Login.processPassword" = "正修改密码...";
+"Login.modifyPWSucessful" = "修改成功,下次请用新密码登录！";
+"Login.processResetPW" = "正重置密码...";
+"Login.resetPWSucessful" = "重置成功";
+
+
+// Setting
+"Setting.putQRInFrame" = "请将二码码置于框内扫描";
+"Setting.QRScan" = "扫描";
+/* express user have not permission */
+"noPermission" = "没有访问权限";
+"appNeedAlbumPermission" = "请到设置里面，设置允许考题笔访问相册。";
+"Setting.activitySucessful" = "激话成功!";
+
+
+"Setting.isTrialUser" = "试用版本用户";
+"Setting.level0" = "当前等级: 0级";
+"Setting.currentLevel" = "当前等级: %ld级";
+"Setting.currentIsTrial" = "当前为试用版本";
+"Setting.goToRegister" = "是否登录／注册为正式用户？";
+"Setting.next" = "下次";
+"Setting.processLogout" = "正注销...";
+"Setting.logoutSuccessful" = "注销成功！";
+
+"Setting.myInformation" = "我的信息";
+"Setting.username" = "用户名:";
+"Setting.registerTime" = "注册时间:";
+"Setting.email" = "绑定邮箱:";
+"Setting.phone" = "绑定手机:";
+"Setting.modifyUserInfo" = "修改个人资料";
+
+"Setting.myPen" = "我的荧光笔";
+"Setting.getMyPenInfo" = "正获取荧光笔信息...";
+"Setting.getPenInforFailed" = "获取失败！";
+
+"Setting.aboutKaoTiBi" = "关于考题笔";
+"Setting.phone" = "手机：%@";
+"Setting.email" = "邮箱：%@";
+
+"Setting.notActivity" = "暂未激活";
+"Setting.leftTimeDetail" = "%ld天%ld时%ld分";
+"Setting.leftTime" = "剩余时间：";
+
+
+// DocumentManager
+"Doc.currentDirEmpty" = "当前目录没有文档哦！";
+"Doc.selectDirectory" = "选择文件夹";
+
+
+"Doc.Timeline" = "时间轴";
+"Doc.directory" = "文件目录";
+"Doc.originalPhoto" = "原图";
+"Doc.answerPhoto" = "答案";
+"Doc.questionPhoto" = "题目";
+
+"Doc.creatFolder" = "新建文件夹";
+"Doc.folderNameCantContainSpecailCH" = "文件夹名称不能含有特殊字符";
+"Doc.folderName" = "文件夹名";
+"Doc.havenoInputFolderName" = "未输入文件名字！";
+"Doc.haveSepcailCH" = "文件夹名称含有非法字符！";
+"Doc.existSameNameFolder" = "已存在同名的文件夹！";
+"Doc.haveSelectFolder" = "未选择文件夹";
+"Doc.deleteSucessful" = "删除成功!";
+
+
+// Shooting
+"Shoot.availablePen" = "当前可用笔：";
+"Shoot.noActivity" = "未激活";
+"Shoot.analyseMark" = "正分析%@标记...";
+"Shoot.noActivityCanUse" = "%@笔未激活，不可用！";
+
+
+"Shoot.getAName" = "给照片取个名字";
+"Shoot.inputPhotoName" = "输入照片名字";
+"Shoot.addPhotoDescrible" = "给照片添加描述";
+"Shoot.inpuPhotoDescrible" = "输入照片描述";
+
+
+"Shoot." = "当前可用笔：";
+"Shoot." = "当前可用笔：";
+"Shoot." = "当前可用笔：";
+"Shoot." = "当前可用笔：";
+"Shoot." = "当前可用笔：";
+"Shoot." = "当前可用笔：";
+"Shoot." = "当前可用笔：";
+"Shoot." = "当前可用笔：";
+
+
+

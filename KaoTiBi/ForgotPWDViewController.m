@@ -43,7 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"找回密码";
+    self.title = NSLocalizedString(@"Login.findPassword", @"找回密码");
     self.nextButton.layer.cornerRadius = 10;
     getResponseCount = 0;
     
@@ -119,26 +119,26 @@
 - (IBAction)nextResetPasswordAction:(id)sender {
     NSString *userName = [NSString removeBlankSpace:self.usernameTextField.text];
     if (userName.length == 0) {
-        [[HUD shareHUD] hintMessage:@"用户名不能为空哦！"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.userNameCantEmpty", @"用户名不能为空哦！")];
         return;
     }
     
     NSString *loginType;
     if ([HolomorphyValidate validatePhoneNumberWithText:userName]) {
         loginType = @"3";
-        [LBAlert showAlertWithTitle:@"暂不支持手机重置密码" message:@"暂只支持邮箱找回密码，请输入注册的邮箱进行重置" completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
-        } cancelActionTitle:@"知道了" otherActionTitles:nil];
+        [LBAlert showAlertWithTitle:NSLocalizedString(@"Login.dontSupprotPhoneReset", @"暂不支持手机重置密码") message:NSLocalizedString(@"Login.onlySupportEmailSupprot", @"暂只支持邮箱找回密码，请输入注册的邮箱进行重置") completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
+        } cancelActionTitle:NSLocalizedString(@"Login.know", @"知道了") otherActionTitles:nil];
         return;
     }else if ([HolomorphyValidate validateEmailWithText:userName]){
         loginType = @"2";
     }else{
         loginType = @"1";
-        [LBAlert showAlertWithTitle:@"暂不支持用户名重置密码" message:@"暂只支持邮箱找回密码，请输入注册的邮箱进行重置" completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
-        } cancelActionTitle:@"知道了" otherActionTitles:nil];
+        [LBAlert showAlertWithTitle:NSLocalizedString(@"Login.dontSupportUserReset", @"暂不支持用户名重置密码") message:NSLocalizedString(@"Login.onlySupportEmailSupprot", @"暂只支持邮箱找回密码，请输入注册的邮箱进行重置") completionBlock:^(NSUInteger actionIndex, UIAlertAction *alertAction) {
+        } cancelActionTitle:NSLocalizedString(@"Login.findPassword", @"知道了") otherActionTitles:nil];
         return;
     }
     
-    [[HUD shareHUD] showActivityWithText:@"正验证信息..."];
+    [[HUD shareHUD] showActivityWithText:NSLocalizedString(@"Login.precoessVerificationInfor", @"正验证信息...")];
     [KTBBaseAPI getForgetPassInfoWithUserName:userName successful:^(kTBAPIResponseStatus status, NSString * _Nullable emsg, NSDictionary * _Nullable resDic) {
         if (kTBAPIResponseStatusSuccessful == status) {
             [[HUD shareHUD] hidden];
@@ -194,7 +194,7 @@
     self.phoneNumberTextField.text = phoneNumber;
     BOOL isPhoneNumberValidate = [HolomorphyValidate validatePhoneNumberWithText:phoneNumber];
     if (!isPhoneNumberValidate) {
-        [[HUD shareHUD] hintMessage:@"手机号码不正确！"];
+        [[HUD shareHUD] hintMessage:NSLocalizedString(@"Login.phoneNumberError", @"手机号码不正确！")];
         return;
     }
     
@@ -210,7 +210,7 @@
     //            [[HUD shareHUD] hintMessage:@"验证码已发送！"];
     kCountdownTime = 60;
     [self.verificationTimer fire];
-    [self.verificationCodeButton setTitle:@"重新获取（59）" forState:UIControlStateNormal];
+    [self.verificationCodeButton setTitle:NSLocalizedString(@"Login.reGetVerification(59)", @"重新获取（59）") forState:UIControlStateNormal];
     self.verificationCodeButton.enabled = NO;
     //        }else{
     //            [[LPPopup shareLPPopup] hintLabel:message];
@@ -231,11 +231,11 @@
 - (void)upDateCountdown:(NSTimer *)timer{
     if (kCountdownTime-- < 1) {
         self.verificationCodeButton.enabled = YES;
-        [self.verificationCodeButton setTitle:@"重新获取" forState:UIControlStateNormal];
+        [self.verificationCodeButton setTitle:NSLocalizedString(@"Login.reGetVerification", @"重新获取") forState:UIControlStateNormal];
         [self.verificationTimer invalidate];
         self.verificationTimer = nil;
     }else{
-        NSString *timeStr = [NSString stringWithFormat:@"重新获取（%ld）",kCountdownTime];
+        NSString *timeStr = [NSString stringWithFormat:NSLocalizedString(@"Login.reGetVerificationAppendCountdown", @"重新获取（%ld）"),kCountdownTime];
         [self.verificationCodeButton setTitle:timeStr forState:UIControlStateNormal];
         self.verificationCodeButton.titleLabel.text = timeStr;
     }

@@ -46,7 +46,7 @@
     self.frame = CGRectMake(0, mainScreenRect.size.height, keyboardRect.size.width, 0);
     if (_inputDoneButton == nil) {
         _inputDoneButton = [[UIButton alloc] initWithFrame:CGRectMake(mainScreenRect.size.width - 55,0, 48, 30)];
-        [_inputDoneButton setTitle:@"完成" forState:UIControlStateNormal];
+        [_inputDoneButton setTitle:NSLocalizedString(@"Done", @"完成") forState:UIControlStateNormal];
         _inputDoneButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_inputDoneButton setTitleColor:kThemeColor forState:UIControlStateNormal];
         [_inputDoneButton addTarget:self action:@selector(inputDoneButtonClick:) forControlEvents:UIControlEventTouchUpInside];
