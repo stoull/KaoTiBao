@@ -1,7 +1,158 @@
-/* 
-  Localizable.strings
-  KaoTiBi
+/*
+ Localizable.strings
+ KaoTiBi
+ 
+ Created by Stoull Hut on 22/02/2017.
+ Copyright © 2017 CCApril. All rights reserved.
+ */
 
-  Created by Stoull Hut on 22/02/2017.
-  Copyright © 2017 CCApril. All rights reserved.
-*/
+/* Use to express cancel operaton */
+"Confirm" = "Confirm";   // 确定
+"Cancel" = "Cancel";    // 取消
+"Delete" = "Delete";    // 删除
+"Ok" = "OK";        // 好的
+"Successful" = "Successful";// 成功
+"Failed" = "Failure";    // 失败
+"Camera" = "Camera";    // 相机
+"Hint" = "Hint";      // 提示
+"Back" = "Back";      // 返回
+"Share" = "Share";     // 共享
+"Add" = "Add";       // 添加
+"Login" = "Login";     // 登录
+"Setting" = "Setting";
+"Upload" = "Upload";
+"None" = "None";
+"Done" = "Done";
+"More" = "More";
+
+// TableBar
+"TableBar.documentManager" = "Manager";         //文档总管"
+"TableBar.shoot" = "Shoot";                     //"拍摄";
+"TableBar.setting" = "Setting";                 //"设置";
+
+// 登录模块 Login
+"Login.loginProcess" = "Login...";
+"Login.loginSucesssfull" = "Login Successful";  //"登录成功";
+"Login.hintInputUserName" = "Please enter your username"; //"请输入登录名！";
+"Login.hintInputPassword" = "Please enter your password"; //"请输入密码！";
+
+"Login.modifyUserInfo" = "Modify information"; //"修改资料";
+"Login.register" = "Register"; //"注册";
+
+"Login.confirmModify" = "Confirm"; //"确认修改";
+"Login.realName" = "Real name"; //"真实姓名:";
+"Login.birthday" = "Birthday:"; //"生日:";
+"Login.gender" = "Gender:"; //"性别:";
+"Login.address" = "Address:"; //"住址:";
+"Login.school" = "School:"; //"学校:";
+"Login.ocupation" = "Occupation:"; //"职业:";
+
+"Login.processModify" = "Modifying..."; //"正修改...";
+"Login.modifyUserInfoSuccessful" = "Modify successful"; //"修改成功！";
+"Login.nicknameCantEmpty" = "Nickname can not be empty"; //"昵称不能为空哦！";
+"Login.nicknameMaxCharacter" = "Nickname no more than 20 Characters"; //"昵称只能小于20个字符哦！";
+"Login.PWCantEmpty" = "Password can not be emtpy"; //"密码不能为空哦！";
+"Login.passwordStand" = "Password is 6-20 characters, must contain letter and number!"; //"密码为6-20个字符，必须包含字母大小以及数字哦！";
+"Login.twicePasswordDiff" = "Enter the password twice differently!"; //"两次输入的密码不同哦！";
+"Login.emailCantEmpty" = "E-mail can not be empty!"; //"邮箱不能为空哦！";
+"Login.emailFormatError" = "E-mail address is incorrect!"; //"邮箱地址不正确哦！";
+"Login.registerProcess" = "Registering..."; //"正注册...";
+"Login.registerSuccessful" = "Registered successful"; //"注册成功！";
+"Login.verificationCodeSend" = "The verification code has been sent!"; //"验证码已发送！";
+"Login.reGetVerification(59)" = "Regain(59)"; //"重新获取（59）";
+"Login.reGetVerification" = "Regain"; //"重新获取";
+"Login.reGetVerificationAppendCountdown" = "Regain (%ld)"; //"重新获取（%ld）";
+
+"Login.findPassword" = "Retrieve the password"; //"找回密码";
+"Login.userNameCantEmpty" = "Username can not be empty"; //"用户名不能为空哦！";
+"Login.dontSupprotPhoneReset" = "Not support reset password by phone nubmer"; //"暂不支持手机重置密码";
+"Login.onlySupportEmailSupprot" = "Temporarily only support the mailbox to reset password, please enter the registered e-mail"; //"暂只支持邮箱找回密码，请输入注册的邮箱进行重置";
+"Login.know" = "OK"; //"知道了";
+"Login.dontSupportUserReset" = "Not support reset password by username"; //"暂不支持用户名重置密码";
+"Login.precoessVerificationInfor" = "Verification..."; //"正验证信息...";
+"Login.phoneNumberError" = "Phone number incorrect!"; //"手机号码不正确！";
+
+"Login.modifyPassword" = "Change Password"; //"修改密码";
+"Login.currentPassword" = "Original password:"; //"原密码：";
+"Login.inputCurrentPW" = "Enter the original password"; //"请输入原密码";
+"Login.newpassword" = "New password:"; //"新密码：";
+"Login.inpuNewpassword" = "New password"; //"新密码：";
+"Login.confirmNewpassword" = "Confirm password:"; //"确认新密码：";
+"Login.reinputNewPW" = "Re-enter the new password"; //"再次输入新密码";
+"Login.resetPassword" = "Reset Password"; //"重置密码";
+"Login.verificationCode" = "Verification Code:"; //"验证码：";
+"Login.alreadySentVerificationCode" = "The verification code has been sent ot the registered mailbox"; //"验证码已发至对应的注册邮箱";
+"Login.verificationCodeError" = "Verification code not correct"; //"输入的验证码不正确哦！";
+"Login.processPassword" = "Changing password ..."; //"正修改密码...";
+"Login.modifyPWSucessful" = "Modify successful, next tiime please login with new password!"; //"修改成功,下次请用新密码登录！";
+"Login.processResetPW" = "Reset password ..."; //"正重置密码...";
+"Login.resetPWSucessful" = "Reset successful"; //"重置成功";
+
+// Setting
+"Setting.putQRInFrame" = "Please put QR code in the box to scan"; //"请将二码码置于框内扫描";
+"Setting.QRScan" = "Scan"; //"扫描";
+/* express user have not permission */
+"noPermission" = "No access"; //"没有访问权限";
+"appNeedAlbumPermission" = "Please set to allow Magic pen access the album at Setting"; //"请到设置里面，设置允许考题笔访问相册。";
+"Setting.activitySucessful" = "Activate Sucessful"; //"激话成功!";
+
+"Setting.isTrialUser" = "On Trial"; //"试用版本用户";
+"Setting.level0" = "Current level: 0"; //"当前等级: 0级";
+"Setting.currentLevel" = "Current level: %ld"; //"当前等级: %ld级";
+"Setting.currentIsTrial" = "Current is trial version"; //"当前为试用版本";
+"Setting.goToRegister" = "Log in / Register as a regular user ?"; //"是否登录／注册为正式用户？";
+"Setting.next" = "Next time"; //"下次";
+"Setting.processLogout" = "Log out ..."; //"正注销...";
+"Setting.logoutSuccessful" = "Log out successful!"; //"注销成功！";
+
+"Setting.myInformation" = "My message"; //"我的信息";
+"Setting.username" = "Username"; //"用户名:";
+"Setting.registerTime" = "Registration time"; //"注册时间:";
+"Setting.email" = "Register e-mail"; //"绑定邮箱:";
+"Setting.phone" = "Register phone number"; //"绑定手机:";
+"Setting.modifyUserInfo" = "Eidt profile"; //"修改个人资料";
+
+"Setting.myPen" = "My Pen"; //"我的荧光笔";
+"Setting.getMyPenInfo" = "Get pen information..."; //"正获取荧光笔信息...";
+"Setting.getPenInforFailed" = "Get failed!"; //"获取失败！";
+
+"Setting.aboutKaoTiBi" = "About MagicPen"; //"关于考题笔";
+"Setting.phone" = "Phone: %@"; //"手机：%@";
+"Setting.email" = "E-mail :%@"; //"邮箱：%@";
+
+"Setting.notActivity" = "Not activated"; //"暂未激活";
+"Setting.leftTimeDetail" = "%ld Day %ld hour %ld Minute"; //"%ld天%ld时%ld分";
+"Setting.leftTime" = "Remaining time:"; //"剩余时间：";
+
+// DocumentManager
+"Doc.currentDirEmpty" = "No Document!"; //"当前目录没有文档哦！";
+"Doc.selectDirectory" = "Select folder"; //"选择文件夹";
+
+"Doc.Timeline" = "Time line"; //"时间轴";
+"Doc.directory" = "File directory"; //"文件目录";
+"Doc.originalPhoto" = "Original"; //"原图";
+"Doc.answerPhoto" = "Answer"; //"答案";
+"Doc.questionPhoto" = "Question"; //"题目";
+
+"Doc.creatFolder" = "New Folder"; //"新建文件夹";
+"Doc.folderNameCantContainSpecailCH" = "Folder name can not contain special characters"; //"文件夹名称不能含有特殊字符";
+"Doc.folderName" = "Folder name"; //"文件夹名";
+"Doc.havenoInputFolderName" = "Not file name!"; //"未输入文件名字！";
+"Doc.haveSepcailCH" = "Folder name contains illegal characters!"; //"文件夹名称含有非法字符！";
+"Doc.existSameNameFolder" = "Folders with the same name already exist"; //"已存在同名的文件夹！";
+"Doc.haveSelectFolder" = "No folder selected"; //"未选择文件夹";
+"Doc.deleteSucessful" = "Delete successful!"; //"删除成功!";
+
+// Shooting
+"Shoot.availablePen" = "Available :"; //"当前可用笔：";
+"Shoot.noActivity" = "Not Activated"; //"未激活";
+"Shoot.analyseMark" = "Analysis %@ mark"; //"正分析%@标记...";
+"Shoot.noActivityCanUse" = "%@ pen is not active, not available!"; //"%@笔未激活，不可用！";
+
+"Shoot.getAName" = "Give the photo a name"; //"给照片取个名字";
+"Shoot.inputPhotoName" = "Enter photo name"; //"输入照片名字";
+"Shoot.addPhotoDescrible" = "Add description to photo"; //"给照片添加描述";
+"Shoot.inpuPhotoDescrible" = "Enter photo description"; //"输入照片描述";
+
+
+

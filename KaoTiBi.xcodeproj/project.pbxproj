@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		959B43FB34801C8D7DDD4C28 /* libPods-KaoTiBiUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC1679230C7D444E33D8B00 /* libPods-KaoTiBiUITests.a */; };
+		C9059A021E5F2FD5002EE641 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9059A041E5F2FD5002EE641 /* LogInViewController.xib */; };
+		C9059A0B1E5F2FE1002EE641 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9059A0D1E5F2FE1002EE641 /* SignInViewController.xib */; };
+		C9059A141E5F2FEC002EE641 /* ForgotPWDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9059A161E5F2FEC002EE641 /* ForgotPWDViewController.xib */; };
+		C9059A1D1E5F2FF5002EE641 /* ResetPWDController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9059A1F1E5F2FF5002EE641 /* ResetPWDController.xib */; };
 		C949E0151E52002300858BEB /* DocMgrCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C949E0141E52002300858BEB /* DocMgrCellHeaderView.m */; };
 		C949E0191E5208AD00858BEB /* DocCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C949E0171E5208AD00858BEB /* DocCollectionViewCell.m */; };
 		C949E01A1E5208AD00858BEB /* DocCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C949E0181E5208AD00858BEB /* DocCollectionViewCell.xib */; };
@@ -58,9 +62,7 @@
 		C9DB7AE81E1A852100591F93 /* ShootingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB7AE61E1A852100591F93 /* ShootingController.m */; };
 		C9DB7AE91E1A852100591F93 /* ShootingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DB7AE71E1A852100591F93 /* ShootingController.xib */; };
 		C9E60BF61E1E82B700E0CE73 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E60BF41E1E82B700E0CE73 /* SignInViewController.m */; };
-		C9E60BF71E1E82B700E0CE73 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E60BF51E1E82B700E0CE73 /* SignInViewController.xib */; };
 		C9E60BFB1E1E82C900E0CE73 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E60BF91E1E82C900E0CE73 /* LogInViewController.m */; };
-		C9E60BFC1E1E82C900E0CE73 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E60BFA1E1E82C900E0CE73 /* LogInViewController.xib */; };
 		CE0A9AA1084EACE4E2210084 /* libPods-KaoTiBiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74957A548365B8B28206DD07 /* libPods-KaoTiBiTests.a */; };
 		D0AE0E2BA090F1BB82A507F5 /* libPods-KaoTiBi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBA9D73CEF343154F64E3A1 /* libPods-KaoTiBi.a */; };
 		E408DF931E1E4C4900F1CC82 /* DocumentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E408DF911E1E4C4900F1CC82 /* DocumentTableViewController.m */; };
@@ -136,9 +138,7 @@
 		E4AB1EAA1E20D2CC00DE1804 /* UIImage+ChangeSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1EA51E20D2CC00DE1804 /* UIImage+ChangeSize.m */; };
 		E4AB1EAB1E20D2CC00DE1804 /* UIImage+UICycle.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1EA71E20D2CC00DE1804 /* UIImage+UICycle.m */; };
 		E4AB1EAF1E20D35800DE1804 /* ForgotPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1EAD1E20D35800DE1804 /* ForgotPWDViewController.m */; };
-		E4AB1EB01E20D35800DE1804 /* ForgotPWDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AB1EAE1E20D35800DE1804 /* ForgotPWDViewController.xib */; };
 		E4AB1EB41E20D38500DE1804 /* ResetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1EB21E20D38500DE1804 /* ResetPWDController.m */; };
-		E4AB1EB51E20D38500DE1804 /* ResetPWDController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AB1EB31E20D38500DE1804 /* ResetPWDController.xib */; };
 		E4AB1EB81E20E0CE00DE1804 /* SetingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1EB71E20E0CE00DE1804 /* SetingTableViewController.m */; };
 		E4AB1EBC1E20F36000DE1804 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AB1EBA1E20F36000DE1804 /* CommonViewController.m */; };
 		E4AB1EBD1E20F36000DE1804 /* CommonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AB1EBB1E20F36000DE1804 /* CommonViewController.xib */; };
@@ -204,6 +204,22 @@
 		74957A548365B8B28206DD07 /* libPods-KaoTiBiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KaoTiBiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D21E4179586C8BAC62850B /* Pods-KaoTiBiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaoTiBiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KaoTiBiTests/Pods-KaoTiBiTests.release.xcconfig"; sourceTree = "<group>"; };
 		C88C47D45B2168789FD56FDB /* Pods-KaoTiBiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaoTiBiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KaoTiBiUITests/Pods-KaoTiBiUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C9059A031E5F2FD5002EE641 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LogInViewController.xib; sourceTree = "<group>"; };
+		C9059A061E5F2FD8002EE641 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LogInViewController.strings"; sourceTree = "<group>"; };
+		C9059A081E5F2FDA002EE641 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LogInViewController.strings"; sourceTree = "<group>"; };
+		C9059A0A1E5F2FDB002EE641 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LogInViewController.strings; sourceTree = "<group>"; };
+		C9059A0C1E5F2FE1002EE641 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SignInViewController.xib; sourceTree = "<group>"; };
+		C9059A0F1E5F2FE4002EE641 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SignInViewController.strings; sourceTree = "<group>"; };
+		C9059A111E5F2FE5002EE641 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SignInViewController.strings"; sourceTree = "<group>"; };
+		C9059A131E5F2FE7002EE641 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SignInViewController.strings"; sourceTree = "<group>"; };
+		C9059A151E5F2FEC002EE641 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgotPWDViewController.xib; sourceTree = "<group>"; };
+		C9059A181E5F2FEE002EE641 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ForgotPWDViewController.strings; sourceTree = "<group>"; };
+		C9059A1A1E5F2FEF002EE641 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ForgotPWDViewController.strings"; sourceTree = "<group>"; };
+		C9059A1C1E5F2FF0002EE641 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ForgotPWDViewController.strings"; sourceTree = "<group>"; };
+		C9059A1E1E5F2FF5002EE641 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ResetPWDController.xib; sourceTree = "<group>"; };
+		C9059A211E5F2FF8002EE641 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ResetPWDController.strings; sourceTree = "<group>"; };
+		C9059A231E5F2FF9002EE641 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ResetPWDController.strings"; sourceTree = "<group>"; };
+		C9059A251E5F2FFA002EE641 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ResetPWDController.strings"; sourceTree = "<group>"; };
 		C949E0131E52002300858BEB /* DocMgrCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocMgrCellHeaderView.h; sourceTree = "<group>"; };
 		C949E0141E52002300858BEB /* DocMgrCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocMgrCellHeaderView.m; sourceTree = "<group>"; };
 		C949E0161E5208AD00858BEB /* DocCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocCollectionViewCell.h; sourceTree = "<group>"; };
@@ -304,10 +320,8 @@
 		C9DB7AE71E1A852100591F93 /* ShootingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShootingController.xib; sourceTree = "<group>"; };
 		C9E60BF31E1E82B700E0CE73 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		C9E60BF41E1E82B700E0CE73 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		C9E60BF51E1E82B700E0CE73 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		C9E60BF81E1E82C900E0CE73 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		C9E60BF91E1E82C900E0CE73 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
-		C9E60BFA1E1E82C900E0CE73 /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
 		E408DF901E1E4C4900F1CC82 /* DocumentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentTableViewController.h; sourceTree = "<group>"; };
 		E408DF911E1E4C4900F1CC82 /* DocumentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentTableViewController.m; sourceTree = "<group>"; };
 		E408DF921E1E4C4900F1CC82 /* DocumentTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentTableViewController.xib; sourceTree = "<group>"; };
@@ -415,10 +429,8 @@
 		E4AB1EA71E20D2CC00DE1804 /* UIImage+UICycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UICycle.m"; sourceTree = "<group>"; };
 		E4AB1EAC1E20D35800DE1804 /* ForgotPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPWDViewController.h; sourceTree = "<group>"; };
 		E4AB1EAD1E20D35800DE1804 /* ForgotPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPWDViewController.m; sourceTree = "<group>"; };
-		E4AB1EAE1E20D35800DE1804 /* ForgotPWDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPWDViewController.xib; sourceTree = "<group>"; };
 		E4AB1EB11E20D38500DE1804 /* ResetPWDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPWDController.h; sourceTree = "<group>"; };
 		E4AB1EB21E20D38500DE1804 /* ResetPWDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPWDController.m; sourceTree = "<group>"; };
-		E4AB1EB31E20D38500DE1804 /* ResetPWDController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPWDController.xib; sourceTree = "<group>"; };
 		E4AB1EB61E20E0CE00DE1804 /* SetingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingTableViewController.h; sourceTree = "<group>"; };
 		E4AB1EB71E20E0CE00DE1804 /* SetingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingTableViewController.m; sourceTree = "<group>"; };
 		E4AB1EB91E20F36000DE1804 /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
@@ -925,16 +937,16 @@
 			children = (
 				C9E60BF81E1E82C900E0CE73 /* LogInViewController.h */,
 				C9E60BF91E1E82C900E0CE73 /* LogInViewController.m */,
-				C9E60BFA1E1E82C900E0CE73 /* LogInViewController.xib */,
+				C9059A041E5F2FD5002EE641 /* LogInViewController.xib */,
 				C9E60BF31E1E82B700E0CE73 /* SignInViewController.h */,
 				C9E60BF41E1E82B700E0CE73 /* SignInViewController.m */,
-				C9E60BF51E1E82B700E0CE73 /* SignInViewController.xib */,
+				C9059A0D1E5F2FE1002EE641 /* SignInViewController.xib */,
 				E4AB1EAC1E20D35800DE1804 /* ForgotPWDViewController.h */,
 				E4AB1EAD1E20D35800DE1804 /* ForgotPWDViewController.m */,
-				E4AB1EAE1E20D35800DE1804 /* ForgotPWDViewController.xib */,
+				C9059A161E5F2FEC002EE641 /* ForgotPWDViewController.xib */,
 				E4AB1EB11E20D38500DE1804 /* ResetPWDController.h */,
 				E4AB1EB21E20D38500DE1804 /* ResetPWDController.m */,
-				E4AB1EB31E20D38500DE1804 /* ResetPWDController.xib */,
+				C9059A1F1E5F2FF5002EE641 /* ResetPWDController.xib */,
 				C98889B31E1FEB430012EBC7 /* GateControl.h */,
 				C98889B41E1FEB430012EBC7 /* GateControl.m */,
 				E41D1AB61E457A3E00FE1FC2 /* Model */,
@@ -1589,7 +1601,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9E60BF71E1E82B700E0CE73 /* SignInViewController.xib in Resources */,
+				C9059A0B1E5F2FE1002EE641 /* SignInViewController.xib in Resources */,
 				E4395ABE1E26290200965124 /* ImageSelectedSmallOn.png in Resources */,
 				C99D24A81E57F256004FFF23 /* LBFileIconCell.xib in Resources */,
 				E4AD88411E55BB5300D91662 /* LBBaseEmptyBGView.xib in Resources */,
@@ -1632,11 +1644,11 @@
 				C9CEF5341E5896900051F061 /* example2.jpg in Resources */,
 				E4395ABD1E26290200965124 /* ImageSelectedSmallOff@3x.png in Resources */,
 				E408DF991E1E4CB000F1CC82 /* DocumentCellTableViewCell.xib in Resources */,
-				E4AB1EB51E20D38500DE1804 /* ResetPWDController.xib in Resources */,
+				C9059A1D1E5F2FF5002EE641 /* ResetPWDController.xib in Resources */,
 				E4AD883B1E55A5BF00D91662 /* KTBSearchViewController.xib in Resources */,
 				E4395AC41E26290200965124 /* PlayButtonOverlayLargeTap.png in Resources */,
 				C977493B1E5818450013BCF3 /* penTableViewCell.xib in Resources */,
-				C9E60BFC1E1E82C900E0CE73 /* LogInViewController.xib in Resources */,
+				C9059A021E5F2FD5002EE641 /* LogInViewController.xib in Resources */,
 				E4AD88431E55BB7300D91662 /* LBSearchNoResultView.xib in Resources */,
 				C9DB7A9E1E18A2B300591F93 /* Main.storyboard in Resources */,
 				E4395AC21E26290200965124 /* PlayButtonOverlayLarge@2x.png in Resources */,
@@ -1652,7 +1664,7 @@
 				E4AC2F5E1E27686D00992E5B /* Shader2.fsh in Resources */,
 				C9DB7AE91E1A852100591F93 /* ShootingController.xib in Resources */,
 				E4395AD11E26290200965124 /* VideoOverlay@2x.png in Resources */,
-				E4AB1EB01E20D35800DE1804 /* ForgotPWDViewController.xib in Resources */,
+				C9059A141E5F2FEC002EE641 /* ForgotPWDViewController.xib in Resources */,
 				E4395ABA1E26290200965124 /* ImageSelectedOn@3x.png in Resources */,
 				E4395ACF1E26290200965124 /* UIBarButtonItemGrid@3x.png in Resources */,
 				E4395AFE1E262AB300965124 /* test4.jpg in Resources */,
@@ -1942,6 +1954,50 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C9059A041E5F2FD5002EE641 /* LogInViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9059A031E5F2FD5002EE641 /* Base */,
+				C9059A061E5F2FD8002EE641 /* zh-Hant */,
+				C9059A081E5F2FDA002EE641 /* zh-Hans */,
+				C9059A0A1E5F2FDB002EE641 /* en */,
+			);
+			name = LogInViewController.xib;
+			sourceTree = "<group>";
+		};
+		C9059A0D1E5F2FE1002EE641 /* SignInViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9059A0C1E5F2FE1002EE641 /* Base */,
+				C9059A0F1E5F2FE4002EE641 /* en */,
+				C9059A111E5F2FE5002EE641 /* zh-Hans */,
+				C9059A131E5F2FE7002EE641 /* zh-Hant */,
+			);
+			name = SignInViewController.xib;
+			sourceTree = "<group>";
+		};
+		C9059A161E5F2FEC002EE641 /* ForgotPWDViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9059A151E5F2FEC002EE641 /* Base */,
+				C9059A181E5F2FEE002EE641 /* en */,
+				C9059A1A1E5F2FEF002EE641 /* zh-Hans */,
+				C9059A1C1E5F2FF0002EE641 /* zh-Hant */,
+			);
+			name = ForgotPWDViewController.xib;
+			sourceTree = "<group>";
+		};
+		C9059A1F1E5F2FF5002EE641 /* ResetPWDController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9059A1E1E5F2FF5002EE641 /* Base */,
+				C9059A211E5F2FF8002EE641 /* en */,
+				C9059A231E5F2FF9002EE641 /* zh-Hans */,
+				C9059A251E5F2FFA002EE641 /* zh-Hant */,
+			);
+			name = ResetPWDController.xib;
+			sourceTree = "<group>";
+		};
 		C98EB7F11E5DBD1D00078CCE /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

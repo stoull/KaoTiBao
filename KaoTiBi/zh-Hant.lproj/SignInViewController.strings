@@ -1,0 +1,26 @@
+/* Class = "UILabel"; text = "Email："; ObjectID = "5cW-mj-nq4"; */
+"5cW-mj-nq4.text" = "Email：";
+
+/* Class = "UILabel"; text = "密碼："; ObjectID = "GBK-4b-mT5"; */
+"GBK-4b-mT5.text" = "密碼：";
+
+/* Class = "UILabel"; text = "昵稱："; ObjectID = "Yl6-ad-ApC"; */
+"Yl6-ad-ApC.text" = "昵稱：";
+
+/* Class = "UIButton"; normalTitle = "註冊"; ObjectID = "cZQ-51-MMd"; */
+"cZQ-51-MMd.normalTitle" = "註冊";
+
+/* Class = "UILabel"; text = "聯繫電話："; ObjectID = "did-PX-11N"; */
+"did-PX-11N.text" = "聯繫電話：";
+
+/* Class = "UILabel"; text = "真實姓名："; ObjectID = "fom-5F-RXT"; */
+"fom-5F-RXT.text" = "真實姓名：";
+
+/* Class = "UIButton"; normalTitle = "獲取驗證碼"; ObjectID = "ihH-7G-W6y"; */
+"ihH-7G-W6y.normalTitle" = "獲取驗證碼";
+
+/* Class = "UILabel"; text = "確認密碼："; ObjectID = "vSv-dd-ufK"; */
+"vSv-dd-ufK.text" = "確認密碼：";
+
+/* Class = "UILabel"; text = "驗證碼："; ObjectID = "xux-ZM-AlT"; */
+"xux-ZM-AlT.text" = "驗證碼：";

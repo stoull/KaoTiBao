@@ -1,0 +1,14 @@
+/* Class = "UILabel"; text = "登錄"; ObjectID = "JhL-23-4FB"; */
+"JhL-23-4FB.text" = "登錄";
+
+/* Class = "UITextField"; placeholder = "昵稱或Email"; ObjectID = "KzH-eb-dRr"; */
+"KzH-eb-dRr.placeholder" = "昵稱或Email";
+
+/* Class = "UILabel"; text = "登錄名："; ObjectID = "MEn-tc-HDE"; */
+"MEn-tc-HDE.text" = "登錄名：";
+
+/* Class = "UILabel"; text = "密碼："; ObjectID = "wlI-sT-tc5"; */
+"wlI-sT-tc5.text" = "密碼：";
+
+/* Class = "UIButton"; normalTitle = "登錄"; ObjectID = "xxG-9W-Nos"; */
+"xxG-9W-Nos.normalTitle" = "登錄";

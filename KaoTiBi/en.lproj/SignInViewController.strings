@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Email："; ObjectID = "5cW-mj-nq4"; */
+"5cW-mj-nq4.text" = "Email：";
+
+/* Class = "UILabel"; text = "密码："; ObjectID = "GBK-4b-mT5"; */
+"GBK-4b-mT5.text" = "Password：";
+
+/* Class = "UILabel"; text = "昵称："; ObjectID = "Yl6-ad-ApC"; */
+"Yl6-ad-ApC.text" = "Nick name：";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "cZQ-51-MMd"; */
+"cZQ-51-MMd.normalTitle" = "Regester";
+
+/* Class = "UILabel"; text = "联系电话："; ObjectID = "did-PX-11N"; */
+"did-PX-11N.text" = "Phone：";
+
+/* Class = "UILabel"; text = "真实姓名："; ObjectID = "fom-5F-RXT"; */
+"fom-5F-RXT.text" = "Real name：";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "ihH-7G-W6y"; */
+"ihH-7G-W6y.normalTitle" = "Verification code";
+
+/* Class = "UILabel"; text = "确认密码："; ObjectID = "vSv-dd-ufK"; */
+"vSv-dd-ufK.text" = "Confirm password：";
+
+/* Class = "UILabel"; text = "验证码："; ObjectID = "xux-ZM-AlT"; */
+"xux-ZM-AlT.text" = "Verification Code：";

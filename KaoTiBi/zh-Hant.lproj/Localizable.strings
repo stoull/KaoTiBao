@@ -1,7 +1,166 @@
-/* 
-  Localizable.strings
-  KaoTiBi
+/*
+ Localizable.strings
+ KaoTiBi
+ 
+ Created by Stoull Hut on 22/02/2017.
+ Copyright © 2017 CCApril. All rights reserved.
+ */
 
-  Created by Stoull Hut on 22/02/2017.
-  Copyright © 2017 CCApril. All rights reserved.
-*/
+/* Use to express cancel operaton */
+"Confirm" = "確定";   // 確定
+"Cancel" = "取消";    // 取消
+"Delete" = "刪除";    // 刪除
+"Ok" = "好的";        // 好的
+"Successful" = "成功";// 成功
+"Failed" = "失敗";    // 失敗
+"Camera" = "相機";    // 相機
+"Hint" = "提示";      // 提示
+"Back" = "返回";      // 返回
+"Share" = "共享";     // 共享
+"Add" = "添加";       // 添加
+"Login" = "登錄";     // 登錄
+"Setting" = "設置";
+"Upload" = "上傳";
+"None" = "無";
+"Done" = "完成";
+"More" = "更多";
+
+
+// TableBar
+"TableBar.documentManager" = "文檔總管";
+"TableBar.shoot" = "拍攝";
+"TableBar.setting" = "設置";
+
+
+// 登錄模塊 Login
+"Login.loginProcess" = "正登錄...";
+"Login.loginSucesssfull" = "登錄成功";
+"Login.hintInputUserName" = "請輸入登錄名！";
+"Login.hintInputPassword" = "請輸入密碼！";
+
+"Login.modifyUserInfo" = "修改資料";
+"Login.register" = "註冊";
+
+"Login.confirmModify" = "確認修改";
+"Login.realName" = "真實姓名:";
+"Login.birthday" = "生日:";
+"Login.gender" = "性別:";
+"Login.address" = "住址:";
+"Login.school" = "學校:";
+"Login.ocupation" = "職業:";
+
+
+"Login.processModify" = "正修改...";
+"Login.modifyUserInfoSuccessful" = "修改成功！";
+"Login.nicknameCantEmpty" = "昵稱不能為空哦！";
+"Login.nicknameMaxCharacter" = "昵稱只能小於20個字符哦！";
+"Login.PWCantEmpty" = "密碼不能為空哦！";
+"Login.passwordStand" = "密碼為6-20個字符，必須包含字母大小以及數字哦！";
+"Login.twicePasswordDiff" = "兩次輸入的密碼不同哦！";
+"Login.emailCantEmpty" = "郵箱不能為空哦！";
+"Login.emailFormatError" = "郵箱地址不正確哦！";
+"Login.registerProcess" = "正註冊...";
+"Login.registerSuccessful" = "註冊成功！";
+"Login.verificationCodeSend" = "驗證碼已發送！";
+"Login.reGetVerification(59)" = "重新獲取（59）";
+"Login.reGetVerification" = "重新獲取";
+"Login.reGetVerificationAppendCountdown" = "重新獲取（%ld）";
+
+
+"Login.findPassword" = "找回密碼";
+"Login.userNameCantEmpty" = "用戶名不能為空哦！";
+"Login.dontSupprotPhoneReset" = "暫不支持手機重置密碼";
+"Login.onlySupportEmailSupprot" = "暫只支持郵箱找回密碼，請輸入註冊的郵箱進行重置";
+"Login.know" = "知道了";
+"Login.dontSupportUserReset" = "暫不支持用戶名重置密碼";
+"Login.precoessVerificationInfor" = "正驗證信息...";
+"Login.phoneNumberError" = "手機號碼不正確！";
+
+
+"Login.modifyPassword" = "修改密碼";
+"Login.currentPassword" = "原密碼：";
+"Login.inputCurrentPW" = "請輸入原密碼";
+"Login.newpassword" = "新密碼：";
+"Login.inpuNewpassword" = "新密碼：";
+"Login.confirmNewpassword" = "確認新密碼：";
+"Login.reinputNewPW" = "再次輸入新密碼";
+"Login.resetPassword" = "重置密碼";
+"Login.verificationCode" = "驗證碼：";
+"Login.alreadySentVerificationCode" = "驗證碼已發至對應的註冊郵箱";
+"Login.verificationCodeError" = "輸入的驗證碼不正確哦！";
+"Login.processPassword" = "正修改密碼...";
+"Login.modifyPWSucessful" = "修改成功,下次請用新密碼登錄！";
+"Login.processResetPW" = "正重置密碼...";
+"Login.resetPWSucessful" = "重置成功";
+
+
+// Setting
+"Setting.putQRInFrame" = "請將二碼碼置於框內掃描";
+"Setting.QRScan" = "掃描";
+/* express user have not permission */
+"noPermission" = "沒有訪問權限";
+"appNeedAlbumPermission" = "請到設置裏面，設置允許考題筆訪問相冊。";
+"Setting.activitySucessful" = "激話成功!";
+
+
+"Setting.isTrialUser" = "試用版本用戶";
+"Setting.level0" = "當前等級: 0級";
+"Setting.currentLevel" = "當前等級: %ld級";
+"Setting.currentIsTrial" = "當前為試用版本";
+"Setting.goToRegister" = "是否登錄／註冊為正式用戶？";
+"Setting.next" = "下次";
+"Setting.processLogout" = "正註銷...";
+"Setting.logoutSuccessful" = "註銷成功！";
+
+"Setting.myInformation" = "我的信息";
+"Setting.username" = "用戶名:";
+"Setting.registerTime" = "註冊時間:";
+"Setting.email" = "綁定郵箱:";
+"Setting.phone" = "綁定手機:";
+"Setting.modifyUserInfo" = "修改個人資料";
+
+"Setting.myPen" = "我的熒光筆";
+"Setting.getMyPenInfo" = "正獲取熒光筆信息...";
+"Setting.getPenInforFailed" = "獲取失敗！";
+
+"Setting.aboutKaoTiBi" = "關於考題筆";
+"Setting.phone" = "手機：%@";
+"Setting.email" = "郵箱：%@";
+
+"Setting.notActivity" = "暫未激活";
+"Setting.leftTimeDetail" = "%ld天%ld時%ld分";
+"Setting.leftTime" = "剩餘時間：";
+
+
+// DocumentManager
+"Doc.currentDirEmpty" = "當前目錄沒有文檔哦！";
+"Doc.selectDirectory" = "選擇文件夾";
+
+
+"Doc.Timeline" = "時間軸";
+"Doc.directory" = "文件目錄";
+"Doc.originalPhoto" = "原圖";
+"Doc.answerPhoto" = "答案";
+"Doc.questionPhoto" = "題目";
+
+"Doc.creatFolder" = "新建文件夾";
+"Doc.folderNameCantContainSpecailCH" = "文件夾名稱不能含有特殊字符";
+"Doc.folderName" = "文件夾名";
+"Doc.havenoInputFolderName" = "未輸入文件名字！";
+"Doc.haveSepcailCH" = "文件夾名稱含有非法字符！";
+"Doc.existSameNameFolder" = "已存在同名的文件夾！";
+"Doc.haveSelectFolder" = "未選擇文件夾";
+"Doc.deleteSucessful" = "刪除成功!";
+
+
+// Shooting
+"Shoot.availablePen" = "當前可用筆：";
+"Shoot.noActivity" = "未激活";
+"Shoot.analyseMark" = "正分析%@標記...";
+"Shoot.noActivityCanUse" = "%@筆未激活，不可用！";
+
+
+"Shoot.getAName" = "給照片取個名字";
+"Shoot.inputPhotoName" = "輸入照片名字";
+"Shoot.addPhotoDescrible" = "給照片添加描述";
+"Shoot.inpuPhotoDescrible" = "輸入照片描述";

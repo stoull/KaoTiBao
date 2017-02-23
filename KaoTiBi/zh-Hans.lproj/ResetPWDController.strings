@@ -1,0 +1,21 @@
+
+/* Class = "UITextField"; placeholder = "请再次输入新密码"; ObjectID = "7Wq-6K-Tn7"; */
+"7Wq-6K-Tn7.placeholder" = "请再次输入新密码";
+
+/* Class = "UILabel"; text = "验证码："; ObjectID = "7oO-pQ-96Q"; */
+"7oO-pQ-96Q.text" = "验证码：";
+
+/* Class = "UITextField"; placeholder = "验证码已发至对应的注册邮箱"; ObjectID = "9St-va-SqW"; */
+"9St-va-SqW.placeholder" = "验证码已发至对应的注册邮箱";
+
+/* Class = "UILabel"; text = "新密码："; ObjectID = "BW4-LW-MRV"; */
+"BW4-LW-MRV.text" = "新密码：";
+
+/* Class = "UIButton"; normalTitle = "重置密码"; ObjectID = "Gyf-d6-8Qd"; */
+"Gyf-d6-8Qd.normalTitle" = "重置密码";
+
+/* Class = "UILabel"; text = "确认新密码："; ObjectID = "QVd-0Y-CKq"; */
+"QVd-0Y-CKq.text" = "确认新密码：";
+
+/* Class = "UITextField"; placeholder = "请输入新密码"; ObjectID = "jUm-hv-lnX"; */
+"jUm-hv-lnX.placeholder" = "请输入新密码";

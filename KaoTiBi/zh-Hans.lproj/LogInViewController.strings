@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "登录"; ObjectID = "JhL-23-4FB"; */
+"JhL-23-4FB.text" = "登录";
+
+/* Class = "UITextField"; placeholder = "昵称或Email"; ObjectID = "KzH-eb-dRr"; */
+"KzH-eb-dRr.placeholder" = "昵称或Email";
+
+/* Class = "UILabel"; text = "登录名："; ObjectID = "MEn-tc-HDE"; */
+"MEn-tc-HDE.text" = "登录名：";
+
+/* Class = "UILabel"; text = "密码："; ObjectID = "wlI-sT-tc5"; */
+"wlI-sT-tc5.text" = "密码：";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "xxG-9W-Nos"; */
+"xxG-9W-Nos.normalTitle" = "登录";
