@@ -21,7 +21,7 @@
 "ihH-7G-W6y.normalTitle" = "Verification code";
 
 /* Class = "UILabel"; text = "确认密码："; ObjectID = "vSv-dd-ufK"; */
-"vSv-dd-ufK.text" = "Confirm password：";
+"vSv-dd-ufK.text" = "Re-Password：";
 
 /* Class = "UILabel"; text = "验证码："; ObjectID = "xux-ZM-AlT"; */
 "xux-ZM-AlT.text" = "Verification Code：";

@@ -92,6 +92,9 @@
 "Login.modifyPWSucessful" = "修改成功,下次請用新密碼登錄！";
 "Login.processResetPW" = "正重置密碼...";
 "Login.resetPWSucessful" = "重置成功";
+"Login.forgetpassword" = "忘記密碼";
+"Login.noaccountGoRegister" = "沒有賬號？去註冊";
+"Login.trial" = "試用";
 
 
 // Setting
@@ -164,3 +167,6 @@
 "Shoot.inputPhotoName" = "輸入照片名字";
 "Shoot.addPhotoDescrible" = "給照片添加描述";
 "Shoot.inpuPhotoDescrible" = "輸入照片描述";
+
+"Search.begainSearch" = "點擊【搜索】按鈕進行搜索！";
+"Search.noresult" = "沒有搜索到任務結果哦！";

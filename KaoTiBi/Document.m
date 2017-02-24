@@ -32,7 +32,7 @@
         dateformatter.dateFormat = @"yyyy";
         _identifierYear = [dateformatter stringFromDate:date];
         
-        _folderName = @"我的文档";
+        _folderName = @"My Documents";
         
         dateformatter.dateFormat = @"yyyy-MM";
         _identifierMonth = [dateformatter stringFromDate:date];

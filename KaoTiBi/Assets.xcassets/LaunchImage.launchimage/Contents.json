@@ -2,60 +2,60 @@
   "images" : [
     {
       "extent" : "full-screen",
-      "orientation" : "portrait",
       "idiom" : "iphone",
+      "subtype" : "736h",
       "filename" : "KaoTiBiLaunchiPhonePortraitiOS89_414x736pt@3x.png",
       "minimum-system-version" : "8.0",
-      "subtype" : "736h",
+      "orientation" : "portrait",
       "scale" : "3x"
     },
     {
       "extent" : "full-screen",
-      "orientation" : "portrait",
       "idiom" : "iphone",
+      "subtype" : "667h",
       "filename" : "KaoTiBiLaunchiPhonePortraitiOS89_375x667pt@2x.png",
       "minimum-system-version" : "8.0",
-      "subtype" : "667h",
+      "orientation" : "portrait",
       "scale" : "2x"
     },
     {
       "extent" : "full-screen",
-      "orientation" : "portrait",
       "idiom" : "iphone",
       "filename" : "KaoTiBiLaunchiPhonePortraitiOS789_320x480pt@2x.png",
       "minimum-system-version" : "7.0",
-      "scale" : "2x"
+      "scale" : "2x",
+      "orientation" : "portrait"
     },
     {
       "extent" : "full-screen",
-      "orientation" : "portrait",
       "idiom" : "iphone",
+      "subtype" : "retina4",
       "filename" : "KaoTiBiLaunchiPhonePortraitiOS789_320x568pt@2x.png",
       "minimum-system-version" : "7.0",
-      "subtype" : "retina4",
+      "orientation" : "portrait",
       "scale" : "2x"
     },
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "filename" : "KaoTiBiLaunchiPhonePortraitiOS56_320x480pt.png",
-      "orientation" : "portrait",
-      "scale" : "1x"
+      "scale" : "1x",
+      "orientation" : "portrait"
     },
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "filename" : "KaoTiBiLaunchiPhonePortraitiOS56_320x480pt@2x.png",
-      "orientation" : "portrait",
-      "scale" : "2x"
+      "scale" : "2x",
+      "orientation" : "portrait"
     },
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "filename" : "KaoTiBiLaunchiPhonePortraitiOS56_320x568pt@2x.png",
+      "scale" : "2x",
       "subtype" : "retina4",
-      "orientation" : "portrait",
-      "scale" : "2x"
+      "orientation" : "portrait"
     }
   ],
   "info" : {

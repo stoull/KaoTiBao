@@ -151,13 +151,13 @@
                 break;
             case 3:
             {
-                cell.titleName.text = NSLocalizedString(@"Setting.email", @"绑定邮箱:");
+                cell.titleName.text = NSLocalizedString(@"Setting.emailNoAppend", @"绑定邮箱:");
                 cell.valueLabel.text = self.currentUser.email;
             }
                 break;
             case 4:
             {
-                cell.titleName.text = NSLocalizedString(@"Setting.phone", @"绑定手机:");
+                cell.titleName.text = NSLocalizedString(@"Setting.phoneNoAppend", @"绑定手机:");
                 cell.valueLabel.text = self.currentUser.phoneNumber;
             }
                 break;

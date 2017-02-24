@@ -114,7 +114,6 @@
     //获取笔信息
     [self getPenInformation];
     
-    [NSThread sleepForTimeInterval:2.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

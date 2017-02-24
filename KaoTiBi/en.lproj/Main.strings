@@ -3,25 +3,25 @@
 "1u6-2V-ff4.headerTitle" = "Section-1";
 
 /* Class = "UILabel"; text = "我的等级"; ObjectID = "6Dx-fY-1uj"; */
-"6Dx-fY-1uj.text" = "我的等级";
+"6Dx-fY-1uj.text" = "My level";
 
 /* Class = "UITableViewSection"; headerTitle = "Section-2"; ObjectID = "6zk-3e-tuG"; */
 "6zk-3e-tuG.headerTitle" = "Section-2";
 
 /* Class = "UILabel"; text = "提笔绘江山"; ObjectID = "bjh-Ao-wBL"; */
-"bjh-Ao-wBL.text" = "提笔绘江山";
+"bjh-Ao-wBL.text" = "Trail";
 
 /* Class = "UILabel"; text = "扫描激活"; ObjectID = "cQF-F6-UH2"; */
-"cQF-F6-UH2.text" = "扫描激活";
+"cQF-F6-UH2.text" = "QR Scan Activation";
 
 /* Class = "UILabel"; text = "档案迁移"; ObjectID = "jRR-as-r3y"; */
-"jRR-as-r3y.text" = "档案迁移";
+"jRR-as-r3y.text" = "File migration";
 
 /* Class = "UILabel"; text = "当前等级 ：3级"; ObjectID = "pfq-NG-GfP"; */
-"pfq-NG-GfP.text" = "当前等级 ：3级";
+"pfq-NG-GfP.text" = "Current level: 0";
 
 /* Class = "UILabel"; text = "关于"; ObjectID = "vXd-oz-pqx"; */
-"vXd-oz-pqx.text" = "关于";
+"vXd-oz-pqx.text" = "About";
 
 /* Class = "UILabel"; text = "我的荧光笔"; ObjectID = "zcU-sB-7k6"; */
-"zcU-sB-7k6.text" = "我的荧光笔";
+"zcU-sB-7k6.text" = "My pen";

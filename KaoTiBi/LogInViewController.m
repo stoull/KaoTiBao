@@ -25,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *trialButton;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *allToTopConstraint;
@@ -38,6 +41,41 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.loginButton.layer.cornerRadius = 10.0;
+    
+    
+    
+    NSString *forgotPWStr = NSLocalizedString(@"Login.forgetpassword", @"忘记密码");
+    NSString *noAccountStr = NSLocalizedString(@"Login.noaccountGoRegister", @"没有账号？去注册");
+    NSString *trialStr = NSLocalizedString(@"Login.trial", @"试用");
+
+    // underline Terms and condidtions
+    NSMutableAttributedString* forgotStrAtt = [[NSMutableAttributedString alloc] initWithString:forgotPWStr];
+    [forgotStrAtt addAttribute:NSUnderlineStyleAttributeName
+                      value:@(NSUnderlineStyleSingle)
+                      range:(NSRange){0,[forgotStrAtt length]}];
+    
+    //设置下划线颜色...
+    [forgotStrAtt addAttribute:NSUnderlineColorAttributeName value:kThemeColor range:(NSRange){0,[forgotStrAtt length]}];
+    [forgotStrAtt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:(NSRange){0, [forgotStrAtt length]}];
+    [self.forgotPasswordButton setAttributedTitle:forgotStrAtt forState:UIControlStateNormal];
+    
+    
+    // underline Terms and condidtions
+    NSMutableAttributedString* noAccountStrAtt = [[NSMutableAttributedString alloc] initWithString:noAccountStr];
+    [noAccountStrAtt addAttribute:NSUnderlineStyleAttributeName
+                      value:@(NSUnderlineStyleSingle)
+                      range:(NSRange){0,[noAccountStrAtt length]}];
+    [noAccountStrAtt addAttribute:NSUnderlineColorAttributeName value:kThemeColor range:(NSRange){0,[noAccountStrAtt length]}];
+    [noAccountStrAtt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:(NSRange){0, [noAccountStrAtt length]}];
+    [self.registerButton setAttributedTitle:noAccountStrAtt forState:UIControlStateNormal];
+    
+    NSMutableAttributedString* trailStrAtt = [[NSMutableAttributedString alloc] initWithString:trialStr];
+    [trailStrAtt addAttribute:NSUnderlineStyleAttributeName
+                            value:@(NSUnderlineStyleSingle)
+                            range:(NSRange){0,[trailStrAtt length]}];
+    [trailStrAtt addAttribute:NSUnderlineColorAttributeName value:kThemeColor range:(NSRange){0,[trailStrAtt length]}];
+    [trailStrAtt addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:(NSRange){0, [trailStrAtt length]}];
+    [self.trialButton setAttributedTitle:trailStrAtt forState:UIControlStateNormal];
     
     [NSThread sleepForTimeInterval:2.0];
 }

@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = NSLocalizedString(@"", @"关于考题笔");
+    self.title = NSLocalizedString(@"Setting.aboutKaoTiBi", @"关于考题笔");
     [self getSysTemInfor];
 }
 

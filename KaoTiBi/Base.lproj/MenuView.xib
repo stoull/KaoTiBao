@@ -24,7 +24,7 @@
                         <outlet property="delegate" destination="iN0-l3-epB" id="PM4-Sn-4sA"/>
                     </connections>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择显示方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpF-Rl-GaO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择布局方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpF-Rl-GaO">
                     <rect key="frame" x="16" y="20" width="120" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="lwP-m4-LcT"/>

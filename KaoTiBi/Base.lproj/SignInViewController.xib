@@ -41,12 +41,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yl6-ad-ApC">
-                    <rect key="frame" x="20" y="65" width="90" height="21"/>
+                    <rect key="frame" x="0.0" y="65" width="110" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="QMF-dg-t0B"/>
+                        <constraint firstAttribute="width" constant="110" id="QMF-dg-t0B"/>
                         <constraint firstAttribute="height" constant="21" id="n0p-e5-bdR"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -57,12 +57,12 @@
                     <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="真实姓名：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fom-5F-RXT">
-                    <rect key="frame" x="20" y="103" width="90" height="21"/>
+                    <rect key="frame" x="0.0" y="103" width="110" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="RXs-Qp-ZZU"/>
+                        <constraint firstAttribute="width" constant="110" id="RXs-Qp-ZZU"/>
                         <constraint firstAttribute="height" constant="21" id="rBg-LO-M1C"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -73,12 +73,12 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBK-4b-mT5">
-                    <rect key="frame" x="20" y="141" width="90" height="21"/>
+                    <rect key="frame" x="0.0" y="141" width="110" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="3vF-uD-asR"/>
+                        <constraint firstAttribute="width" constant="110" id="3vF-uD-asR"/>
                         <constraint firstAttribute="height" constant="21" id="dGK-pk-shO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -89,12 +89,12 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认密码：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSv-dd-ufK">
-                    <rect key="frame" x="20" y="179" width="90" height="21"/>
+                    <rect key="frame" x="0.0" y="179" width="110" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="ddK-fw-3TR"/>
-                        <constraint firstAttribute="width" constant="90" id="gXY-ou-qgr"/>
+                        <constraint firstAttribute="width" constant="110" id="gXY-ou-qgr"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -105,12 +105,12 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cW-mj-nq4">
-                    <rect key="frame" x="20" y="217" width="90" height="21"/>
+                    <rect key="frame" x="0.0" y="217" width="110" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="0ES-C7-lPq"/>
+                        <constraint firstAttribute="width" constant="110" id="0ES-C7-lPq"/>
                         <constraint firstAttribute="height" constant="21" id="FUG-lc-rWA"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -121,12 +121,12 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="did-PX-11N">
-                    <rect key="frame" x="20" y="255" width="90" height="21"/>
+                    <rect key="frame" x="0.0" y="255" width="110" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="4fW-KV-rHg"/>
-                        <constraint firstAttribute="width" constant="90" id="i4w-Xz-zye"/>
+                        <constraint firstAttribute="width" constant="110" id="i4w-Xz-zye"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -137,12 +137,12 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xux-ZM-AlT">
-                    <rect key="frame" x="20" y="296.5" width="90" height="21"/>
+                    <rect key="frame" x="0.0" y="296.5" width="110" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="fRq-3A-on3"/>
-                        <constraint firstAttribute="width" constant="90" id="w7L-dR-85j"/>
+                        <constraint firstAttribute="width" constant="110" id="w7L-dR-85j"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -247,7 +247,7 @@
                 <constraint firstItem="cZQ-51-MMd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="19G-SO-mDO"/>
                 <constraint firstItem="svc-0V-1ho" firstAttribute="top" secondItem="Odl-Pq-9VV" secondAttribute="bottom" constant="8" id="45C-Bc-GV0"/>
                 <constraint firstItem="Odl-Pq-9VV" firstAttribute="top" secondItem="AWY-Fp-CaF" secondAttribute="bottom" constant="8" id="4W7-l5-9pP"/>
-                <constraint firstItem="Yl6-ad-ApC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="5Ve-Sv-emN"/>
+                <constraint firstItem="Yl6-ad-ApC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Ve-Sv-emN"/>
                 <constraint firstItem="yKT-j5-gZW" firstAttribute="leading" secondItem="rXn-C9-bfB" secondAttribute="trailing" constant="4" id="5gk-cB-J3b"/>
                 <constraint firstItem="svc-0V-1ho" firstAttribute="centerY" secondItem="xux-ZM-AlT" secondAttribute="centerY" id="9hb-p5-6zb"/>
                 <constraint firstItem="AWY-Fp-CaF" firstAttribute="trailing" secondItem="L5M-aa-eDt" secondAttribute="trailing" id="Adv-yp-e3X"/>

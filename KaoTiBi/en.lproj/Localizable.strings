@@ -58,7 +58,7 @@
 "Login.emailFormatError" = "E-mail address is incorrect!"; //"邮箱地址不正确哦！";
 "Login.registerProcess" = "Registering..."; //"正注册...";
 "Login.registerSuccessful" = "Registered successful"; //"注册成功！";
-"Login.verificationCodeSend" = "The verification code has been sent!"; //"验证码已发送！";
+"Login.verificationCodeSend" = "Has been sent to email!"; //"验证码已发送！";
 "Login.reGetVerification(59)" = "Regain(59)"; //"重新获取（59）";
 "Login.reGetVerification" = "Regain"; //"重新获取";
 "Login.reGetVerificationAppendCountdown" = "Regain (%ld)"; //"重新获取（%ld）";
@@ -77,7 +77,7 @@
 "Login.inputCurrentPW" = "Enter the original password"; //"请输入原密码";
 "Login.newpassword" = "New password:"; //"新密码：";
 "Login.inpuNewpassword" = "New password"; //"新密码：";
-"Login.confirmNewpassword" = "Confirm password:"; //"确认新密码：";
+"Login.confirmNewpassword" = "Re-Password:"; //"确认新密码：";
 "Login.reinputNewPW" = "Re-enter the new password"; //"再次输入新密码";
 "Login.resetPassword" = "Reset Password"; //"重置密码";
 "Login.verificationCode" = "Verification Code:"; //"验证码：";
@@ -87,13 +87,16 @@
 "Login.modifyPWSucessful" = "Modify successful, next tiime please login with new password!"; //"修改成功,下次请用新密码登录！";
 "Login.processResetPW" = "Reset password ..."; //"正重置密码...";
 "Login.resetPWSucessful" = "Reset successful"; //"重置成功";
+"Login.forgetpassword" = "Forgot password";
+"Login.noaccountGoRegister" = "No account? Go register";
+"Login.trial" = "Trial";
 
 // Setting
 "Setting.putQRInFrame" = "Please put QR code in the box to scan"; //"请将二码码置于框内扫描";
 "Setting.QRScan" = "Scan"; //"扫描";
 /* express user have not permission */
 "noPermission" = "No access"; //"没有访问权限";
-"appNeedAlbumPermission" = "Please set to allow Magic pen access the album at Setting"; //"请到设置里面，设置允许考题笔访问相册。";
+"appNeedAlbumPermission" = "Please set to allow Magic Pen access the album at Setting"; //"请到设置里面，设置允许考题笔访问相册。";
 "Setting.activitySucessful" = "Activate Sucessful"; //"激话成功!";
 
 "Setting.isTrialUser" = "On Trial"; //"试用版本用户";
@@ -107,9 +110,9 @@
 
 "Setting.myInformation" = "My message"; //"我的信息";
 "Setting.username" = "Username"; //"用户名:";
-"Setting.registerTime" = "Registration time"; //"注册时间:";
-"Setting.email" = "Register e-mail"; //"绑定邮箱:";
-"Setting.phone" = "Register phone number"; //"绑定手机:";
+"Setting.registerTime" = "Registe time"; //"注册时间:";
+"Setting.email" = "E-mail"; //"绑定邮箱:";
+"Setting.phone" = "Number"; //"绑定手机:";
 "Setting.modifyUserInfo" = "Eidt profile"; //"修改个人资料";
 
 "Setting.myPen" = "My Pen"; //"我的荧光笔";
@@ -119,6 +122,10 @@
 "Setting.aboutKaoTiBi" = "About MagicPen"; //"关于考题笔";
 "Setting.phone" = "Phone: %@"; //"手机：%@";
 "Setting.email" = "E-mail :%@"; //"邮箱：%@";
+
+"Setting.phoneNoAppend" = "Phone:"; //"手机：%@";
+"Setting.emailNoAppend" = "E-mail:"; //"邮箱：%@";
+
 
 "Setting.notActivity" = "Not activated"; //"暂未激活";
 "Setting.leftTimeDetail" = "%ld Day %ld hour %ld Minute"; //"%ld天%ld时%ld分";
@@ -154,5 +161,7 @@
 "Shoot.addPhotoDescrible" = "Add description to photo"; //"给照片添加描述";
 "Shoot.inpuPhotoDescrible" = "Enter photo description"; //"输入照片描述";
 
+"Search.begainSearch" = "Click the Search button to search!";
+"Search.noresult" = "No search results found!";
 
 

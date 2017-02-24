@@ -52,7 +52,7 @@
         }
         _isnoSearchResultHintViewIsShow = NO;
         if (hintLabel != nil) {
-            hintLabel.text = @"没有搜索到任务结果哦！";
+            hintLabel.text = NSLocalizedString(@"Search.noresult", @"没有搜索到任务结果哦！");
         }
     }
     return _noSearchResultHintView;
@@ -69,7 +69,7 @@
             }
         }
         if (hintLabel != nil) {
-            hintLabel.text = @"点击【搜索】按钮进行搜索！";
+            hintLabel.text =NSLocalizedString(@"Search.begainSearch", @"点击【搜索】按钮进行搜索！");
         }
     }
     return _begainSearchHintView;

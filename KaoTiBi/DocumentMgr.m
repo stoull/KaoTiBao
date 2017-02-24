@@ -106,11 +106,12 @@ singleton_implementation(DocumentMgr)
     
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:directFilePath]) {
-        [DocumentMgr saveDirectoryInfor:@[@"我的文档"]];
+        [DocumentMgr saveDirectoryInfor:@[@"My Documents"]];
     }
+    [DocumentMgr saveDirectoryInfor:@[@"我的文档",@"My Documents"]];
     NSArray *directoryArray = [NSArray arrayWithContentsOfFile:directFilePath];
     if (directoryArray == nil || directoryArray.count == 0) {
-        directoryArray = @[@"我的文档"];
+        directoryArray = @[@"My Documents"];
         [DocumentMgr saveDirectoryInfor:directoryArray];
     }
     return directoryArray;

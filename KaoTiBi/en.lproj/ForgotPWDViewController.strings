@@ -1,18 +1,18 @@
 
 /* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "Bsr-gf-Ctj"; */
-"Bsr-gf-Ctj.normalTitle" = "获取验证码";
+"Bsr-gf-Ctj.normalTitle" = "Get Verification Code";
 
 /* Class = "UILabel"; text = "手机号码："; ObjectID = "G38-YV-Cmt"; */
-"G38-YV-Cmt.text" = "手机号码：";
+"G38-YV-Cmt.text" = "Phone：";
 
 /* Class = "UIButton"; normalTitle = "下一步"; ObjectID = "MUI-sO-0ex"; */
-"MUI-sO-0ex.normalTitle" = "下一步";
+"MUI-sO-0ex.normalTitle" = "Next";
 
 /* Class = "UILabel"; text = "注册邮箱："; ObjectID = "OP9-nE-KVM"; */
-"OP9-nE-KVM.text" = "注册邮箱：";
+"OP9-nE-KVM.text" = "E-mail：";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "oJn-3V-BTk"; */
 "oJn-3V-BTk.placeholder" = "Email";
 
 /* Class = "UILabel"; text = "验证码："; ObjectID = "vle-wz-A63"; */
-"vle-wz-A63.text" = "验证码：";
+"vle-wz-A63.text" = "Verification Code：";
